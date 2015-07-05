@@ -10,14 +10,34 @@
 		EF5FA99C1B491C4900A44BFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */; };
 		EF5FA9A51B491C4900A44BFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9A41B491C4900A44BFF /* Images.xcassets */; };
 		EF5FA9A81B491C4900A44BFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9A61B491C4900A44BFF /* LaunchScreen.xib */; };
+		EF5FA9C31B493D4800A44BFF /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9BF1B493D4800A44BFF /* ProximaNova-Bold.otf */; };
+		EF5FA9C41B493D4800A44BFF /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9C01B493D4800A44BFF /* ProximaNova-Light.otf */; };
+		EF5FA9C51B493D4800A44BFF /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9C11B493D4800A44BFF /* ProximaNova-Regular.otf */; };
+		EF5FA9C61B493D4800A44BFF /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9C21B493D4800A44BFF /* ProximaNova-Semibold.otf */; };
+		EF5FA9CA1B4940CD00A44BFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9C81B4940CD00A44BFF /* Main.storyboard */; };
+		EF5FA9D51B494CAE00A44BFF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9D41B494CAE00A44BFF /* SettingsViewController.swift */; };
+		EF5FA9D81B49538E00A44BFF /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9D71B49538E00A44BFF /* UIFontExtension.swift */; };
+		EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9DA1B49592C00A44BFF /* ForecastViewController.swift */; };
+		EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */; };
+		EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9E31B495E6B00A44BFF /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF5FA9961B491C4900A44BFF /* weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF5FA9961B491C4900A44BFF /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5FA99A1B491C4900A44BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF5FA9A41B491C4900A44BFF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EF5FA9A71B491C4900A44BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		EF5FA9BF1B493D4800A44BFF /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		EF5FA9C01B493D4800A44BFF /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
+		EF5FA9C11B493D4800A44BFF /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		EF5FA9C21B493D4800A44BFF /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		EF5FA9C91B4940CD00A44BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EF5FA9D41B494CAE00A44BFF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EF5FA9D71B49538E00A44BFF /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		EF5FA9DA1B49592C00A44BFF /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		EF5FA9E31B495E6B00A44BFF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +62,7 @@
 		EF5FA9971B491C4900A44BFF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EF5FA9961B491C4900A44BFF /* weather.app */,
+				EF5FA9961B491C4900A44BFF /* Weather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -50,10 +70,13 @@
 		EF5FA9981B491C4900A44BFF /* weather */ = {
 			isa = PBXGroup;
 			children = (
-				EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */,
-				EF5FA9A41B491C4900A44BFF /* Images.xcassets */,
-				EF5FA9A61B491C4900A44BFF /* LaunchScreen.xib */,
+				EF5FA9C71B493D4F00A44BFF /* Classes */,
+				EF5FA9D61B49536500A44BFF /* Extensions */,
+				EF5FA9BD1B493D2000A44BFF /* Resources */,
 				EF5FA9991B491C4900A44BFF /* Supporting Files */,
+				EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */,
+				EF5FA9C81B4940CD00A44BFF /* Main.storyboard */,
+				EF5FA9A61B491C4900A44BFF /* LaunchScreen.xib */,
 			);
 			path = weather;
 			sourceTree = "<group>";
@@ -66,12 +89,150 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EF5FA9BD1B493D2000A44BFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9BE1B493D4800A44BFF /* Fonts */,
+				EF5FA9A41B491C4900A44BFF /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EF5FA9BE1B493D4800A44BFF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9BF1B493D4800A44BFF /* ProximaNova-Bold.otf */,
+				EF5FA9C01B493D4800A44BFF /* ProximaNova-Light.otf */,
+				EF5FA9C11B493D4800A44BFF /* ProximaNova-Regular.otf */,
+				EF5FA9C21B493D4800A44BFF /* ProximaNova-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EF5FA9C71B493D4F00A44BFF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9D11B494C5E00A44BFF /* Today */,
+				EF5FA9CC1B494C5E00A44BFF /* Forecast */,
+				EF5FA9CD1B494C5E00A44BFF /* Settings */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		EF5FA9CC1B494C5E00A44BFF /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9DB1B49592C00A44BFF /* Model */,
+				EF5FA9DC1B49592C00A44BFF /* View */,
+				EF5FA9D91B49592C00A44BFF /* Controller */,
+			);
+			name = Forecast;
+			path = Classes/Forecast;
+			sourceTree = "<group>";
+		};
+		EF5FA9CD1B494C5E00A44BFF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9CF1B494C5E00A44BFF /* Model */,
+				EF5FA9D01B494C5E00A44BFF /* View */,
+				EF5FA9CE1B494C5E00A44BFF /* Controller */,
+			);
+			name = Settings;
+			path = Classes/Settings;
+			sourceTree = "<group>";
+		};
+		EF5FA9CE1B494C5E00A44BFF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9D41B494CAE00A44BFF /* SettingsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF5FA9CF1B494C5E00A44BFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF5FA9D01B494C5E00A44BFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF5FA9D11B494C5E00A44BFF /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9E01B49593200A44BFF /* Model */,
+				EF5FA9E11B49593200A44BFF /* View */,
+				EF5FA9DE1B49593200A44BFF /* Controller */,
+			);
+			name = Today;
+			path = Classes/Today;
+			sourceTree = "<group>";
+		};
+		EF5FA9D61B49536500A44BFF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9D71B49538E00A44BFF /* UIFontExtension.swift */,
+				EF5FA9E31B495E6B00A44BFF /* Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EF5FA9D91B49592C00A44BFF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9DA1B49592C00A44BFF /* ForecastViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF5FA9DB1B49592C00A44BFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF5FA9DC1B49592C00A44BFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF5FA9DE1B49593200A44BFF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EF5FA9E01B49593200A44BFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF5FA9E11B49593200A44BFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EF5FA9951B491C4900A44BFF /* weather */ = {
+		EF5FA9951B491C4900A44BFF /* Weather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF5FA9B71B491C4900A44BFF /* Build configuration list for PBXNativeTarget "weather" */;
+			buildConfigurationList = EF5FA9B71B491C4900A44BFF /* Build configuration list for PBXNativeTarget "Weather" */;
 			buildPhases = (
 				EF5FA9921B491C4900A44BFF /* Sources */,
 				EF5FA9931B491C4900A44BFF /* Frameworks */,
@@ -81,9 +242,9 @@
 			);
 			dependencies = (
 			);
-			name = weather;
+			name = Weather;
 			productName = weather;
-			productReference = EF5FA9961B491C4900A44BFF /* weather.app */;
+			productReference = EF5FA9961B491C4900A44BFF /* Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -100,7 +261,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "weather" */;
+			buildConfigurationList = EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "Weather" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -113,7 +274,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF5FA9951B491C4900A44BFF /* weather */,
+				EF5FA9951B491C4900A44BFF /* Weather */,
 			);
 		};
 /* End PBXProject section */
@@ -123,6 +284,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF5FA9CA1B4940CD00A44BFF /* Main.storyboard in Resources */,
+				EF5FA9C31B493D4800A44BFF /* ProximaNova-Bold.otf in Resources */,
+				EF5FA9C61B493D4800A44BFF /* ProximaNova-Semibold.otf in Resources */,
+				EF5FA9C51B493D4800A44BFF /* ProximaNova-Regular.otf in Resources */,
+				EF5FA9C41B493D4800A44BFF /* ProximaNova-Light.otf in Resources */,
 				EF5FA9A81B491C4900A44BFF /* LaunchScreen.xib in Resources */,
 				EF5FA9A51B491C4900A44BFF /* Images.xcassets in Resources */,
 			);
@@ -136,6 +302,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF5FA99C1B491C4900A44BFF /* AppDelegate.swift in Sources */,
+				EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */,
+				EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */,
+				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
+				EF5FA9D81B49538E00A44BFF /* UIFontExtension.swift in Sources */,
+				EF5FA9D51B494CAE00A44BFF /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +319,14 @@
 				EF5FA9A71B491C4900A44BFF /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		EF5FA9C81B4940CD00A44BFF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF5FA9C91B4940CD00A44BFF /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -236,7 +415,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Weather;
 			};
 			name = Debug;
 		};
@@ -246,14 +425,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Weather;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "weather" */ = {
+		EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF5FA9B51B491C4900A44BFF /* Debug */,
@@ -262,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF5FA9B71B491C4900A44BFF /* Build configuration list for PBXNativeTarget "weather" */ = {
+		EF5FA9B71B491C4900A44BFF /* Build configuration list for PBXNativeTarget "Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF5FA9B81B491C4900A44BFF /* Debug */,

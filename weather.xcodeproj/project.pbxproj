@@ -20,6 +20,7 @@
 		EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9DA1B49592C00A44BFF /* ForecastViewController.swift */; };
 		EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */; };
 		EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9E31B495E6B00A44BFF /* Colors.swift */; };
+		EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9E51B4968D100A44BFF /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EF5FA9DA1B49592C00A44BFF /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EF5FA9E31B495E6B00A44BFF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EF5FA9E51B4968D100A44BFF /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		EF5FA9CF1B494C5E00A44BFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EF5FA9E51B4968D100A44BFF /* UserSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */,
 				EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */,
 				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
+				EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */,
 				EF5FA9D81B49538E00A44BFF /* UIFontExtension.swift in Sources */,
 				EF5FA9D51B494CAE00A44BFF /* SettingsViewController.swift in Sources */,
 			);

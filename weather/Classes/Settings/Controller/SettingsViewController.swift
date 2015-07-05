@@ -8,6 +8,8 @@
 
 import UIKit
 
+enum SettingsViewRow: Int { case Distance, Temperature }
+
 class SettingsViewController: UITableViewController {
 
 
@@ -22,16 +24,20 @@ class SettingsViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
 	{
-		// TODO: Update detail text
+		var selection = SettingsViewRow(rawValue: indexPath.row)
 
-		if (indexPath.row == 0)
+		// Distance units cell
+		if (selection == .Distance)
 		{
-			cell.detailTextLabel?.text = "Meters"
+			cell.detailTextLabel?.text = (UserSettings.sharedSettings.distanceUnit == DistanceUnit.Metric) ?
+				"Meters" : "Miles"
 		}
 
-		else if (indexPath.row == 1)
+		// Temperature units cell
+		else if (selection == .Temperature)
 		{
-			cell.detailTextLabel?.text = "Celsius"
+			cell.detailTextLabel?.text = (UserSettings.sharedSettings.temperatureUnit == TemperatureUnit.Celsius) ?
+				"Celsius" : "Fahrenheit"
 		}
 	}
 
@@ -39,7 +45,21 @@ class SettingsViewController: UITableViewController {
 	{
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-		// TODO: Switch setting
+		var selection = SettingsViewRow(rawValue: indexPath.row)
+
+		// Distance units cell
+		if (selection == .Distance)
+		{
+			UserSettings.sharedSettings.distanceUnit = (UserSettings.sharedSettings.distanceUnit == .Metric) ?
+				.Imperial : .Metric;
+		}
+
+			// Temperature units cell
+		else if (selection == .Temperature)
+		{
+			UserSettings.sharedSettings.temperatureUnit = (UserSettings.sharedSettings.temperatureUnit == .Celsius) ?
+				.Fahrenheit : .Celsius;
+		}
 
 		tableView.reloadRowsAtIndexPaths([ indexPath ], withRowAnimation: .None)
 	}

@@ -29,15 +29,17 @@ class SettingsViewController: UITableViewController {
 		// Distance units cell
 		if (selection == .Distance)
 		{
-			cell.detailTextLabel?.text = (UserSettings.sharedSettings.distanceUnit == DistanceUnit.Metric) ?
-				"Meters" : "Miles"
+			cell.detailTextLabel?.text =
+				(UserSettings.sharedSettings.distanceUnit == DistanceUnit.Metric) ?
+					"Meters" : "Miles"
 		}
 
 		// Temperature units cell
 		else if (selection == .Temperature)
 		{
-			cell.detailTextLabel?.text = (UserSettings.sharedSettings.temperatureUnit == TemperatureUnit.Celsius) ?
-				"Celsius" : "Fahrenheit"
+			cell.detailTextLabel?.text =
+				(UserSettings.sharedSettings.temperatureUnit == TemperatureUnit.Celsius) ?
+					"Celsius" : "Fahrenheit"
 		}
 	}
 
@@ -48,17 +50,21 @@ class SettingsViewController: UITableViewController {
 		var selection = SettingsViewRow(rawValue: indexPath.row)
 
 		// Distance units cell
+
 		if (selection == .Distance)
 		{
-			UserSettings.sharedSettings.distanceUnit = (UserSettings.sharedSettings.distanceUnit == .Metric) ?
-				.Imperial : .Metric;
+			UserSettings.sharedSettings.distanceUnit =
+				(UserSettings.sharedSettings.distanceUnit == .Metric) ?
+					.Imperial : .Metric;
 		}
 
-			// Temperature units cell
+		// Temperature units cell
+
 		else if (selection == .Temperature)
 		{
-			UserSettings.sharedSettings.temperatureUnit = (UserSettings.sharedSettings.temperatureUnit == .Celsius) ?
-				.Fahrenheit : .Celsius;
+			UserSettings.sharedSettings.temperatureUnit =
+				(UserSettings.sharedSettings.temperatureUnit == .Celsius) ?
+					.Fahrenheit : .Celsius;
 		}
 
 		tableView.reloadRowsAtIndexPaths([ indexPath ], withRowAnimation: .None)

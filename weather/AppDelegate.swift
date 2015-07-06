@@ -17,6 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
 	{
+		// Default Navigation bar appearance changes
+		UINavigationBar.appearance().translucent = false
+		UINavigationBar.appearance().shadowImage = UIImage(named: "navbar-shadow")
+		UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+		UINavigationBar.appearance().setTitleTextAttributesSwift([
+			NSForegroundColorAttributeName: Colors.fromRGB(0x333333, alphaValue: 1),
+			NSFontAttributeName: UIFont.boldSystemFontOfSize(18)
+		])
+
+		// Default Tab bar appearance changes
+		UITabBar.appearance().tintColor = Colors.defaultBlue()
+//		UIView.appearanceWhenContainedWithin([ UITabBar.self ]).tintColor = UIColor.blackColor()
+//		UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: UIControlState.Normal)
+
 		return true
 	}
 

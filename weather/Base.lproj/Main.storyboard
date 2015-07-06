@@ -10,6 +10,9 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
         </mutableArray>
+        <mutableArray key="ProximaNova-Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Tab Bar Controller-->
@@ -56,7 +59,7 @@
         <!--Today-->
         <scene sceneID="Gfb-41-nRb">
             <objects>
-                <viewController id="04u-UQ-LXg" customClass="TodayViewController" sceneMemberID="viewController">
+                <viewController id="04u-UQ-LXg" customClass="TodayViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FYf-wv-ilc"/>
                         <viewControllerLayoutGuide type="bottom" id="8hM-WD-oUF"/>
@@ -64,9 +67,46 @@
                     <view key="view" contentMode="scaleToFill" id="Il2-Ho-Ty0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-1j-r8j">
+                                <rect key="frame" x="140" y="64" width="320" height="480"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="condition-sun" translatesAutoresizingMaskIntoConstraints="NO" id="TQ4-8D-GFP" userLabel="Condition image">
+                                        <rect key="frame" x="100" y="0.0" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="82e-xM-vDg"/>
+                                            <constraint firstAttribute="width" constant="120" id="lAp-yA-d7K"/>
+                                            <constraint firstAttribute="height" constant="120" id="nc3-3g-oNZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Brno, Czech Republic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PG-PT-AAL" userLabel="Location label">
+                                        <rect key="frame" x="30" y="128" width="260" height="21"/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="19"/>
+                                        <color key="textColor" red="0.24705882370471954" green="0.24705882370471954" blue="0.24705882370471954" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="0PG-PT-AAL" secondAttribute="centerX" id="Xau-6s-wr6"/>
+                                    <constraint firstItem="TQ4-8D-GFP" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" id="YXj-MT-siS"/>
+                                    <constraint firstAttribute="centerX" secondItem="TQ4-8D-GFP" secondAttribute="centerX" id="bbV-Ce-JtO"/>
+                                    <constraint firstAttribute="width" constant="320" id="rDz-Yv-W3g"/>
+                                    <constraint firstItem="0PG-PT-AAL" firstAttribute="top" secondItem="TQ4-8D-GFP" secondAttribute="bottom" constant="8" id="vfS-Ib-UBb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="K4P-1j-r8j" secondAttribute="centerX" id="XNk-Y4-C5C"/>
+                            <constraint firstAttribute="centerY" secondItem="K4P-1j-r8j" secondAttribute="centerY" id="ktH-5s-0dK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Today" id="09V-vi-Ktl"/>
+                    <connections>
+                        <outlet property="conditionIcon" destination="TQ4-8D-GFP" id="h8Z-or-CdM"/>
+                        <outlet property="locationLabel" destination="0PG-PT-AAL" id="d6O-g3-Xep"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9e-92-JIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,7 +190,7 @@
                         <sections>
                             <tableViewSection headerTitle="General" id="cWo-rg-ldD">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="LKC-Xa-ZSm" detailTextLabel="eqI-v1-Qx9" style="IBUITableViewCellStyleValue1" id="1FU-g2-tql">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="LKC-Xa-ZSm" detailTextLabel="eqI-v1-Qx9" style="IBUITableViewCellStyleValue1" id="1FU-g2-tql" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1FU-g2-tql" id="zm5-qQ-Tjj">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -170,7 +210,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="aCQ-7a-J7e" detailTextLabel="xZk-Gc-U0i" style="IBUITableViewCellStyleValue1" id="jyV-BK-PLi">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="aCQ-7a-J7e" detailTextLabel="xZk-Gc-U0i" style="IBUITableViewCellStyleValue1" id="jyV-BK-PLi" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyV-BK-PLi" id="kuU-ZH-dp8">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -206,6 +246,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="condition-sun" width="87" height="87"/>
         <image name="tabicon-forecast" width="23" height="22"/>
         <image name="tabicon-settings" width="23" height="23"/>
         <image name="tabicon-today" width="24" height="24"/>

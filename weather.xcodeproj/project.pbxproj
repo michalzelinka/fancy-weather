@@ -21,6 +21,8 @@
 		EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */; };
 		EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9E31B495E6B00A44BFF /* Colors.swift */; };
 		EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9E51B4968D100A44BFF /* UserSettings.swift */; };
+		EF5FA9EA1B497B3200A44BFF /* UIAppearance+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9E91B497B3200A44BFF /* UIAppearance+Swift.m */; };
+		EF5FA9EE1B49950D00A44BFF /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA9ED1B49950D00A44BFF /* UITableViewCellExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,10 @@
 		EF5FA9DF1B49593200A44BFF /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EF5FA9E31B495E6B00A44BFF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EF5FA9E51B4968D100A44BFF /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		EF5FA9E71B497AF200A44BFF /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		EF5FA9E81B497B3200A44BFF /* UIAppearance+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+Swift.h"; sourceTree = "<group>"; };
+		EF5FA9E91B497B3200A44BFF /* UIAppearance+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAppearance+Swift.m"; sourceTree = "<group>"; };
+		EF5FA9ED1B49950D00A44BFF /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				EF5FA99A1B491C4900A44BFF /* Info.plist */,
+				EF5FA9E71B497AF200A44BFF /* Bridge.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -182,6 +189,9 @@
 			children = (
 				EF5FA9D71B49538E00A44BFF /* UIFontExtension.swift */,
 				EF5FA9E31B495E6B00A44BFF /* Colors.swift */,
+				EF5FA9E81B497B3200A44BFF /* UIAppearance+Swift.h */,
+				EF5FA9E91B497B3200A44BFF /* UIAppearance+Swift.m */,
+				EF5FA9ED1B49950D00A44BFF /* UITableViewCellExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,8 +317,10 @@
 				EF5FA99C1B491C4900A44BFF /* AppDelegate.swift in Sources */,
 				EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */,
 				EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */,
+				EF5FA9EE1B49950D00A44BFF /* UITableViewCellExtension.swift in Sources */,
 				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
 				EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */,
+				EF5FA9EA1B497B3200A44BFF /* UIAppearance+Swift.m in Sources */,
 				EF5FA9D81B49538E00A44BFF /* UIFontExtension.swift in Sources */,
 				EF5FA9D51B494CAE00A44BFF /* SettingsViewController.swift in Sources */,
 			);
@@ -374,6 +386,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -409,6 +422,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Bridge.h;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -417,9 +431,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Weather;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -427,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Weather;

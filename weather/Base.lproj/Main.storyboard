@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A204h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNova-Regular.otf">
@@ -9,8 +10,15 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
         </mutableArray>
     </customFonts>
@@ -23,6 +31,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -43,10 +52,11 @@
                     <tabBarItem key="tabBarItem" title="Today" image="tabicon-today" id="QgA-e8-eSv">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jTB-5R-bqE">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jTB-5R-bqE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="04u-UQ-LXg" kind="relationship" relationship="rootViewController" id="HdT-YX-EoV"/>
@@ -65,47 +75,201 @@
                         <viewControllerLayoutGuide type="bottom" id="8hM-WD-oUF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Il2-Ho-Ty0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-1j-r8j">
-                                <rect key="frame" x="140" y="64" width="320" height="480"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-1j-r8j">
+                                <rect key="frame" x="140" y="29" width="320" height="430"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="condition-sun" translatesAutoresizingMaskIntoConstraints="NO" id="TQ4-8D-GFP" userLabel="Condition image">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="condition-sun" translatesAutoresizingMaskIntoConstraints="NO" id="TQ4-8D-GFP" userLabel="Condition image">
                                         <rect key="frame" x="100" y="0.0" width="120" height="120"/>
+                                        <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="82e-xM-vDg"/>
                                             <constraint firstAttribute="width" constant="120" id="lAp-yA-d7K"/>
                                             <constraint firstAttribute="height" constant="120" id="nc3-3g-oNZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Brno, Czech Republic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PG-PT-AAL" userLabel="Location label">
-                                        <rect key="frame" x="30" y="128" width="260" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PG-PT-AAL" userLabel="Location label">
+                                        <rect key="frame" x="154" y="128" width="12" height="19"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="19"/>
                                         <color key="textColor" red="0.24705882370471954" green="0.24705882370471954" blue="0.24705882370471954" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2t-OG-Wm9" userLabel="Summary label">
+                                        <rect key="frame" x="153" y="160" width="15" height="25"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="25"/>
+                                        <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHH-XQ-meS" userLabel="Top separator">
+                                        <rect key="frame" x="80" y="210" width="160" height="1"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.94117647410000005" green="0.94117647410000005" blue="0.94117647410000005" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="aKo-oO-qim"/>
+                                            <constraint firstAttribute="width" constant="160" id="gbZ-8l-rKh"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="today-rain" translatesAutoresizingMaskIntoConstraints="NO" id="zQy-Or-TjF" userLabel="Rain icon">
+                                        <rect key="frame" x="144" y="230" width="32" height="32"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="9FO-8r-2SL"/>
+                                            <constraint firstAttribute="width" constant="32" id="RCc-QG-foz"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdL-MD-kys" userLabel="Rain label">
+                                        <rect key="frame" x="156" y="264" width="9" height="15"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="today-humidity" translatesAutoresizingMaskIntoConstraints="NO" id="Ld4-dZ-j60" userLabel="Humidity icon">
+                                        <rect key="frame" x="56" y="230" width="32" height="32"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="DvE-m0-4ZF"/>
+                                            <constraint firstAttribute="width" constant="32" id="Pjy-oX-1Xc"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPG-tE-Nkr" userLabel="Humidity label">
+                                        <rect key="frame" x="68" y="264" width="9" height="15"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="today-celsius" translatesAutoresizingMaskIntoConstraints="NO" id="b0F-XC-I4g" userLabel="Pressure icon">
+                                        <rect key="frame" x="232" y="230" width="32" height="32"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="PeT-9V-B2n"/>
+                                            <constraint firstAttribute="width" constant="32" id="yhP-QU-XWo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S55-Mv-Fw6" userLabel="Pressure label">
+                                        <rect key="frame" x="244" y="264" width="9" height="15"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="today-wind" translatesAutoresizingMaskIntoConstraints="NO" id="EF3-ss-M6Z" userLabel="Wind speed icon">
+                                        <rect key="frame" x="94" y="300" width="32" height="32"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="4Y8-Jj-CyT"/>
+                                            <constraint firstAttribute="width" constant="32" id="OdY-pa-mf8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TF-qk-cK9" userLabel="Wind speed label">
+                                        <rect key="frame" x="106" y="334" width="9" height="15"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="today-compass" translatesAutoresizingMaskIntoConstraints="NO" id="5ZC-Gt-c2g" userLabel="Wind direction icon">
+                                        <rect key="frame" x="194" y="300" width="32" height="32"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="1so-fx-8RB"/>
+                                            <constraint firstAttribute="width" constant="32" id="XBR-m9-5KB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2a-eQ-wzl" userLabel="Wind direction label">
+                                        <rect key="frame" x="206" y="334" width="9" height="15"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFM-UW-TXq" userLabel="Bottom separator">
+                                        <rect key="frame" x="80" y="372" width="160" height="1"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.94117647410000005" green="0.94117647410000005" blue="0.94117647410000005" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="160" id="TS9-Yt-bY6"/>
+                                            <constraint firstAttribute="height" constant="1" id="YU3-Wu-4Nm"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aT5-vI-igh">
+                                        <rect key="frame" x="80" y="390" width="160" height="40"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Xee-SD-Vpq"/>
+                                            <constraint firstAttribute="width" constant="160" id="yE0-Uf-jXM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
+                                        <state key="normal" title="Share">
+                                            <color key="titleColor" red="1" green="0.52793759107589722" blue="0.25995004177093506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareButtonTapped:" destination="04u-UQ-LXg" eventType="touchUpInside" id="rnA-fx-JMo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="zQy-Or-TjF" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="230" id="38s-e0-n8H"/>
+                                    <constraint firstItem="TQ4-8D-GFP" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" id="3Xi-vQ-zFx"/>
+                                    <constraint firstItem="Ld4-dZ-j60" firstAttribute="centerX" secondItem="QPG-tE-Nkr" secondAttribute="centerX" id="5Fo-1j-ICa"/>
+                                    <constraint firstItem="QPG-tE-Nkr" firstAttribute="top" secondItem="Ld4-dZ-j60" secondAttribute="bottom" constant="2" id="64u-6r-ayl"/>
+                                    <constraint firstItem="7TF-qk-cK9" firstAttribute="top" secondItem="EF3-ss-M6Z" secondAttribute="bottom" constant="2" id="7Lg-3p-XAh"/>
+                                    <constraint firstItem="jdL-MD-kys" firstAttribute="top" secondItem="zQy-Or-TjF" secondAttribute="bottom" constant="2" id="Acy-HR-887"/>
+                                    <constraint firstItem="EF3-ss-M6Z" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="300" id="FBD-qa-3Kl"/>
+                                    <constraint firstItem="7TF-qk-cK9" firstAttribute="centerX" secondItem="EF3-ss-M6Z" secondAttribute="centerX" id="Frb-iO-Bzl"/>
+                                    <constraint firstItem="aT5-vI-igh" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="390" id="Gfn-aA-vKo"/>
+                                    <constraint firstItem="S55-Mv-Fw6" firstAttribute="top" secondItem="b0F-XC-I4g" secondAttribute="bottom" constant="2" id="GrS-ZQ-k0J"/>
+                                    <constraint firstItem="r2a-eQ-wzl" firstAttribute="centerX" secondItem="5ZC-Gt-c2g" secondAttribute="centerX" id="JDe-D9-Tef"/>
+                                    <constraint firstItem="h2t-OG-Wm9" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="160" id="PX0-Gi-Tmd"/>
+                                    <constraint firstAttribute="centerX" secondItem="aT5-vI-igh" secondAttribute="centerX" id="REU-T8-CHh"/>
+                                    <constraint firstAttribute="centerX" secondItem="LFM-UW-TXq" secondAttribute="centerX" id="WDf-Wu-BaI"/>
                                     <constraint firstAttribute="centerX" secondItem="0PG-PT-AAL" secondAttribute="centerX" id="Xau-6s-wr6"/>
-                                    <constraint firstItem="TQ4-8D-GFP" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" id="YXj-MT-siS"/>
                                     <constraint firstAttribute="centerX" secondItem="TQ4-8D-GFP" secondAttribute="centerX" id="bbV-Ce-JtO"/>
+                                    <constraint firstItem="EF3-ss-M6Z" firstAttribute="trailing" secondItem="K4P-1j-r8j" secondAttribute="centerX" constant="-34" id="c2I-hf-sU6"/>
+                                    <constraint firstItem="Ld4-dZ-j60" firstAttribute="trailing" secondItem="K4P-1j-r8j" secondAttribute="centerX" constant="-72" id="c9G-dg-gN0"/>
+                                    <constraint firstItem="5ZC-Gt-c2g" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="300" id="ccE-Sd-i8f"/>
+                                    <constraint firstItem="b0F-XC-I4g" firstAttribute="centerX" secondItem="S55-Mv-Fw6" secondAttribute="centerX" id="d9Y-cy-yiQ"/>
+                                    <constraint firstAttribute="centerX" secondItem="WHH-XQ-meS" secondAttribute="centerX" id="ejz-SA-GXO"/>
+                                    <constraint firstItem="zQy-Or-TjF" firstAttribute="centerX" secondItem="jdL-MD-kys" secondAttribute="centerX" id="iYc-PM-jW0"/>
+                                    <constraint firstItem="LFM-UW-TXq" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="372" id="j6f-52-QfA"/>
+                                    <constraint firstItem="5ZC-Gt-c2g" firstAttribute="leading" secondItem="K4P-1j-r8j" secondAttribute="centerX" constant="34" id="j70-fh-0F0"/>
+                                    <constraint firstAttribute="height" constant="430" id="j9r-iP-0Tt"/>
+                                    <constraint firstItem="b0F-XC-I4g" firstAttribute="leading" secondItem="K4P-1j-r8j" secondAttribute="centerX" constant="72" id="jHd-fP-amu"/>
+                                    <constraint firstItem="r2a-eQ-wzl" firstAttribute="top" secondItem="5ZC-Gt-c2g" secondAttribute="bottom" constant="2" id="k2Q-HN-XJN"/>
+                                    <constraint firstItem="Ld4-dZ-j60" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="230" id="lBE-98-X5D"/>
+                                    <constraint firstItem="WHH-XQ-meS" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="210" id="lMe-Wk-NQv"/>
+                                    <constraint firstAttribute="centerX" secondItem="zQy-Or-TjF" secondAttribute="centerX" id="oOg-8B-wKb"/>
+                                    <constraint firstAttribute="centerX" secondItem="h2t-OG-Wm9" secondAttribute="centerX" id="ovU-G9-Mjb"/>
+                                    <constraint firstItem="b0F-XC-I4g" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="230" id="pkB-X6-ftw"/>
                                     <constraint firstAttribute="width" constant="320" id="rDz-Yv-W3g"/>
-                                    <constraint firstItem="0PG-PT-AAL" firstAttribute="top" secondItem="TQ4-8D-GFP" secondAttribute="bottom" constant="8" id="vfS-Ib-UBb"/>
+                                    <constraint firstItem="0PG-PT-AAL" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="128" id="vv9-9Y-wdQ"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="K4P-1j-r8j" secondAttribute="centerX" id="XNk-Y4-C5C"/>
-                            <constraint firstAttribute="centerY" secondItem="K4P-1j-r8j" secondAttribute="centerY" id="ktH-5s-0dK"/>
+                            <constraint firstAttribute="centerX" secondItem="K4P-1j-r8j" secondAttribute="centerX" id="IzO-kq-21N"/>
+                            <constraint firstAttribute="centerY" secondItem="K4P-1j-r8j" secondAttribute="centerY" constant="24" id="xlz-Ry-MNb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Today" id="09V-vi-Ktl"/>
                     <connections>
                         <outlet property="conditionIcon" destination="TQ4-8D-GFP" id="h8Z-or-CdM"/>
+                        <outlet property="humidityLabel" destination="QPG-tE-Nkr" id="MWh-RS-0m8"/>
                         <outlet property="locationLabel" destination="0PG-PT-AAL" id="d6O-g3-Xep"/>
+                        <outlet property="pressureLabel" destination="S55-Mv-Fw6" id="Zo8-n5-oJp"/>
+                        <outlet property="rainDropsLabel" destination="jdL-MD-kys" id="mIa-es-CH5"/>
+                        <outlet property="summaryLabel" destination="h2t-OG-Wm9" id="qWs-Jk-tLd"/>
+                        <outlet property="windDirectionLabel" destination="r2a-eQ-wzl" id="KbB-JZ-JuT"/>
+                        <outlet property="windSpeedLabel" destination="7TF-qk-cK9" id="4tg-B8-BrL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9e-92-JIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,15 +281,18 @@
             <objects>
                 <tableViewController id="LfW-BV-Odm" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ChT-4c-N2l">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vGR-ck-r1d">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForecastDayCell" id="vGR-ck-r1d">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vGR-ck-r1d" id="l9s-BG-E7O">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -146,10 +313,11 @@
                     <tabBarItem key="tabBarItem" title="Forecast" image="tabicon-forecast" id="T1t-r1-F3C">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uXd-yt-tzY">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uXd-yt-tzY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="LfW-BV-Odm" kind="relationship" relationship="rootViewController" id="hxm-Pq-wvK"/>
@@ -166,10 +334,11 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="tabicon-settings" id="hoX-h8-LNg">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UJW-hq-oRG">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="UJW-hq-oRG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="DDA-zQ-m2G" kind="relationship" relationship="rootViewController" id="kkG-Az-2ko"/>
@@ -184,51 +353,60 @@
             <objects>
                 <tableViewController id="DDA-zQ-m2G" customClass="SettingsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="E2o-Xd-Vm4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection headerTitle="General" id="cWo-rg-ldD">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="LKC-Xa-ZSm" detailTextLabel="eqI-v1-Qx9" style="IBUITableViewCellStyleValue1" id="1FU-g2-tql" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="LKC-Xa-ZSm" detailTextLabel="eqI-v1-Qx9" style="IBUITableViewCellStyleValue1" id="1FU-g2-tql" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1FU-g2-tql" id="zm5-qQ-Tjj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Unit of length" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LKC-Xa-ZSm">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Meters" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eqI-v1-Qx9">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                                     <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="aCQ-7a-J7e" detailTextLabel="xZk-Gc-U0i" style="IBUITableViewCellStyleValue1" id="jyV-BK-PLi" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="aCQ-7a-J7e" detailTextLabel="xZk-Gc-U0i" style="IBUITableViewCellStyleValue1" id="jyV-BK-PLi" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyV-BK-PLi" id="kuU-ZH-dp8">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Units of temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aCQ-7a-J7e">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Celsius" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xZk-Gc-U0i">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                                     <color key="textColor" red="0.1843137255" green="0.56862745100000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -242,7 +420,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7S-Hq-oob" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="1484"/>
+            <point key="canvasLocation" x="0.0" y="1505"/>
         </scene>
     </scenes>
     <resources>
@@ -250,5 +428,10 @@
         <image name="tabicon-forecast" width="23" height="22"/>
         <image name="tabicon-settings" width="23" height="23"/>
         <image name="tabicon-today" width="24" height="24"/>
+        <image name="today-celsius" width="21" height="15"/>
+        <image name="today-compass" width="17" height="17"/>
+        <image name="today-humidity" width="22" height="22"/>
+        <image name="today-rain" width="16" height="19"/>
+        <image name="today-wind" width="25" height="16"/>
     </resources>
 </document>

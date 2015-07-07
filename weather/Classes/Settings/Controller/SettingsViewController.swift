@@ -17,7 +17,7 @@ class SettingsViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
 	{
-		var v = view as UITableViewHeaderFooterView
+		var v = view as! UITableViewHeaderFooterView
 		v.textLabel.font = UIFont.boldSystemFontOfSize(14)
 		v.textLabel.textColor = Colors.defaultBlue()
 	}
@@ -37,9 +37,13 @@ class SettingsViewController: UITableViewController {
 		// Temperature units cell
 		else if (selection == .Temperature)
 		{
-			cell.detailTextLabel?.text =
-				(UserSettings.sharedSettings.temperatureUnit == TemperatureUnit.Celsius) ?
-					"Celsius" : "Fahrenheit"
+			switch (UserSettings.sharedSettings.temperatureUnit) {
+
+			case .Kelvin:     cell.detailTextLabel?.text = "Kelvin"
+			case .Celsius:    cell.detailTextLabel?.text = "Celsius"
+			case .Fahrenheit: cell.detailTextLabel?.text = "Fahrenheit"
+
+			}
 		}
 	}
 
@@ -58,16 +62,17 @@ class SettingsViewController: UITableViewController {
 					.Imperial : .Metric;
 		}
 
-		// Temperature units cell
+			// Temperature units cell
 
 		else if (selection == .Temperature)
 		{
-			UserSettings.sharedSettings.temperatureUnit =
-				(UserSettings.sharedSettings.temperatureUnit == .Celsius) ?
-					.Fahrenheit : .Celsius;
+			var newValue = UserSettings.sharedSettings.temperatureUnit.rawValue+1
+			if newValue > TemperatureUnit.Fahrenheit.rawValue { newValue = TemperatureUnit.Kelvin.rawValue }
+			UserSettings.sharedSettings.temperatureUnit = TemperatureUnit(rawValue: newValue)!
 		}
 
 		tableView.reloadRowsAtIndexPaths([ indexPath ], withRowAnimation: .None)
+
 	}
 
 }

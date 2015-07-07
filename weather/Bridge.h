@@ -10,5 +10,6 @@
 #define Weather_Bridge_h
 
 #import "UIAppearance+Swift.h"
+#import "UIFont+Swift.h"
 
 #endif

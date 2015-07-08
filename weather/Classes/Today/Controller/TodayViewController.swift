@@ -5,8 +5,8 @@
 //  Created by Michi on 5/7/15.
 //  Copyright (c) 2015 Michi. All rights reserved.
 //
-// FILE TODO:
-// - periodic updating
+//  FILE TODO:
+//  - periodic updating
 //
 
 import UIKit
@@ -47,10 +47,16 @@ class TodayViewController: UIViewController {
 				style: .Plain, target: self, action: "locationsButtonTapped:")
 	}
 
-	override func viewDidAppear(animated: Bool)
+	override func viewDidLoad()
 	{
-		super.viewDidAppear(animated)
+		super.viewDidLoad()
 		self.refresh()
+	}
+
+	override func viewWillAppear(animated: Bool)
+	{
+		super.viewWillAppear(animated)
+		self.reloadData()
 	}
 
 
@@ -86,8 +92,10 @@ class TodayViewController: UIViewController {
 
 		var entries = NSMutableArray()
 
-		if let t = displayedRecord?.temperature
-		{ entries.addObject(String(format: "%.0fK", t)) }
+		if let t = displayedRecord?.temperature {
+			let unit = UserSettings.sharedSettings.temperatureUnit
+			entries.addObject(NumberFormatter.double(t, toTemperatureStringWithUnit: unit)!)
+		}
 
 		if let t = displayedRecord?.conditionText
 		{ entries.addObject(t) }
@@ -97,22 +105,26 @@ class TodayViewController: UIViewController {
 		// Update rain drops value
 
 		rainDropsLabel.text = (displayedRecord?.rainDrops != nil) ?
-			String(format: "%.1f mm", displayedRecord!.rainDrops!) : "–"
+			String(format: "%.1f  mm", displayedRecord!.rainDrops!) : "–"
 
 		// Update humidity value
 
 		humidityLabel.text = (displayedRecord?.humidity != nil) ?
-			String(format: "%.0f%%", displayedRecord!.humidity!) : "–"
+			String(format: "%.0f  %%", displayedRecord!.humidity!) : "–"
 
 		// Update pressure value
 
 		pressureLabel.text = (displayedRecord?.pressure != nil) ?
-			String(format: "%.0f hPa", displayedRecord!.pressure!) : "–"
+			String(format: "%.0f  hPa", displayedRecord!.pressure!) : "–"
 
 		// Update wind speed value
 
-		windSpeedLabel.text = (displayedRecord?.windSpeed != nil) ?
-			String(format: "%.0f km/h", displayedRecord!.windSpeed!) : "–"
+		if var windSpeed = displayedRecord?.windSpeed {
+			windSpeed *= 3.6
+			let unit = UserSettings.sharedSettings.distanceUnit
+			windSpeedLabel.text = NumberFormatter.double(windSpeed, toDistanceStringWithUnit: unit)
+		} else { windSpeedLabel.text = "–" }
+
 
 		// Update wind direction
 

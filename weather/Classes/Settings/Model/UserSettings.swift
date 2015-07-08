@@ -21,13 +21,17 @@ class UserSettings: NSObject {
 
 	var distanceUnit: DistanceUnit = DistanceUnit.Metric {
 		didSet {
-			NSNotificationCenter.defaultCenter().postNotificationName(kNotificationDistanceUnitDidUpdate, object: nil)
+			self.commit()
+			NSNotificationCenter.defaultCenter().postNotificationName(
+				kNotificationDistanceUnitDidUpdate, object: nil)
 		}
 	}
 
 	var temperatureUnit : TemperatureUnit = TemperatureUnit.Celsius {
 		didSet {
-			NSNotificationCenter.defaultCenter().postNotificationName(kNotificationTemperatureUnitDidUpdate, object: nil)
+			self.commit()
+			NSNotificationCenter.defaultCenter().postNotificationName(
+				kNotificationTemperatureUnitDidUpdate, object: nil)
 		}
 	}
 

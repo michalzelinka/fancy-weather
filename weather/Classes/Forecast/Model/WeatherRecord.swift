@@ -17,6 +17,7 @@ class WeatherRecord {
 	var windDegree: Double?
 	var pressure: Double?
 	var humidity: Double?
+	var rainDrops: Double?
 
 	convenience init(json: JSON?)
 	{
@@ -29,6 +30,32 @@ class WeatherRecord {
 		windDegree = json?["wind"]["deg"].double
 		pressure = json?["main"]["pressure"].double
 		humidity = json?["main"]["humidity"].double
+		rainDrops = json?["rain"]["3h"].double
+	}
+
+	func conditionImagePattern() -> String
+	{
+		if let conditionID = conditionID
+		{
+			let category = conditionID / 100
+			let remainder = conditionID % 100
+
+			if (category == 8)
+			{
+				if (remainder <= 1) { return "sun" }
+				return "cloudy"
+			}
+
+			if (category == 5) { return "lightning" } // rain
+			if (category == 2) { return "lightning" }
+			if (category == 3) { return "lightning" } // rain
+//			if (category == 7) { return "unknown" }
+//			if (category == 6) { return "unknown" } // snow
+
+			return "unknown"
+		}
+
+		return "unknown"
 	}
 
 }

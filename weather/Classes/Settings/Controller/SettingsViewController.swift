@@ -15,6 +15,11 @@ class SettingsViewController: UITableViewController {
 
 	// MARK: - Table view delegates
 
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+	{
+		return 64
+	}
+
 	override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
 	{
 		var v = view as! UITableViewHeaderFooterView

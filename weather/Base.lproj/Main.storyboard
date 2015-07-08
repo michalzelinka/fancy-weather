@@ -81,7 +81,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-1j-r8j">
                                 <rect key="frame" x="140" y="29" width="320" height="430"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="condition-sun" translatesAutoresizingMaskIntoConstraints="NO" id="TQ4-8D-GFP" userLabel="Condition image">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="condition-unknown" translatesAutoresizingMaskIntoConstraints="NO" id="TQ4-8D-GFP" userLabel="Condition image">
                                         <rect key="frame" x="100" y="0.0" width="120" height="120"/>
                                         <animations/>
                                         <constraints>
@@ -424,7 +424,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="condition-sun" width="87" height="87"/>
+        <image name="condition-unknown" width="87" height="87"/>
         <image name="tabicon-forecast" width="23" height="22"/>
         <image name="tabicon-settings" width="23" height="23"/>
         <image name="tabicon-today" width="24" height="24"/>

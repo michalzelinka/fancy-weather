@@ -26,7 +26,7 @@ class WeatherManager: NSObject {
 		if (LocationManager.sharedManager.checkAuthorisation() != true)
 		{ completion?(destination: nil, record: nil) }
 
-		if let location = LocationManager.sharedManager.lastLocation()
+		if let location = LocationManager.sharedManager.lastLocation
 		{
 			let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast?lat=%.5f&lon=%.5f",
 				location.coordinate.latitude, location.coordinate.longitude)

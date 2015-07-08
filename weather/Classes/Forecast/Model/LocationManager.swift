@@ -9,9 +9,12 @@
 import Foundation
 import CoreLocation
 
+let kNotificationLocationDidUpdate    = "LocationDidUpdate"
+
 class LocationManager: NSObject, CLLocationManagerDelegate {
 
 	let locationManager: CLLocationManager
+	var lastLocation: CLLocation?
 
 	class var sharedManager: LocationManager
 	{
@@ -25,13 +28,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 		super.init()
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+		locationManager.distanceFilter = 1000
 		locationManager.startUpdatingLocation()
+		lastLocation = locationManager.location
 	}
 
-	func lastLocation() -> CLLocation?
-	{
-		return locationManager.location
-	}
+
+	// MARK: - Authorisation stuff
 
 	func authorizationStatus() -> CLAuthorizationStatus
 	{
@@ -42,6 +45,15 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 	{
 		let status = CLLocationManager.authorizationStatus()
 
+		// Notify about authorisation when needed
+		if (status == .Denied || status == .Restricted) {
+			UIAlertView(title: "Location authorization needed",
+				message: "Please open Settings to allow access.",
+					delegate: nil, cancelButtonTitle: "OK")
+			return false
+		}
+
+		// Ask for authorisation when needed
 		if (status != .AuthorizedWhenInUse &&
 			status != .AuthorizedAlways) {
 			locationManager.requestWhenInUseAuthorization()
@@ -49,6 +61,20 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 		}
 
 		return true
+	}
+
+
+	// MARK: - Location manager delegate
+
+	func locationManager(manager: CLLocationManager!,
+		didUpdateToLocation newLocation: CLLocation!,
+		fromLocation oldLocation: CLLocation!) {
+
+		// Update handled location
+		lastLocation = newLocation
+
+		// Send notification
+		NSNotificationCenter.defaultCenter().postNotificationName(kNotificationLocationDidUpdate, object: nil)
 	}
 
 }

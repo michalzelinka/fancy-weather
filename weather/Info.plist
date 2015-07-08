@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.misacek.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>net.misacek.$(PRODUCT_NAME:rfc1034identifier:lower)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -54,6 +54,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Application uses your location to provide weather forecast for nearby destination.</string>
 </dict>
 </plist>

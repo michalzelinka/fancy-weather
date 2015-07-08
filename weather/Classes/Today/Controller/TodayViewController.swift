@@ -66,10 +66,10 @@ class TodayViewController: UIViewController {
 	{
 		// TODO: Session-based picking of location
 
-		WeatherManager.sharedManager.weatherForCurrentLocation { (destination, record) -> Void in
+		WeatherManager.sharedManager.weatherForCurrentLocation { (destination, records) -> Void in
 
 			// Update with new data
-			self.update(destination: destination, record: record)
+			self.update(destination: destination, record: records?.first)
 			
 		}
 	}

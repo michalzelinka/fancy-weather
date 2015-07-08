@@ -21,10 +21,10 @@ class WeatherManager: NSObject {
 		// TODO: Implement
 	}
 
-	func weatherForCurrentLocation(#completion: ((destination: Destination?, record: WeatherRecord?) -> Void)?) -> Void
+	func weatherForCurrentLocation(#completion: ((destination: Destination?, records: [WeatherRecord]?) -> Void)?) -> Void
 	{
 		if (LocationManager.sharedManager.checkAuthorisation() != true)
-		{ completion?(destination: nil, record: nil) }
+		{ completion?(destination: nil, records: nil) }
 
 		if let location = LocationManager.sharedManager.lastLocation
 		{
@@ -34,7 +34,8 @@ class WeatherManager: NSObject {
 			let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
 			request.timeoutInterval = 5.0
 
-			NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue()) { (response, data, error) -> Void in
+			NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue())
+			{ (response, data, error) -> Void in
 
 				if (error != nil) { NSLog("Request error"); return; }
 
@@ -43,10 +44,16 @@ class WeatherManager: NSObject {
 				let city = json["city"]
 				let destination = Destination(json: city)
 
-				let entries = json["list"].array
-				let record = WeatherRecord(json: entries?.first)
+				let entries = json["list"].array ?? [ ]
+				var records: [WeatherRecord] = [ ]
 
-				completion?(destination: destination, record: record)
+				for e in entries
+				{
+					var record = WeatherRecord(json: e)
+					records.append(record)
+				}
+
+				completion?(destination: destination, records: records)
 				
 			}
 		}

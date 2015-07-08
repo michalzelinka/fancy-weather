@@ -15,9 +15,10 @@ class ForecastViewCell: UITableViewCell {
 	@IBOutlet weak var conditionLabel: UILabel?
 	@IBOutlet weak var temperatureLabel: UILabel?
 
-    override func awakeFromNib() {
+    override func awakeFromNib()
+	{
         super.awakeFromNib()
-        // Initialization code
+		self.selectionStyle = .None
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

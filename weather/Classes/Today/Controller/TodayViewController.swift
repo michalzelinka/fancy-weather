@@ -184,13 +184,17 @@ class TodayViewController: UIViewController {
 	{
 		let view = conditionIcon.superview
 
+		sender.hidden = true
+		
 		UIGraphicsBeginImageContextWithOptions(view!.bounds.size, false, UIScreen.mainScreen().scale)
 		view!.drawViewHierarchyInRect(view!.bounds, afterScreenUpdates: true)
 		let screenshot = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 
-		let screenshotData = UIImageJPEGRepresentation(screenshot, 0.9)
-		let items = [ "Look how the weather is today!", screenshotData ]
+		sender.hidden = false
+
+		let message = "Look how the weather is today!"
+		let items = [ message, screenshot ]
 
 		let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		self.tabBarController?.presentViewController(vc, animated: true, completion: nil)

@@ -24,14 +24,20 @@ class NumberFormatter: NSObject {
 		return nil
 	}
 
-	class func double(val: Double?, toTemperatureStringWithUnit unit: TemperatureUnit) -> String?
+	class func double(val: Double?, toTemperatureStringWithUnit unit: TemperatureUnit, unitDisplayed: Bool) -> String?
 	{
 		// Base is Kelvin
 
-		if let val = val {
-			if unit == .Kelvin     { return String(format: "%.0f  K", val) }
-			if unit == .Celsius    { return String(format: "%.0f  °C", val-273.15) }
-			if unit == .Fahrenheit { return String(format: "%.0f  °F", (val-273.15) * 1.8 + 32.0) }
+		if var val = val {
+
+			var unitStr = "K"
+
+			if unit == .Celsius { val -= 273.15; unitStr = "°C" }
+			else if unit == .Fahrenheit { val = (val-273.15) * 1.8 + 32.0; unitStr = "°F" }
+
+			unitStr = (unitDisplayed) ? "  "+unitStr : (unit != .Kelvin) ? "°" : ""
+
+			return String(format: "%.0f%@", val, unitStr)
 		}
 
 		return nil

@@ -28,7 +28,7 @@ class WeatherManager: NSObject {
 
 		if let location = LocationManager.sharedManager.lastLocation
 		{
-			let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast?lat=%.5f&lon=%.5f",
+			let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=%.5f&lon=%.5f&cnt=14",
 				location.coordinate.latitude, location.coordinate.longitude)
 
 			let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)

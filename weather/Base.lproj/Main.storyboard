@@ -3,9 +3,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="ProximaNova-Light.otf">
+            <string>ProximaNova-Light</string>
+        </mutableArray>
         <mutableArray key="ProximaNova-Regular.otf">
+            <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
@@ -13,6 +18,7 @@
             <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
+            <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
@@ -286,13 +292,69 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForecastDayCell" id="vGR-ck-r1d" customClass="ForecastViewCell" customModule="Weather" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForecastViewCell" id="vGR-ck-r1d" customClass="ForecastViewCell" customModule="Weather" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vGR-ck-r1d" id="l9s-BG-E7O">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="condition-unknown" translatesAutoresizingMaskIntoConstraints="NO" id="Iyd-P8-zmH" userLabel="Condition image">
+                                            <rect key="frame" x="8" y="20" width="54" height="54"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="54" id="8dP-QF-zfO"/>
+                                                <constraint firstAttribute="width" constant="54" id="ibC-C1-MHd"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iF2-uj-VEG" userLabel="Day label">
+                                            <rect key="frame" x="80" y="26" width="72" height="22"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="WU4-E5-zPw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
+                                            <color key="textColor" red="0.19997116923332214" green="0.20001816749572754" blue="0.19997081160545349" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Windy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qV1-K3-xBv" userLabel="Condition label">
+                                            <rect key="frame" x="80" y="49" width="41" height="21"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="VXb-Vw-TyN"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                            <color key="textColor" red="0.19997116923332214" green="0.20001816749572754" blue="0.19997081160545349" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20° " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVA-vw-xmo" userLabel="Temperature label">
+                                            <rect key="frame" x="496" y="18" width="96" height="58"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="58" id="67m-9K-Dfz"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="55"/>
+                                            <color key="textColor" red="0.0" green="0.58690369129180908" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="iF2-uj-VEG" firstAttribute="leading" secondItem="Iyd-P8-zmH" secondAttribute="trailing" constant="18" id="2ZA-Ct-4Ty"/>
+                                        <constraint firstAttribute="centerY" secondItem="bVA-vw-xmo" secondAttribute="centerY" id="9ZB-yq-krI"/>
+                                        <constraint firstAttribute="centerY" secondItem="iF2-uj-VEG" secondAttribute="centerY" constant="10" id="B9r-Re-ee5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bVA-vw-xmo" secondAttribute="trailing" id="EDJ-l3-IG8"/>
+                                        <constraint firstItem="iF2-uj-VEG" firstAttribute="leading" secondItem="qV1-K3-xBv" secondAttribute="leading" id="ISa-Fj-IU2"/>
+                                        <constraint firstAttribute="centerY" secondItem="Iyd-P8-zmH" secondAttribute="centerY" id="Qy2-1H-hlA"/>
+                                        <constraint firstAttribute="centerY" secondItem="qV1-K3-xBv" secondAttribute="centerY" constant="-13" id="Wg1-K9-Skd"/>
+                                        <constraint firstItem="Iyd-P8-zmH" firstAttribute="leading" secondItem="l9s-BG-E7O" secondAttribute="leadingMargin" id="pUQ-RN-7OH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="conditionImage" destination="Iyd-P8-zmH" id="zSx-hv-bjm"/>
+                                    <outlet property="conditionLabel" destination="qV1-K3-xBv" id="BGr-ss-U1P"/>
+                                    <outlet property="dayLabel" destination="iF2-uj-VEG" id="YRb-eW-n4C"/>
+                                    <outlet property="temperatureLabel" destination="bVA-vw-xmo" id="ljC-oo-eC3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

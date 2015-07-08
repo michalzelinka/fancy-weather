@@ -10,6 +10,7 @@ import Foundation
 
 class WeatherRecord {
 
+	var date: NSDate?
 	var conditionID: Int?
 	var conditionText: String?
 	var temperature: Double?
@@ -23,14 +24,15 @@ class WeatherRecord {
 	{
 		self.init()
 
+		if let dt = json?["dt"].double { date = NSDate(timeIntervalSince1970: dt) }
 		conditionID = json?["weather"][0]["id"].int
 		conditionText = json?["weather"][0]["main"].string
-		temperature = json?["main"]["temp"].double
-		windSpeed = json?["wind"]["speed"].double
-		windDegree = json?["wind"]["deg"].double
-		pressure = json?["main"]["pressure"].double
-		humidity = json?["main"]["humidity"].double
-		rainDrops = json?["rain"]["3h"].double
+		temperature = json?["temp"]["day"].double
+		windSpeed = json?["speed"].double
+		windDegree = json?["deg"].double
+		pressure = json?["pressure"].double
+		humidity = json?["humidity"].double
+		rainDrops = json?["rain"].double
 	}
 
 	func conditionImagePattern() -> String

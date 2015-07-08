@@ -12,6 +12,7 @@
 		CDA008491B4CF9890040F9EE /* UIFont+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA008481B4CF9890040F9EE /* UIFont+Swift.m */; };
 		CDA0084C1B4D43510040F9EE /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0084B1B4D43510040F9EE /* NumberFormatter.swift */; };
 		CDA0084E1B4D52830040F9EE /* ForecastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0084D1B4D52830040F9EE /* ForecastViewCell.swift */; };
+		CDA008501B4D5ED90040F9EE /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */; };
 		EF5FA99C1B491C4900A44BFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */; };
 		EF5FA9A51B491C4900A44BFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9A41B491C4900A44BFF /* Images.xcassets */; };
 		EF5FA9A81B491C4900A44BFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9A61B491C4900A44BFF /* LaunchScreen.xib */; };
@@ -40,6 +41,7 @@
 		CDA008481B4CF9890040F9EE /* UIFont+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Swift.m"; sourceTree = "<group>"; };
 		CDA0084B1B4D43510040F9EE /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		CDA0084D1B4D52830040F9EE /* ForecastViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewCell.swift; sourceTree = "<group>"; };
+		CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		EF5FA9961B491C4900A44BFF /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5FA99A1B491C4900A44BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,11 +209,12 @@
 		EF5FA9D61B49536500A44BFF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CDA008471B4CF9890040F9EE /* UIFont+Swift.h */,
-				CDA008481B4CF9890040F9EE /* UIFont+Swift.m */,
 				EF5FA9E31B495E6B00A44BFF /* Colors.swift */,
+				CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */,
 				EF5FA9E81B497B3200A44BFF /* UIAppearance+Swift.h */,
 				EF5FA9E91B497B3200A44BFF /* UIAppearance+Swift.m */,
+				CDA008471B4CF9890040F9EE /* UIFont+Swift.h */,
+				CDA008481B4CF9890040F9EE /* UIFont+Swift.m */,
 				EF5FA9ED1B49950D00A44BFF /* UITableViewCellExtension.swift */,
 			);
 			path = Extensions;
@@ -368,6 +371,7 @@
 				EF5FA9EE1B49950D00A44BFF /* UITableViewCellExtension.swift in Sources */,
 				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
 				EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */,
+				CDA008501B4D5ED90040F9EE /* NSDateFormatterExtension.swift in Sources */,
 				EF8127CF1B4C5554007A48BD /* WeatherRecord.swift in Sources */,
 				EF5FA9EA1B497B3200A44BFF /* UIAppearance+Swift.m in Sources */,
 				EFB796F41B4C5BF500B2780E /* LocationManager.swift in Sources */,

@@ -94,7 +94,7 @@ class TodayViewController: UIViewController {
 
 		if let t = displayedRecord?.temperature {
 			let unit = UserSettings.sharedSettings.temperatureUnit
-			entries.addObject(NumberFormatter.double(t, toTemperatureStringWithUnit: unit)!)
+			entries.addObject(NumberFormatter.double(t, toTemperatureStringWithUnit: unit, unitDisplayed: true)!)
 		}
 
 		if let t = displayedRecord?.conditionText

@@ -63,6 +63,7 @@ class ForecastViewController: UITableViewController {
 
 	func reloadData() -> Void
 	{
+		self.title = displayedDestination?.name ?? "Forecast"
 		self.tableView.reloadData()
 	}
 
@@ -90,7 +91,14 @@ class ForecastViewController: UITableViewController {
 	override func tableView(tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		return ForecastViewCell()
+		return tableView.dequeueReusableCellWithIdentifier("ForecastViewCell") as! UITableViewCell
+	}
+
+	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+		forRowAtIndexPath indexPath: NSIndexPath)
+	{
+		let c = cell as! ForecastViewCell
+		c.update(displayedRecords?[indexPath.row])
 	}
 
 

@@ -12,6 +12,7 @@ class DestinationsViewCell: UITableViewCell {
 
 	@IBOutlet weak var conditionImage: UIImageView?
 	@IBOutlet weak var destinationLabel: UILabel?
+	@IBOutlet weak var navigationFlag: UIImageView?
 	@IBOutlet weak var conditionLabel: UILabel?
 	@IBOutlet weak var temperatureLabel: UILabel?
 
@@ -28,6 +29,7 @@ class DestinationsViewCell: UITableViewCell {
 			let unit = UserSettings.sharedSettings.temperatureUnit
 			conditionImage?.image = UIImage(named: String("condition-"+record.conditionImagePattern()))
 			destinationLabel?.text = destination?.name
+			navigationFlag?.hidden = destination !== WeatherManager.sharedManager.locatedDestination
 			conditionLabel?.text = record.conditionText
 			temperatureLabel?.text = NumberFormatter.double(record.temperature, toTemperatureStringWithUnit: unit, unitDisplayed: false)
 		}

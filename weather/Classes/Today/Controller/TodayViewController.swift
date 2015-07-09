@@ -14,6 +14,7 @@ import UIKit
 class TodayViewController: UIViewController, DestinationsViewControllerDelegate {
 
 	@IBOutlet weak var conditionIcon : UIImageView!
+	@IBOutlet weak var navigationFlag : UIImageView!
 	@IBOutlet weak var locationLabel : UILabel!
 	@IBOutlet weak var summaryLabel : UILabel!
 
@@ -79,6 +80,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		// Update location name
 
 		locationLabel.text = displayedDestination?.name
+		navigationFlag.hidden = displayedDestination !== WeatherManager.sharedManager.locatedDestination
 
 		// Update brief summary
 

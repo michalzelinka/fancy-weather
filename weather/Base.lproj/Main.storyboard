@@ -98,6 +98,14 @@
                                             <constraint firstAttribute="height" constant="120" id="nc3-3g-oNZ"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation_flag" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-K6-zHA" userLabel="Navigation flag">
+                                        <rect key="frame" x="134" y="130" width="16" height="16"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="6hI-2I-bhm"/>
+                                            <constraint firstAttribute="height" constant="16" id="WeD-Xb-5zN"/>
+                                        </constraints>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="–" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PG-PT-AAL" userLabel="Location label">
                                         <rect key="frame" x="154" y="128" width="12" height="19"/>
                                         <animations/>
@@ -246,6 +254,7 @@
                                     <constraint firstItem="5ZC-Gt-c2g" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="300" id="ccE-Sd-i8f"/>
                                     <constraint firstItem="b0F-XC-I4g" firstAttribute="centerX" secondItem="S55-Mv-Fw6" secondAttribute="centerX" id="d9Y-cy-yiQ"/>
                                     <constraint firstAttribute="centerX" secondItem="WHH-XQ-meS" secondAttribute="centerX" id="ejz-SA-GXO"/>
+                                    <constraint firstItem="0PG-PT-AAL" firstAttribute="centerY" secondItem="zSX-K6-zHA" secondAttribute="centerY" id="gdL-fU-Aii"/>
                                     <constraint firstItem="zQy-Or-TjF" firstAttribute="centerX" secondItem="jdL-MD-kys" secondAttribute="centerX" id="iYc-PM-jW0"/>
                                     <constraint firstItem="LFM-UW-TXq" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="372" id="j6f-52-QfA"/>
                                     <constraint firstItem="5ZC-Gt-c2g" firstAttribute="leading" secondItem="K4P-1j-r8j" secondAttribute="centerX" constant="34" id="j70-fh-0F0"/>
@@ -254,6 +263,7 @@
                                     <constraint firstItem="r2a-eQ-wzl" firstAttribute="top" secondItem="5ZC-Gt-c2g" secondAttribute="bottom" constant="2" id="k2Q-HN-XJN"/>
                                     <constraint firstItem="Ld4-dZ-j60" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="230" id="lBE-98-X5D"/>
                                     <constraint firstItem="WHH-XQ-meS" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="210" id="lMe-Wk-NQv"/>
+                                    <constraint firstItem="0PG-PT-AAL" firstAttribute="leading" secondItem="zSX-K6-zHA" secondAttribute="trailing" constant="4" id="ndb-DZ-7Oa"/>
                                     <constraint firstAttribute="centerX" secondItem="zQy-Or-TjF" secondAttribute="centerX" id="oOg-8B-wKb"/>
                                     <constraint firstAttribute="centerX" secondItem="h2t-OG-Wm9" secondAttribute="centerX" id="ovU-G9-Mjb"/>
                                     <constraint firstItem="b0F-XC-I4g" firstAttribute="top" secondItem="K4P-1j-r8j" secondAttribute="top" constant="230" id="pkB-X6-ftw"/>
@@ -287,6 +297,7 @@
                         <outlet property="conditionIcon" destination="TQ4-8D-GFP" id="h8Z-or-CdM"/>
                         <outlet property="humidityLabel" destination="QPG-tE-Nkr" id="MWh-RS-0m8"/>
                         <outlet property="locationLabel" destination="0PG-PT-AAL" id="d6O-g3-Xep"/>
+                        <outlet property="navigationFlag" destination="zSX-K6-zHA" id="u71-sS-Azc"/>
                         <outlet property="pressureLabel" destination="S55-Mv-Fw6" id="Zo8-n5-oJp"/>
                         <outlet property="rainDropsLabel" destination="jdL-MD-kys" id="mIa-es-CH5"/>
                         <outlet property="summaryLabel" destination="h2t-OG-Wm9" id="qWs-Jk-tLd"/>
@@ -358,6 +369,16 @@
                                                     <color key="textColor" red="0.19997116919999999" green="0.20001816750000001" blue="0.19997081159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation_flag" translatesAutoresizingMaskIntoConstraints="NO" id="5rI-AN-uxe" userLabel="Navigation flag">
+                                                    <rect key="frame" x="142" y="27" width="16" height="16"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="88m-uL-kAt"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="97j-LZ-DqP"/>
+                                                        <constraint firstAttribute="height" constant="16" id="Fda-uO-y5D"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="U1W-db-a60"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -366,6 +387,8 @@
                                                 <constraint firstAttribute="centerY" secondItem="4A4-WD-8Lg" secondAttribute="centerY" constant="10" id="Af9-lu-cZe"/>
                                                 <constraint firstItem="ZnI-Fj-NCI" firstAttribute="trailing" secondItem="4fG-Rh-tsT" secondAttribute="trailingMargin" id="Fli-lk-I0T"/>
                                                 <constraint firstItem="4A4-WD-8Lg" firstAttribute="leading" secondItem="Q0D-jf-PcA" secondAttribute="leading" id="L1D-0u-b96"/>
+                                                <constraint firstItem="5rI-AN-uxe" firstAttribute="centerY" secondItem="4A4-WD-8Lg" secondAttribute="centerY" id="Srk-gb-msZ"/>
+                                                <constraint firstItem="5rI-AN-uxe" firstAttribute="leading" secondItem="4A4-WD-8Lg" secondAttribute="trailing" constant="1" id="VE0-ec-hAL"/>
                                                 <constraint firstAttribute="centerY" secondItem="aPW-Wa-uRq" secondAttribute="centerY" id="h1X-00-yJs"/>
                                                 <constraint firstItem="4A4-WD-8Lg" firstAttribute="leading" secondItem="aPW-Wa-uRq" secondAttribute="trailing" constant="18" id="o9X-Yt-Oiv"/>
                                                 <constraint firstAttribute="centerY" secondItem="ZnI-Fj-NCI" secondAttribute="centerY" id="rnY-YU-IzA"/>
@@ -376,6 +399,7 @@
                                             <outlet property="conditionImage" destination="aPW-Wa-uRq" id="NIw-Lk-gAm"/>
                                             <outlet property="conditionLabel" destination="Q0D-jf-PcA" id="iZo-eg-JRC"/>
                                             <outlet property="destinationLabel" destination="4A4-WD-8Lg" id="uQz-Zr-xH7"/>
+                                            <outlet property="navigationFlag" destination="5rI-AN-uxe" id="eeh-Bj-K8l"/>
                                             <outlet property="temperatureLabel" destination="ZnI-Fj-NCI" id="fbx-2s-lEe"/>
                                         </connections>
                                     </tableViewCell>
@@ -662,6 +686,7 @@
         <image name="condition-unknown" width="87" height="87"/>
         <image name="destinations-add" width="65" height="65"/>
         <image name="navicon-locations" width="22" height="14"/>
+        <image name="navigation_flag" width="11" height="11"/>
         <image name="tabicon-forecast" width="23" height="22"/>
         <image name="tabicon-settings" width="23" height="23"/>
         <image name="tabicon-today" width="24" height="24"/>

@@ -8,31 +8,13 @@
 
 import UIKit
 
-class ForecastViewController: UITableViewController {
+class ForecastViewController: UITableViewController, DestinationsViewControllerDelegate {
 
 	var displayedDestination : Destination?
 	var displayedRecords : [WeatherRecord]?
 
 
 	// MARK: - View lifecycle
-
-	override func loadView()
-	{
-		super.loadView()
-
-		// Left navigation item
-
-		self.navigationItem.leftBarButtonItem =
-			UIBarButtonItem(barButtonSystemItem:
-				UIBarButtonSystemItem.Refresh, target: self,
-					action: "refreshButtonTapped:")
-
-		// Right navigation item
-
-		self.navigationItem.rightBarButtonItem =
-			UIBarButtonItem(image: UIImage(named: "navicon-locations"),
-				style: .Plain, target: self, action: "locationsButtonTapped:")
-	}
 
 	override func viewDidLoad()
 	{
@@ -44,6 +26,16 @@ class ForecastViewController: UITableViewController {
 	{
 		super.viewWillAppear(animated)
 		self.reloadData()
+	}
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	{
+		if (segue.identifier == "Destinations")
+		{
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.viewControllers.first as! DestinationsViewController
+			vc.delegate = self
+		}
 	}
 
 
@@ -109,9 +101,18 @@ class ForecastViewController: UITableViewController {
 		self.refresh()
 	}
 
-	@IBAction func locationsButtonTapped(sender: UIControl)
+
+	// MARK: - Destinations screen delegate
+
+	func destinationsViewControllerDidFinish()
+	{
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+
+	func destinationsViewControllerDidSelectDestination(destination: Destination)
 	{
 		// TODO: Implement
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 }

@@ -10,15 +10,23 @@ import UIKit
 
 class WeatherManager: NSObject {
 
+	var locatedDestination: Destination?
+	var selectedDestination: Destination?
+	var followedDestinations = [Destination]()
+
+	var weatherRecordsCache = [Int: [WeatherRecord]]()
+
 	class var sharedManager: WeatherManager
 	{
 		struct Singleton { static let shared = WeatherManager() }
 		return Singleton.shared;
 	}
 
-	func weatherForDestination(destination: Destination) -> Void
+	func weatherForDestination(destination: Destination?) -> [WeatherRecord]?
 	{
-		// TODO: Implement
+		if (destination == nil) { return nil }
+
+		return weatherRecordsCache[destination!.identifier!]
 	}
 
 	func weatherForCurrentLocation(#completion: ((destination: Destination?, records: [WeatherRecord]?) -> Void)?) -> Void
@@ -53,8 +61,11 @@ class WeatherManager: NSObject {
 					records.append(record)
 				}
 
+				self.locatedDestination = destination
+				self.weatherRecordsCache[destination.identifier!] = records
+
 				completion?(destination: destination, records: records)
-				
+
 			}
 		}
 	}

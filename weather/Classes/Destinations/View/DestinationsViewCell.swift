@@ -2,32 +2,32 @@
 //  ForecastViewCell.swift
 //  
 //
-//  Created by Michal on 08/07/2015.
+//  Created by Michal on 09/07/2015.
 //
 //
 
 import UIKit
 
-class ForecastViewCell: UITableViewCell {
+class DestinationsViewCell: UITableViewCell {
 
 	@IBOutlet weak var conditionImage: UIImageView?
-	@IBOutlet weak var dayLabel: UILabel?
+	@IBOutlet weak var destinationLabel: UILabel?
 	@IBOutlet weak var conditionLabel: UILabel?
 	@IBOutlet weak var temperatureLabel: UILabel?
 
     override func awakeFromNib()
 	{
         super.awakeFromNib()
-		self.selectionStyle = .None
+		self.selectionStyle = .Default
     }
 
-	func update(record: WeatherRecord?) -> Void
+	func update(destination: Destination?, record: WeatherRecord?) -> Void
 	{
 		if var record = record
 		{
 			let unit = UserSettings.sharedSettings.temperatureUnit
 			conditionImage?.image = UIImage(named: String("condition-"+record.conditionImagePattern()))
-			dayLabel?.text = NSDateFormatter.sharedDayNameFormatter().stringFromDate(record.date!)
+			destinationLabel?.text = destination?.name
 			conditionLabel?.text = record.conditionText
 			temperatureLabel?.text = NumberFormatter.double(record.temperature, toTemperatureStringWithUnit: unit, unitDisplayed: false)
 		}

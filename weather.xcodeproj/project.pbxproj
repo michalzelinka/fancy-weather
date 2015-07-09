@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD287F881B4E5E01003A0AC7 /* DestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD287F871B4E5E01003A0AC7 /* DestinationsViewController.swift */; };
+		CD891AC11B4E60CF00907BA5 /* DestinationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD891AC01B4E60CF00907BA5 /* DestinationsViewCell.swift */; };
 		CD979A211B4C1B040087A3E1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979A201B4C1B040087A3E1 /* WeatherManager.swift */; };
 		CD979A231B4C1B3F0087A3E1 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979A221B4C1B3F0087A3E1 /* Destination.swift */; };
 		CDA008491B4CF9890040F9EE /* UIFont+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA008481B4CF9890040F9EE /* UIFont+Swift.m */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD287F871B4E5E01003A0AC7 /* DestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsViewController.swift; sourceTree = "<group>"; };
+		CD891AC01B4E60CF00907BA5 /* DestinationsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsViewCell.swift; sourceTree = "<group>"; };
 		CD979A201B4C1B040087A3E1 /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		CD979A221B4C1B3F0087A3E1 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		CDA008471B4CF9890040F9EE /* UIFont+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Swift.h"; sourceTree = "<group>"; };
@@ -79,6 +83,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD7755261B4E5B0200C160BA /* Destinations */ = {
+			isa = PBXGroup;
+			children = (
+				CD7755281B4E5B0200C160BA /* Model */,
+				CD891ABF1B4E60CE00907BA5 /* View */,
+				CD7755271B4E5B0200C160BA /* Controller */,
+			);
+			name = Destinations;
+			path = Classes/Destinations;
+			sourceTree = "<group>";
+		};
+		CD7755271B4E5B0200C160BA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CD287F871B4E5E01003A0AC7 /* DestinationsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CD7755281B4E5B0200C160BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD979A221B4C1B3F0087A3E1 /* Destination.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD891ABF1B4E60CE00907BA5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD891AC01B4E60CF00907BA5 /* DestinationsViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		EF5FA98D1B491C4900A44BFF = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +181,7 @@
 		EF5FA9C71B493D4F00A44BFF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CD7755261B4E5B0200C160BA /* Destinations */,
 				EF5FA9D11B494C5E00A44BFF /* Today */,
 				EF5FA9CC1B494C5E00A44BFF /* Forecast */,
 				EF5FA9CD1B494C5E00A44BFF /* Settings */,
@@ -231,7 +271,6 @@
 		EF5FA9DB1B49592C00A44BFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CD979A221B4C1B3F0087A3E1 /* Destination.swift */,
 				CD979A201B4C1B040087A3E1 /* WeatherManager.swift */,
 				EF8127CE1B4C5554007A48BD /* WeatherRecord.swift */,
 				EFB796F31B4C5BF500B2780E /* LocationManager.swift */,
@@ -360,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD287F881B4E5E01003A0AC7 /* DestinationsViewController.swift in Sources */,
 				EF5FA99C1B491C4900A44BFF /* AppDelegate.swift in Sources */,
 				CDA0084C1B4D43510040F9EE /* NumberFormatter.swift in Sources */,
 				EF8127CD1B4C5311007A48BD /* SwiftyJSON.swift in Sources */,
@@ -372,6 +412,7 @@
 				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
 				EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */,
 				CDA008501B4D5ED90040F9EE /* NSDateFormatterExtension.swift in Sources */,
+				CD891AC11B4E60CF00907BA5 /* DestinationsViewCell.swift in Sources */,
 				EF8127CF1B4C5554007A48BD /* WeatherRecord.swift in Sources */,
 				EF5FA9EA1B497B3200A44BFF /* UIAppearance+Swift.m in Sources */,
 				EFB796F41B4C5BF500B2780E /* LocationManager.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A204h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -8,8 +8,10 @@
     <customFonts key="customFonts">
         <mutableArray key="ProximaNova-Light.otf">
             <string>ProximaNova-Light</string>
+            <string>ProximaNova-Light</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Regular.otf">
+            <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
@@ -26,13 +28,14 @@
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" userLabel="Main controller" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -51,10 +54,10 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Today-->
+        <!--Today navigation-->
         <scene sceneID="zpr-IQ-N1b">
             <objects>
-                <navigationController id="KGb-Mq-vbT" sceneMemberID="viewController">
+                <navigationController id="KGb-Mq-vbT" userLabel="Today navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Today" image="tabicon-today" id="QgA-e8-eSv">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
@@ -266,7 +269,20 @@
                             <constraint firstAttribute="centerY" secondItem="K4P-1j-r8j" secondAttribute="centerY" constant="24" id="xlz-Ry-MNb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Today" id="09V-vi-Ktl"/>
+                    <navigationItem key="navigationItem" title="Today" id="09V-vi-Ktl">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="jww-Mm-Qyr">
+                            <color key="tintColor" red="0.0" green="0.58690369129180908" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="04u-UQ-LXg" id="qhq-ma-rFT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="navicon-locations" id="G3g-g9-chF">
+                            <color key="tintColor" red="0.0" green="0.58690369129180908" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="Phc-Kh-W22" kind="presentation" identifier="Destinations" id="MVd-Th-AcE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="conditionIcon" destination="TQ4-8D-GFP" id="h8Z-or-CdM"/>
                         <outlet property="humidityLabel" destination="QPG-tE-Nkr" id="MWh-RS-0m8"/>
@@ -281,6 +297,147 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9e-92-JIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1472" y="-230"/>
+        </scene>
+        <!--Destinations-->
+        <scene sceneID="pfg-VW-y96">
+            <objects>
+                <viewController id="VtC-D2-hNo" customClass="DestinationsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nbz-Oi-a8p"/>
+                        <viewControllerLayoutGuide type="bottom" id="ngl-qV-OkT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OqK-qz-CRf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Z3k-eq-ZFC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DestinationsViewCell" id="J39-PT-Io0" customClass="DestinationsViewCell" customModule="Weather" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J39-PT-Io0" id="4fG-Rh-tsT">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="condition-unknown" translatesAutoresizingMaskIntoConstraints="NO" id="aPW-Wa-uRq" userLabel="Condition image">
+                                                    <rect key="frame" x="8" y="18" width="54" height="54"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="54" id="fnF-U9-03A"/>
+                                                        <constraint firstAttribute="height" constant="54" id="tIX-Lu-QeX"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A4-WD-8Lg" userLabel="Destination label">
+                                                    <rect key="frame" x="80" y="24" width="61" height="22"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="YE8-yk-m0y"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
+                                                    <color key="textColor" red="0.19997116919999999" green="0.20001816750000001" blue="0.19997081159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20° " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnI-Fj-NCI" userLabel="Temperature label">
+                                                    <rect key="frame" x="496" y="16" width="96" height="58"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="58" id="t3K-KZ-YGL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="55"/>
+                                                    <color key="textColor" red="0.0" green="0.58690369129999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Windy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0D-jf-PcA" userLabel="Condition label">
+                                                    <rect key="frame" x="80" y="47" width="41" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="qf2-ax-q4m"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                                    <color key="textColor" red="0.19997116919999999" green="0.20001816750000001" blue="0.19997081159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Q0D-jf-PcA" secondAttribute="centerY" constant="-13" id="3O3-nR-3XN"/>
+                                                <constraint firstItem="aPW-Wa-uRq" firstAttribute="leading" secondItem="4fG-Rh-tsT" secondAttribute="leadingMargin" id="79P-Ob-Xya"/>
+                                                <constraint firstAttribute="centerY" secondItem="4A4-WD-8Lg" secondAttribute="centerY" constant="10" id="Af9-lu-cZe"/>
+                                                <constraint firstItem="ZnI-Fj-NCI" firstAttribute="trailing" secondItem="4fG-Rh-tsT" secondAttribute="trailingMargin" id="Fli-lk-I0T"/>
+                                                <constraint firstItem="4A4-WD-8Lg" firstAttribute="leading" secondItem="Q0D-jf-PcA" secondAttribute="leading" id="L1D-0u-b96"/>
+                                                <constraint firstAttribute="centerY" secondItem="aPW-Wa-uRq" secondAttribute="centerY" id="h1X-00-yJs"/>
+                                                <constraint firstItem="4A4-WD-8Lg" firstAttribute="leading" secondItem="aPW-Wa-uRq" secondAttribute="trailing" constant="18" id="o9X-Yt-Oiv"/>
+                                                <constraint firstAttribute="centerY" secondItem="ZnI-Fj-NCI" secondAttribute="centerY" id="rnY-YU-IzA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="conditionImage" destination="aPW-Wa-uRq" id="NIw-Lk-gAm"/>
+                                            <outlet property="conditionLabel" destination="Q0D-jf-PcA" id="iZo-eg-JRC"/>
+                                            <outlet property="destinationLabel" destination="4A4-WD-8Lg" id="uQz-Zr-xH7"/>
+                                            <outlet property="temperatureLabel" destination="ZnI-Fj-NCI" id="fbx-2s-lEe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="VtC-D2-hNo" id="VZp-pb-UhV"/>
+                                    <outlet property="delegate" destination="VtC-D2-hNo" id="mP6-Mb-CAq"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kY-jX-k0w">
+                                <rect key="frame" x="256" y="440" width="88" height="88"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="3qA-iT-gNB"/>
+                                    <constraint firstAttribute="width" constant="88" id="d8V-g7-qoS"/>
+                                </constraints>
+                                <state key="normal" image="destinations-add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ngl-qV-OkT" firstAttribute="top" secondItem="8kY-jX-k0w" secondAttribute="bottom" constant="8" id="goC-3m-9Ed"/>
+                            <constraint firstItem="ngl-qV-OkT" firstAttribute="top" secondItem="Z3k-eq-ZFC" secondAttribute="bottom" id="nOr-19-9L1"/>
+                            <constraint firstItem="Z3k-eq-ZFC" firstAttribute="leading" secondItem="OqK-qz-CRf" secondAttribute="leadingMargin" constant="-16" id="tV9-iv-rLN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z3k-eq-ZFC" secondAttribute="trailing" constant="-16" id="weA-vL-bUS"/>
+                            <constraint firstAttribute="centerX" secondItem="8kY-jX-k0w" secondAttribute="centerX" id="wq4-0s-Ejo"/>
+                            <constraint firstItem="Z3k-eq-ZFC" firstAttribute="top" secondItem="Nbz-Oi-a8p" secondAttribute="bottom" id="ydb-JN-pYd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Destinations" id="UR4-cP-ECk">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="2TL-be-15s">
+                            <color key="tintColor" red="0.0" green="0.58690369129999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="VtC-D2-hNo" id="EGv-xv-8Bf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W35-UN-3YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2975" y="128"/>
+        </scene>
+        <!--Destinations navigation-->
+        <scene sceneID="MAA-ZA-7c6">
+            <objects>
+                <navigationController id="Phc-Kh-W22" userLabel="Destinations navigation" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SCX-nt-StN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VtC-D2-hNo" kind="relationship" relationship="rootViewController" id="9co-hc-jVA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VW9-c8-Gr6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2208" y="128"/>
         </scene>
         <!--Forecast-->
         <scene sceneID="ITw-gN-ewu">
@@ -365,16 +522,29 @@
                             <outlet property="delegate" destination="LfW-BV-Odm" id="2Qk-qb-ILb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Forecast" id="9yJ-8Q-R62"/>
+                    <navigationItem key="navigationItem" title="Forecast" id="9yJ-8Q-R62">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="K3s-5t-DKd">
+                            <color key="tintColor" red="0.0" green="0.58690369129180908" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="LfW-BV-Odm" id="h3M-fZ-DNb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="navicon-locations" id="B56-yR-6Q2">
+                            <color key="tintColor" red="0.0" green="0.58690369129180908" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="Phc-Kh-W22" kind="presentation" identifier="Destinations" id="TXH-Hb-xNg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2A-7x-UuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1472" y="482"/>
         </scene>
-        <!--Forecast-->
+        <!--Forecast navigation-->
         <scene sceneID="AbD-0W-5es">
             <objects>
-                <navigationController id="L7A-ai-mOu" sceneMemberID="viewController">
+                <navigationController id="L7A-ai-mOu" userLabel="Forecast navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Forecast" image="tabicon-forecast" id="T1t-r1-F3C">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
@@ -392,10 +562,10 @@
             </objects>
             <point key="canvasLocation" x="763" y="482"/>
         </scene>
-        <!--Settings-->
+        <!--Settings navigation-->
         <scene sceneID="TDG-CJ-ERG">
             <objects>
-                <navigationController id="R2N-hZ-VgU" sceneMemberID="viewController">
+                <navigationController id="R2N-hZ-VgU" userLabel="Settings navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="tabicon-settings" id="hoX-h8-LNg">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
@@ -490,6 +660,8 @@
     </scenes>
     <resources>
         <image name="condition-unknown" width="87" height="87"/>
+        <image name="destinations-add" width="65" height="65"/>
+        <image name="navicon-locations" width="22" height="14"/>
         <image name="tabicon-forecast" width="23" height="22"/>
         <image name="tabicon-settings" width="23" height="23"/>
         <image name="tabicon-today" width="24" height="24"/>
@@ -499,4 +671,7 @@
         <image name="today-rain" width="16" height="19"/>
         <image name="today-wind" width="25" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MVd-Th-AcE"/>
+    </inferredMetricsTieBreakers>
 </document>

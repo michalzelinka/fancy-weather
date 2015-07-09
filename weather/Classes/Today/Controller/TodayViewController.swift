@@ -11,7 +11,7 @@
 
 import UIKit
 
-class TodayViewController: UIViewController {
+class TodayViewController: UIViewController, DestinationsViewControllerDelegate {
 
 	@IBOutlet weak var conditionIcon : UIImageView!
 	@IBOutlet weak var locationLabel : UILabel!
@@ -29,24 +29,6 @@ class TodayViewController: UIViewController {
 
 	// MARK: - View lifecycle
 
-	override func loadView()
-	{
-		super.loadView()
-
-		// Left navigation item
-
-		self.navigationItem.leftBarButtonItem =
-			UIBarButtonItem(barButtonSystemItem:
-				UIBarButtonSystemItem.Refresh, target: self,
-					action: "refreshButtonTapped:")
-
-		// Right navigation item
-
-		self.navigationItem.rightBarButtonItem =
-			UIBarButtonItem(image: UIImage(named: "navicon-locations"),
-				style: .Plain, target: self, action: "locationsButtonTapped:")
-	}
-
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
@@ -57,6 +39,16 @@ class TodayViewController: UIViewController {
 	{
 		super.viewWillAppear(animated)
 		self.reloadData()
+	}
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	{
+		if (segue.identifier == "Destinations")
+		{
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.viewControllers.first as! DestinationsViewController
+			vc.delegate = self
+		}
 	}
 
 
@@ -175,11 +167,6 @@ class TodayViewController: UIViewController {
 		self.refresh()
 	}
 
-	@IBAction func locationsButtonTapped(sender: UIControl)
-	{
-		// TODO: Implement
-	}
-
 	@IBAction func shareButtonTapped(sender: UIControl)
 	{
 		let view = conditionIcon.superview
@@ -198,6 +185,20 @@ class TodayViewController: UIViewController {
 
 		let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		self.tabBarController?.presentViewController(vc, animated: true, completion: nil)
+	}
+
+
+	// MARK: - Destinations screen delegate
+
+	func destinationsViewControllerDidFinish()
+	{
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+
+	func destinationsViewControllerDidSelectDestination(destination: Destination)
+	{
+		// TODO: Implement
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 }

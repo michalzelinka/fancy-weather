@@ -32,8 +32,8 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 	{
 		if (segue.identifier == "Destinations")
 		{
-			let nc = segue.destinationViewController as! UINavigationController
-			let vc = nc.viewControllers.first as! DestinationsViewController
+			let nc = segue.destinationViewController as UINavigationController
+			let vc = nc.viewControllers.first as DestinationsViewController
 			vc.delegate = self
 		}
 	}
@@ -83,13 +83,13 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 	override func tableView(tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		return tableView.dequeueReusableCellWithIdentifier("ForecastViewCell") as! UITableViewCell
+		return tableView.dequeueReusableCellWithIdentifier("ForecastViewCell") as UITableViewCell
 	}
 
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath)
 	{
-		let c = cell as! ForecastViewCell
+		let c = cell as ForecastViewCell
 		c.update(displayedRecords?[indexPath.row])
 	}
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -20,6 +20,7 @@
             <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
+            <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
@@ -419,6 +420,9 @@
                                 <state key="normal" image="destinations-add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="ESb-wu-hno" kind="presentation" identifier="Destinations Search" id="SUJ-xh-WBH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -444,6 +448,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W35-UN-3YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2975" y="128"/>
+        </scene>
+        <!--Destinations Search-->
+        <scene sceneID="9Xb-GB-PeB">
+            <objects>
+                <tableViewController id="PFl-fl-nUT" userLabel="Destinations Search" customClass="DestinationsSearchViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" id="ssm-vo-2Oh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DestinationsSearchViewCell" textLabel="Cwo-T6-coa" style="IBUITableViewCellStyleDefault" id="Fea-S9-ezG">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fea-S9-ezG" id="eB1-Jz-Jjl">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cwo-T6-coa">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="16"/>
+                                            <color key="textColor" red="0.24705882370000001" green="0.24705882370000001" blue="0.24705882370000001" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PFl-fl-nUT" id="GVk-40-fWX"/>
+                            <outlet property="delegate" destination="PFl-fl-nUT" id="Iiw-Om-tzh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Destinations Search" id="h3e-1b-CuD">
+                        <barButtonItem key="rightBarButtonItem" title="Close" style="done" id="rlF-En-96x">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="PFl-fl-nUT" id="npd-WT-iOw"/>
+                            </connections>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="titleView" destination="fC3-xf-BrY" id="l1z-nq-F4k"/>
+                        </connections>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="fC3-xf-BrY" id="JED-CK-2tR"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OC3-aO-hrt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" id="fC3-xf-BrY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="barTintColor" white="0.96774193549999998" alpha="1" colorSpace="calibratedWhite"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="PFl-fl-nUT" id="0bN-m5-tbg"/>
+                    </connections>
+                </searchBar>
+            </objects>
+            <point key="canvasLocation" x="3318" y="924"/>
+        </scene>
+        <!--Destinations Search navigation-->
+        <scene sceneID="AA2-CD-D6m">
+            <objects>
+                <navigationController id="ESb-wu-hno" userLabel="Destinations Search navigation" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="38T-aR-qXv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PFl-fl-nUT" kind="relationship" relationship="rootViewController" id="EEf-VI-Veb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="elp-Xc-Wj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2498" y="924"/>
         </scene>
         <!--Destinations navigation-->
         <scene sceneID="MAA-ZA-7c6">
@@ -619,7 +697,7 @@
                         <sections>
                             <tableViewSection headerTitle="General" id="cWo-rg-ldD">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="LKC-Xa-ZSm" detailTextLabel="eqI-v1-Qx9" style="IBUITableViewCellStyleValue1" id="1FU-g2-tql" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="LKC-Xa-ZSm" detailTextLabel="eqI-v1-Qx9" style="IBUITableViewCellStyleValue1" id="1FU-g2-tql">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1FU-g2-tql" id="zm5-qQ-Tjj">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -643,7 +721,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="aCQ-7a-J7e" detailTextLabel="xZk-Gc-U0i" style="IBUITableViewCellStyleValue1" id="jyV-BK-PLi" customClass="CustomTableViewCell" customModule="Weather" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="aCQ-7a-J7e" detailTextLabel="xZk-Gc-U0i" style="IBUITableViewCellStyleValue1" id="jyV-BK-PLi">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyV-BK-PLi" id="kuU-ZH-dp8">
                                             <autoresizingMask key="autoresizingMask"/>

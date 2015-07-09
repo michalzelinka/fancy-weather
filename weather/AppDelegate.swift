@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
 	{
+		// Proress HUD appearance
+		SVProgressHUD.setBackgroundColor(UIColor.whiteColor())
+		SVProgressHUD.setForegroundColor(Colors.fromRGB(0x333333, alphaValue: 1.0))
+		SVProgressHUD.setFont(UIFont.systemFontOfSize(19))
+		SVProgressHUD.setDefaultMaskType(.Black)
+
 		// Default Navigation bar appearance changes
 		UINavigationBar.appearance().translucent = false
 		UINavigationBar.appearance().shadowImage = UIImage(named: "navbar-shadow")

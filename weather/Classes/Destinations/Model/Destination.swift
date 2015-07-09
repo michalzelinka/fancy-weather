@@ -13,6 +13,7 @@ class Destination {
 
 	var identifier: Int?
 	var name: String?
+	var country: String?
 	var location: CLLocation?
 
 	convenience init(json: JSON?)
@@ -21,6 +22,7 @@ class Destination {
 
 		self.identifier = json?["id"].int
 		self.name = json?["name"].string
+		self.country = json?["sys"]["country"].string
 		let latitude = json?["coord"]["lat"].double
 		let longitude = json?["coord"]["lon"].double
 

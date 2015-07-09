@@ -46,8 +46,8 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	{
 		if (segue.identifier == "Destinations")
 		{
-			let nc = segue.destinationViewController as! UINavigationController
-			let vc = nc.viewControllers.first as! DestinationsViewController
+			let nc = segue.destinationViewController as UINavigationController
+			let vc = nc.viewControllers.first as DestinationsViewController
 			vc.delegate = self
 		}
 	}

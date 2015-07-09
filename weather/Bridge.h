@@ -9,7 +9,9 @@
 #ifndef Weather_Bridge_h
 #define Weather_Bridge_h
 
+#import "UIView+Swift.h"
 #import "UIAppearance+Swift.h"
 #import "UIFont+Swift.h"
+#import "SVProgressHud.h"
 
 #endif

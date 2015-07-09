@@ -9,7 +9,7 @@
 import UIKit
 
 
-// MARK: - Controller delgate
+// MARK: - Controller delegate -
 
 protocol DestinationsViewControllerDelegate: NSObjectProtocol
 {
@@ -18,9 +18,13 @@ protocol DestinationsViewControllerDelegate: NSObjectProtocol
 }
 
 
-// MARK: - Controller
+// MARK: - Controller -
 
-class DestinationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DestinationsViewController: UIViewController,
+                                  UITableViewDelegate,
+                                  UITableViewDataSource,
+                                  DestinationsSearchViewControllerDelegate
+{
 
 	var delegate: DestinationsViewControllerDelegate?
 	var pickedDestinations: Array<Destination>?
@@ -30,7 +34,12 @@ class DestinationsViewController: UIViewController, UITableViewDelegate, UITable
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
 	{
-		// TODO: Destination adding screen
+		if (segue.identifier == "Destinations Search")
+		{
+			let nc = segue.destinationViewController as UINavigationController
+			let vc = nc.viewControllers.first as DestinationsSearchViewController
+			vc.delegate = self
+		}
 	}
 
 
@@ -45,7 +54,7 @@ class DestinationsViewController: UIViewController, UITableViewDelegate, UITable
 		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
         let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsViewCell",
-			forIndexPath: indexPath) as! DestinationsViewCell
+			forIndexPath: indexPath) as DestinationsViewCell
 
 		let destination = (indexPath.row == 0) ?
 			WeatherManager.sharedManager.locatedDestination :
@@ -63,6 +72,21 @@ class DestinationsViewController: UIViewController, UITableViewDelegate, UITable
 	@IBAction func doneButtonTapped(sender: UIControl)
 	{
 		delegate?.destinationsViewControllerDidFinish()
+	}
+
+
+	// MARK: - Desetinations Search screen delegate
+
+	func destinationsSearchViewControllerDidSelectDestination(destination: Destination)
+	{
+		// TODO: Refresh with new selected destination
+
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+
+	func destinationsSearchViewControllerDidFinish()
+	{
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 }

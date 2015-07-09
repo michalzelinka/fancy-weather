@@ -70,4 +70,36 @@ class WeatherManager: NSObject {
 		}
 	}
 
+	func searchForWeatherLocations(query: String?, completion: ((destinations: [Destination]?) -> Void)?) -> Void
+	{
+		if (query?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 3)
+		{ completion?(destinations: nil) }
+
+		let urlString = String(format: "http://api.openweathermap.org/data/2.5/find?q=%@&type=like",
+			query!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+
+		let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+		request.timeoutInterval = 5.0
+
+		NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue())
+		{ (response, data, error) -> Void in
+
+			if (error != nil) { NSLog("Request error"); return; }
+
+			let json = JSON(data: data)
+
+			let cities = json["list"].array ?? [ ]
+			var destinations: [Destination] = [ ]
+
+			for c in cities
+			{
+				var dest = Destination(json: c)
+				destinations.append(dest)
+			}
+
+			completion?(destinations: destinations)
+
+		}
+	}
+
 }

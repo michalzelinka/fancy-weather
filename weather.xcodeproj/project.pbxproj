@@ -34,6 +34,11 @@
 		EF8127CD1B4C5311007A48BD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8127C21B4C5311007A48BD /* SwiftyJSON.swift */; };
 		EF8127CF1B4C5554007A48BD /* WeatherRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8127CE1B4C5554007A48BD /* WeatherRecord.swift */; };
 		EFB796F41B4C5BF500B2780E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB796F31B4C5BF500B2780E /* LocationManager.swift */; };
+		EFCBEF291B4EE0B3009E14B0 /* DestinationsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF281B4EE0B3009E14B0 /* DestinationsSearchViewController.swift */; };
+		EFCBEF2E1B4EE9C7009E14B0 /* UIView+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF2D1B4EE9C7009E14B0 /* UIView+Swift.m */; };
+		EFCBEF361B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF311B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m */; };
+		EFCBEF371B4EFA90009E14B0 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFCBEF331B4EFA90009E14B0 /* SVProgressHUD.bundle */; };
+		EFCBEF381B4EFA90009E14B0 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF351B4EFA90009E14B0 /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,15 @@
 		EF8127C21B4C5311007A48BD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EF8127CE1B4C5554007A48BD /* WeatherRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRecord.swift; sourceTree = "<group>"; };
 		EFB796F31B4C5BF500B2780E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		EFCBEF281B4EE0B3009E14B0 /* DestinationsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsSearchViewController.swift; sourceTree = "<group>"; };
+		EFCBEF2C1B4EE9C7009E14B0 /* UIView+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Swift.h"; sourceTree = "<group>"; };
+		EFCBEF2D1B4EE9C7009E14B0 /* UIView+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Swift.m"; sourceTree = "<group>"; };
+		EFCBEF301B4EFA90009E14B0 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		EFCBEF311B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		EFCBEF321B4EFA90009E14B0 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		EFCBEF331B4EFA90009E14B0 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		EFCBEF341B4EFA90009E14B0 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		EFCBEF351B4EFA90009E14B0 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				CD287F871B4E5E01003A0AC7 /* DestinationsViewController.swift */,
+				EFCBEF281B4EE0B3009E14B0 /* DestinationsSearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -256,6 +271,8 @@
 				CDA008471B4CF9890040F9EE /* UIFont+Swift.h */,
 				CDA008481B4CF9890040F9EE /* UIFont+Swift.m */,
 				EF5FA9ED1B49950D00A44BFF /* UITableViewCellExtension.swift */,
+				EFCBEF2C1B4EE9C7009E14B0 /* UIView+Swift.h */,
+				EFCBEF2D1B4EE9C7009E14B0 /* UIView+Swift.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				EF8127AB1B4C5039007A48BD /* CoreLocation.framework */,
+				EFCBEF2F1B4EFA90009E14B0 /* SVProgressHUD */,
 				EF8127C11B4C5311007A48BD /* SwiftyJSON */,
 			);
 			path = Libraries;
@@ -323,6 +341,19 @@
 				EF8127C21B4C5311007A48BD /* SwiftyJSON.swift */,
 			);
 			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		EFCBEF2F1B4EFA90009E14B0 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EFCBEF301B4EFA90009E14B0 /* SVIndefiniteAnimatedView.h */,
+				EFCBEF311B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m */,
+				EFCBEF321B4EFA90009E14B0 /* SVProgressHUD-Prefix.pch */,
+				EFCBEF331B4EFA90009E14B0 /* SVProgressHUD.bundle */,
+				EFCBEF341B4EFA90009E14B0 /* SVProgressHUD.h */,
+				EFCBEF351B4EFA90009E14B0 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,7 +390,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "weather" */;
+			buildConfigurationList = EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "Weather" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -385,6 +416,7 @@
 				EF5FA9CA1B4940CD00A44BFF /* Main.storyboard in Resources */,
 				EF5FA9C31B493D4800A44BFF /* ProximaNova-Bold.otf in Resources */,
 				EF5FA9C61B493D4800A44BFF /* ProximaNova-Semibold.otf in Resources */,
+				EFCBEF371B4EFA90009E14B0 /* SVProgressHUD.bundle in Resources */,
 				EF5FA9C51B493D4800A44BFF /* ProximaNova-Regular.otf in Resources */,
 				EF5FA9C41B493D4800A44BFF /* ProximaNova-Light.otf in Resources */,
 				EF5FA9A81B491C4900A44BFF /* LaunchScreen.xib in Resources */,
@@ -407,9 +439,13 @@
 				EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */,
 				CDA008491B4CF9890040F9EE /* UIFont+Swift.m in Sources */,
 				CD979A211B4C1B040087A3E1 /* WeatherManager.swift in Sources */,
+				EFCBEF2E1B4EE9C7009E14B0 /* UIView+Swift.m in Sources */,
+				EFCBEF361B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m in Sources */,
+				EFCBEF381B4EFA90009E14B0 /* SVProgressHUD.m in Sources */,
 				EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */,
 				EF5FA9EE1B49950D00A44BFF /* UITableViewCellExtension.swift in Sources */,
 				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
+				EFCBEF291B4EE0B3009E14B0 /* DestinationsSearchViewController.swift in Sources */,
 				EF5FA9E61B4968D100A44BFF /* UserSettings.swift in Sources */,
 				CDA008501B4D5ED90040F9EE /* NSDateFormatterExtension.swift in Sources */,
 				CD891AC11B4E60CF00907BA5 /* DestinationsViewCell.swift in Sources */,
@@ -548,7 +584,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "weather" */ = {
+		EF5FA9911B491C4900A44BFF /* Build configuration list for PBXProject "Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF5FA9B51B491C4900A44BFF /* Debug */,

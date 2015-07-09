@@ -10,4 +10,8 @@
 
 @interface UIFont (Swift)
 
++ (UIFont *)systemFontOfSize:(CGFloat)size;
++ (UIFont *)lightSystemFontOfSize:(CGFloat)size;
++ (UIFont *)boldSystemFontOfSize:(CGFloat)size;
+
 @end

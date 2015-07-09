@@ -22,7 +22,7 @@ class SettingsViewController: UITableViewController {
 
 	override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
 	{
-		var v = view as! UITableViewHeaderFooterView
+		var v = view as UITableViewHeaderFooterView
 		v.textLabel.font = UIFont.boldSystemFontOfSize(14)
 		v.textLabel.textColor = Colors.defaultBlue()
 	}

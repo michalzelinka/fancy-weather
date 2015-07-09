@@ -23,6 +23,7 @@ protocol DestinationsViewControllerDelegate: NSObjectProtocol
 class DestinationsViewController: UIViewController,
                                   UITableViewDelegate,
                                   UITableViewDataSource,
+                                  MGSwipeTableCellDelegate,
                                   DestinationsSearchViewControllerDelegate
 {
 
@@ -69,6 +70,11 @@ class DestinationsViewController: UIViewController,
 			})
 		}
 		cell.update(destination, record: nil)
+		cell.delegate = self
+
+		cell.rightButtons = [ MGSwipeButton(title: "", icon: UIImage(named: "destinations-delete"),
+			backgroundColor: Colors.fromRGB(0xff7f2c, alphaValue: 1), padding: 36) ]
+		cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
 
 		return cell
     }
@@ -85,6 +91,27 @@ class DestinationsViewController: UIViewController,
 		delegate?.destinationsViewControllerDidSelectDestination(newSelected)
 	}
 
+//	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+//	{
+//		return (indexPath.row != 0)
+//	}
+//
+//	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?
+//	{
+//		let button = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in }
+//	}
+//
+//	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+//		forRowAtIndexPath indexPath: NSIndexPath)
+//	{
+//		if (editingStyle == .Delete)
+//		{
+//			WeatherManager.sharedManager.followedDestinations.removeAtIndex(indexPath.row)
+//			tableView.deleteRowsAtIndexPaths([ indexPath ], withRowAnimation: .Automatic)
+//			tableView.reloadData()
+//		}
+//	}
+
 
 	// MARK: - Actions
 
@@ -93,6 +120,36 @@ class DestinationsViewController: UIViewController,
 		delegate?.destinationsViewControllerDidFinish()
 	}
 
+
+	// MARK: - Swipable Table cell delegate
+
+	func swipeTableCell(cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool
+	{
+		if let path = tableView.indexPathForCell(cell)
+		{ return path.row != 0 }
+
+		return false
+
+	}
+
+	func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int,
+		direction: MGSwipeDirection, fromExpansion: Bool) -> Bool
+	{
+		if let path = tableView.indexPathForCell(cell)
+		{
+			let wm = WeatherManager.sharedManager
+			let destination = WeatherManager.sharedManager.followedDestinations[path.row-1]
+			wm.followedDestinations.removeAtIndex(path.row-1)
+
+			if (destination.identifier == wm.selectedDestination?.identifier)
+			{ wm.selectedDestination = nil }
+
+			tableView.deleteRowsAtIndexPaths([ path ], withRowAnimation: .Fade)
+			tableView.reloadData()
+		}
+
+		return false
+	}
 
 	// MARK: - Desetinations Search screen delegate
 

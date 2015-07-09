@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DestinationsViewCell: UITableViewCell {
+class DestinationsViewCell: MGSwipeTableCell {
 
 	@IBOutlet weak var conditionImage: UIImageView?
 	@IBOutlet weak var destinationLabel: UILabel?
@@ -16,11 +16,11 @@ class DestinationsViewCell: UITableViewCell {
 	@IBOutlet weak var conditionLabel: UILabel?
 	@IBOutlet weak var temperatureLabel: UILabel?
 
-    override func awakeFromNib()
+	override func awakeFromNib()
 	{
-        super.awakeFromNib()
+		super.awakeFromNib()
 		self.selectionStyle = .Default
-    }
+	}
 
 	func update(destination: Destination?, record: WeatherRecord?) -> Void
 	{

@@ -5,6 +5,9 @@
 //  Created by Michal on 07/07/2015.
 //
 //
+//  FILE TODO:
+//  - Group URL - http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743
+//
 
 import UIKit
 
@@ -30,9 +33,6 @@ class WeatherManager: NSObject {
 		requestsQueue.maxConcurrentOperationCount = 4
 
 		super.init()
-
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationDidUpdate:",
-			name: kNotificationLocationDidUpdate, object: nil)
 	}
 
 
@@ -47,6 +47,15 @@ class WeatherManager: NSObject {
 		return nil
 	}
 
+	func cacheRecords(records: [WeatherRecord]?, destination: Destination?) -> Void
+	{
+		if let d = destination {
+			if let r = records {
+				weatherRecordsCache[d.identifier!] = r
+			}
+		}
+	}
+
 
 	// MARK: - Data fetching workers
 
@@ -59,7 +68,7 @@ class WeatherManager: NSObject {
 
 		// Return cached values if available
 
-		if let cached = self.cachedRecords(locatedDestination)
+		if let cached = self.cachedRecords(destination)
 		{
 			completion?(records: cached)
 			return
@@ -82,11 +91,14 @@ class WeatherManager: NSObject {
 				return
 			}
 
+			// Parse JSON
 			let json = JSON(data: data)
 
+			// Parse Destination
 			let city = json["city"]
 			let destination = Destination(json: city)
 
+			// Parse Weather records
 			let entries = json["list"].array ?? [ ]
 			var records: [WeatherRecord] = [ ]
 
@@ -96,9 +108,10 @@ class WeatherManager: NSObject {
 				records.append(record)
 			}
 
-			self.locatedDestination = destination
-			self.weatherRecordsCache[destination.identifier!] = records
+			// Cache records
+			self.cacheRecords(records, destination: destination)
 
+			// Call back
 			completion?(records: records)
 				
 		}
@@ -141,11 +154,14 @@ class WeatherManager: NSObject {
 					return
 				}
 
+				// Parse JSON
 				let json = JSON(data: data)
 
+				// Parse Destination
 				let city = json["city"]
 				let destination = Destination(json: city)
 
+				// Parse Wether records
 				let entries = json["list"].array ?? [ ]
 				var records: [WeatherRecord] = [ ]
 
@@ -155,9 +171,11 @@ class WeatherManager: NSObject {
 					records.append(record)
 				}
 
+				// Assign and cache records
 				self.locatedDestination = destination
-				self.weatherRecordsCache[destination.identifier!] = records
+				self.cacheRecords(records, destination: destination)
 
+				// Call back
 				completion?(destination: destination, records: records)
 
 			}
@@ -192,8 +210,10 @@ class WeatherManager: NSObject {
 				return
 			}
 
+			// Parse JSON
 			let json = JSON(data: data)
 
+			// Parse Destinations
 			let cities = json["list"].array ?? [ ]
 			var destinations: [Destination] = [ ]
 
@@ -203,15 +223,10 @@ class WeatherManager: NSObject {
 				destinations.append(dest)
 			}
 
+			// Call back
 			completion?(destinations: destinations)
 
 		}
 	}
-
-
-	// MARK: - Notifications
-
-	func locationDidUpdate(notification: NSNotification) -> Void
-	{}
 
 }

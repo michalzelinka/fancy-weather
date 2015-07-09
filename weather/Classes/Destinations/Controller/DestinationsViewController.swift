@@ -13,7 +13,7 @@ import UIKit
 
 protocol DestinationsViewControllerDelegate: NSObjectProtocol
 {
-	func destinationsViewControllerDidSelectDestination(destination: Destination)
+	func destinationsViewControllerDidSelectDestination(destination: Destination?)
 	func destinationsViewControllerDidFinish()
 }
 
@@ -26,8 +26,9 @@ class DestinationsViewController: UIViewController,
                                   DestinationsSearchViewControllerDelegate
 {
 
+	@IBOutlet weak var tableView : UITableView!
+
 	var delegate: DestinationsViewControllerDelegate?
-	var pickedDestinations: Array<Destination>?
 
 
 	// MARK: View lifecycle
@@ -47,7 +48,7 @@ class DestinationsViewController: UIViewController,
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-        return 1 + (pickedDestinations?.count ?? 0)
+        return 1 + WeatherManager.sharedManager.followedDestinations.count
     }
 
     func tableView(tableView: UITableView,
@@ -72,6 +73,18 @@ class DestinationsViewController: UIViewController,
 		return cell
     }
 
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+	{
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+		let newSelected = (indexPath.row > 0) ?
+			WeatherManager.sharedManager.followedDestinations[indexPath.row-1] ?? nil : nil
+
+		WeatherManager.sharedManager.selectedDestination = newSelected
+
+		delegate?.destinationsViewControllerDidSelectDestination(newSelected)
+	}
+
 
 	// MARK: - Actions
 
@@ -85,8 +98,8 @@ class DestinationsViewController: UIViewController,
 
 	func destinationsSearchViewControllerDidSelectDestination(destination: Destination)
 	{
-		// TODO: Refresh with new selected destination
-
+		WeatherManager.sharedManager.followedDestinations.append(destination)
+		tableView.reloadData()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 

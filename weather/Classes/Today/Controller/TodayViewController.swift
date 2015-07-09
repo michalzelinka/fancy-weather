@@ -39,7 +39,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	override func viewWillAppear(animated: Bool)
 	{
 		super.viewWillAppear(animated)
-		self.reloadData()
+		self.reloadData() // TODO: Remove, refresh cells via method on notification
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -57,8 +57,6 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	func refresh() -> Void
 	{
-		// TODO: Session-based picking of location
-
 		let wm = WeatherManager.sharedManager
 
 		if let selected = wm.selectedDestination {
@@ -208,9 +206,9 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
-	func destinationsViewControllerDidSelectDestination(destination: Destination)
+	func destinationsViewControllerDidSelectDestination(destination: Destination?)
 	{
-		// TODO: Implement
+		self.refresh()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 

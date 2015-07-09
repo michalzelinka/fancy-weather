@@ -444,6 +444,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Z3k-eq-ZFC" id="gF6-YB-iEA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W35-UN-3YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

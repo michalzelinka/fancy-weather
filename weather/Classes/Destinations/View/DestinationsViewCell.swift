@@ -24,15 +24,21 @@ class DestinationsViewCell: UITableViewCell {
 
 	func update(destination: Destination?, record: WeatherRecord?) -> Void
 	{
+		var conditionImageName = "condition-unknown"
+		var temperatureString = "–"
+
 		if var record = record
 		{
 			let unit = UserSettings.sharedSettings.temperatureUnit
-			conditionImage?.image = UIImage(named: String("condition-"+record.conditionImagePattern()))
-			destinationLabel?.text = destination?.name
-			navigationFlag?.hidden = destination !== WeatherManager.sharedManager.locatedDestination
-			conditionLabel?.text = record.conditionText
-			temperatureLabel?.text = NumberFormatter.double(record.temperature, toTemperatureStringWithUnit: unit, unitDisplayed: false)
+			conditionImageName = String("condition-"+record.conditionImagePattern())
+			temperatureString = NumberFormatter.double(record.temperature, toTemperatureStringWithUnit: unit, unitDisplayed: false) ?? "–"
 		}
+
+		destinationLabel?.text = destination?.name
+		navigationFlag?.hidden = destination !== WeatherManager.sharedManager.locatedDestination
+		conditionImage?.image = UIImage(named: conditionImageName)
+		conditionLabel?.text = record?.conditionText ?? "Unknown"
+		temperatureLabel?.text = temperatureString
 	}
 
 }

@@ -53,15 +53,21 @@ class DestinationsViewController: UIViewController,
     func tableView(tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
+		let wm = WeatherManager.sharedManager
         let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsViewCell",
 			forIndexPath: indexPath) as DestinationsViewCell
 
 		let destination = (indexPath.row == 0) ?
-			WeatherManager.sharedManager.locatedDestination :
-			WeatherManager.sharedManager.followedDestinations[indexPath.row-1]
+			wm.locatedDestination :
+			wm.followedDestinations[indexPath.row-1]
 
-		let records = WeatherManager.sharedManager.weatherForDestination(destination)
-		cell.update(destination, record: records?.first)
+		wm.weatherForDestination(destination)
+		{ (records) -> Void in
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				cell.update(destination, record: records?.first)
+			})
+		}
+		cell.update(destination, record: nil)
 
 		return cell
     }

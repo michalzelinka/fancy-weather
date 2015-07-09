@@ -59,11 +59,22 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	{
 		// TODO: Session-based picking of location
 
-		WeatherManager.sharedManager.weatherForCurrentLocation { (destination, records) -> Void in
+		let wm = WeatherManager.sharedManager
 
-			// Update with new data
-			self.update(destination: destination, record: records?.first)
-			
+		if let selected = wm.selectedDestination {
+
+			wm.weatherForDestination(selected, completion: { (records) -> Void in
+				// Update with new data
+				self.update(destination: selected, record: records?.first)
+			})
+
+		} else {
+
+			wm.weatherForCurrentLocation { (destination, records) -> Void in
+				// Update with new data
+				self.update(destination: destination, record: records?.first)
+			}
+
 		}
 	}
 
@@ -80,7 +91,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		// Update location name
 
 		locationLabel.text = displayedDestination?.name
-		navigationFlag.hidden = displayedDestination !== WeatherManager.sharedManager.locatedDestination
+		navigationFlag.hidden = displayedDestination?.identifier != WeatherManager.sharedManager.locatedDestination?.identifier
 
 		// Update brief summary
 

@@ -187,19 +187,27 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	{
 		let view = conditionIcon.superview
 
-		// Hide some elements
-		bottomSeparator.hidden = true; shareButton.hidden = true
-
 		// Take screenshot from the Today pane
+
+		// Set image size
 		var imageSize = view!.bounds.size
 		imageSize.height -= shareButton.bounds.height
+
+		// Create elements hiding view
+		let hider = UIView(frame: CGRectMake(0, 0, imageSize.width, 100))
+		hider.backgroundColor = UIColor.whiteColor()
+
+		// Begin drawing
 		UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.mainScreen().scale)
-		view!.drawViewHierarchyInRect(view!.bounds, afterScreenUpdates: true)
+		view!.drawViewHierarchyInRect(view!.bounds, afterScreenUpdates: false)
+		hider.drawViewHierarchyInRect(CGRectMake(0, bottomSeparator.frame.minY,
+			hider.frame.width, hider.frame.height), afterScreenUpdates: true)
+
+		// Get image data
 		let screenshot = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 
-		// Re-appear elements
-		bottomSeparator.hidden = false; shareButton.hidden = false
+		//
 
 		// Group shared items
 		let message = "Look how the weather is today!"

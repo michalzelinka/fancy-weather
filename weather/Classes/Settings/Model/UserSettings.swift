@@ -8,7 +8,9 @@
 
 import Foundation
 
-enum TemperatureUnit: Int { case Kelvin, Celsius, Fahrenheit }
+enum TemperatureUnit: Int { case Kelvin, Celsius, Fahrenheit,
+                                 Delisle, Newton, Reaumur,
+	                             Rankine, Romer }
 enum DistanceUnit: Int { case Metric, Imperial }
 
 let kNotificationUserSettingsDidUpdate    = "UserSettingsDidUpdate"

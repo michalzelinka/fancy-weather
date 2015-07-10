@@ -15,19 +15,22 @@ class SettingsViewController: UITableViewController {
 
 	// MARK: - Table view delegates
 
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+	override func tableView(tableView: UITableView,
+		heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
 	{
 		return 64
 	}
 
-	override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+	override func tableView(tableView: UITableView,
+		willDisplayHeaderView view: UIView, forSection section: Int)
 	{
 		var v = view as! UITableViewHeaderFooterView
 		v.textLabel.font = UIFont.boldSystemFontOfSize(14)
 		v.textLabel.textColor = Colors.defaultBlue()
 	}
 
-	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+		forRowAtIndexPath indexPath: NSIndexPath)
 	{
 		var selection = SettingsViewRow(rawValue: indexPath.row)
 
@@ -47,6 +50,11 @@ class SettingsViewController: UITableViewController {
 			case .Kelvin:     cell.detailTextLabel?.text = "Kelvin"
 			case .Celsius:    cell.detailTextLabel?.text = "Celsius"
 			case .Fahrenheit: cell.detailTextLabel?.text = "Fahrenheit"
+			case .Delisle:    cell.detailTextLabel?.text = "Delisle"
+			case .Newton:     cell.detailTextLabel?.text = "Newton"
+			case .Reaumur:    cell.detailTextLabel?.text = "Réaumur"
+			case .Rankine:    cell.detailTextLabel?.text = "Rankine"
+			case .Romer:      cell.detailTextLabel?.text = "Rømer"
 
 			}
 		}
@@ -72,7 +80,7 @@ class SettingsViewController: UITableViewController {
 		else if (selection == .Temperature)
 		{
 			var newValue = UserSettings.sharedSettings.temperatureUnit.rawValue+1
-			if newValue > TemperatureUnit.Fahrenheit.rawValue { newValue = TemperatureUnit.Kelvin.rawValue }
+			if newValue > TemperatureUnit.Romer.rawValue { newValue = TemperatureUnit.Kelvin.rawValue }
 			UserSettings.sharedSettings.temperatureUnit = TemperatureUnit(rawValue: newValue)!
 		}
 

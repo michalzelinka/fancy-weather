@@ -38,8 +38,8 @@ class DestinationsViewController: UIViewController,
 	{
 		if (segue.identifier == "Destinations Search")
 		{
-			let nc = segue.destinationViewController as UINavigationController
-			let vc = nc.viewControllers.first as DestinationsSearchViewController
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.viewControllers.first as! DestinationsSearchViewController
 			vc.delegate = self
 		}
 	}
@@ -57,7 +57,7 @@ class DestinationsViewController: UIViewController,
 	{
 		let wm = WeatherManager.sharedManager
         let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsViewCell",
-			forIndexPath: indexPath) as DestinationsViewCell
+			forIndexPath: indexPath) as! DestinationsViewCell
 
 		let destination = (indexPath.row == 0) ?
 			wm.locatedDestination :

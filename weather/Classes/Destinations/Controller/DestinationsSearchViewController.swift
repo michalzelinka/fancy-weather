@@ -40,8 +40,8 @@ class DestinationsSearchViewController: UITableViewController,
 		searchBar.setBackgroundImage(UIImage(), forBarPosition: .Any, barMetrics: .Default)
 		searchBar.delegate = self
 
-		let searchField = searchBar.viewForClass(UITextField) as UITextField?
-		let searchFieldBackground = searchField?.subviews.first as UIView?
+		let searchField = searchBar.viewForClass(UITextField) as! UITextField?
+		let searchFieldBackground = searchField?.subviews.first as! UIView?
 		searchFieldBackground?.hidden = true
 		searchField?.layer.borderWidth = (UIScreen.mainScreen().scale > 1) ? 0.8 : 1
 		searchField?.layer.cornerRadius = 5.0
@@ -77,7 +77,7 @@ class DestinationsSearchViewController: UITableViewController,
 	{
 		let destination = foundDestinations?[indexPath.row]
 
-		let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsSearchViewCell") as UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsSearchViewCell") as! UITableViewCell
 
 		var title = destination?.name ?? "Unknown"
 		if let country = destination?.country

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -226,6 +226,9 @@
                                             <color key="titleColor" red="1" green="0.52793759107589722" blue="0.25995004177093506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" red="0.98012453317642212" green="0.82418650388717651" blue="0.74187356233596802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="shareButtonTapped:" destination="04u-UQ-LXg" eventType="touchUpInside" id="rnA-fx-JMo"/>
                                         </connections>
@@ -295,13 +298,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomSeparator" destination="LFM-UW-TXq" id="HDe-nn-Vrj"/>
                         <outlet property="conditionIcon" destination="TQ4-8D-GFP" id="h8Z-or-CdM"/>
                         <outlet property="humidityLabel" destination="QPG-tE-Nkr" id="MWh-RS-0m8"/>
                         <outlet property="locationLabel" destination="0PG-PT-AAL" id="d6O-g3-Xep"/>
                         <outlet property="navigationFlag" destination="zSX-K6-zHA" id="u71-sS-Azc"/>
                         <outlet property="pressureLabel" destination="S55-Mv-Fw6" id="Zo8-n5-oJp"/>
                         <outlet property="rainDropsLabel" destination="jdL-MD-kys" id="mIa-es-CH5"/>
+                        <outlet property="shareButton" destination="aT5-vI-igh" id="lCJ-rV-tEd"/>
                         <outlet property="summaryLabel" destination="h2t-OG-Wm9" id="qWs-Jk-tLd"/>
+                        <outlet property="topSeparator" destination="WHH-XQ-meS" id="Btu-gF-856"/>
                         <outlet property="windDirectionLabel" destination="r2a-eQ-wzl" id="KbB-JZ-JuT"/>
                         <outlet property="windSpeedLabel" destination="7TF-qk-cK9" id="4tg-B8-BrL"/>
                     </connections>
@@ -459,6 +465,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" id="ssm-vo-2Oh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DestinationsSearchViewCell" textLabel="Cwo-T6-coa" style="IBUITableViewCellStyleDefault" id="Fea-S9-ezG">
@@ -466,14 +473,17 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fea-S9-ezG" id="eB1-Jz-Jjl">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cwo-T6-coa">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Destination name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cwo-T6-coa">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="16"/>
                                             <color key="textColor" red="0.24705882370000001" green="0.24705882370000001" blue="0.24705882370000001" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -499,6 +509,7 @@
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" id="fC3-xf-BrY">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="barTintColor" white="0.96774193549999998" alpha="1" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
@@ -517,6 +528,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="38T-aR-qXv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="PFl-fl-nUT" kind="relationship" relationship="rootViewController" id="EEf-VI-Veb"/>

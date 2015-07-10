@@ -24,6 +24,10 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	@IBOutlet weak var windSpeedLabel : UILabel!
 	@IBOutlet weak var windDirectionLabel : UILabel!
 
+	@IBOutlet weak var topSeparator : UIView!
+	@IBOutlet weak var bottomSeparator : UIView!
+	@IBOutlet weak var shareButton : UIButton!
+
 	var displayedDestination : Destination?
 	var displayedRecord : WeatherRecord?
 
@@ -34,20 +38,19 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	{
 		super.viewDidLoad()
 		self.refresh()
-	}
 
-	override func viewWillAppear(animated: Bool)
-	{
-		super.viewWillAppear(animated)
-		self.reloadData() // TODO: Remove, refresh cells via method on notification
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "userSettingsDidUpdate:", name: kNotificationUserSettingsDidUpdate, object: nil)
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
 	{
 		if (segue.identifier == "Destinations")
 		{
-			let nc = segue.destinationViewController as UINavigationController
-			let vc = nc.viewControllers.first as DestinationsViewController
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.viewControllers.first as! DestinationsViewController
 			vc.delegate = self
 		}
 	}
@@ -89,7 +92,8 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		// Update location name
 
 		locationLabel.text = displayedDestination?.name
-		navigationFlag.hidden = displayedDestination?.identifier != WeatherManager.sharedManager.locatedDestination?.identifier
+		navigationFlag.hidden = displayedDestination?.identifier !=
+			WeatherManager.sharedManager.locatedDestination?.identifier
 
 		// Update brief summary
 
@@ -139,21 +143,22 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 			switch (degree) {
 
-			case   0...22:  windDirection = "N"
+			case   0...22:  windDirection =  "N"
 			case  23...67:  windDirection = "NE"
-			case  68...112: windDirection = "E"
+			case  68...112: windDirection =  "E"
 			case 113...157: windDirection = "SE"
-			case 158...202: windDirection = "S"
+			case 158...202: windDirection =  "S"
 			case 203...247: windDirection = "SW"
-			case 248...292: windDirection = "W"
+			case 248...292: windDirection =  "W"
 			case 293...337: windDirection = "NW"
-			case 338...360: windDirection = "N"
+			case 338...360: windDirection =  "N"
 			default: break
 
 			}
 		}
 
 		windDirectionLabel.text = windDirection
+		shareButton.enabled = (displayedDestination != nil && displayedRecord != nil)
 
 	}
 
@@ -182,20 +187,42 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	{
 		let view = conditionIcon.superview
 
-		sender.hidden = true
-		
-		UIGraphicsBeginImageContextWithOptions(view!.bounds.size, false, UIScreen.mainScreen().scale)
+		// Hide some elements
+		bottomSeparator.hidden = true; shareButton.hidden = true
+
+		// Take screenshot from the Today pane
+		var imageSize = view!.bounds.size
+		imageSize.height -= shareButton.bounds.height
+		UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.mainScreen().scale)
 		view!.drawViewHierarchyInRect(view!.bounds, afterScreenUpdates: true)
 		let screenshot = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 
-		sender.hidden = false
+		// Re-appear elements
+		bottomSeparator.hidden = false; shareButton.hidden = false
 
+		// Group shared items
 		let message = "Look how the weather is today!"
 		let items = [ message, screenshot ]
 
+		// Present sharing flow
 		let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		self.tabBarController?.presentViewController(vc, animated: true, completion: nil)
+	}
+
+
+	// MARK: - Notifications
+
+	func locationDidUpdate(notification: NSNotification)
+	{
+		if (WeatherManager.sharedManager.selectedDestination == nil) {
+			self.refresh()
+		}
+	}
+
+	func userSettingsDidUpdate(notification: NSNotification)
+	{
+		self.reloadData()
 	}
 
 

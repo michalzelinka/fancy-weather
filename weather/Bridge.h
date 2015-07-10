@@ -12,7 +12,8 @@
 #import "UIView+Swift.h"
 #import "UIAppearance+Swift.h"
 #import "UIFont+Swift.h"
-#import "SVProgressHud.h"
+#import "UITableViewCell+Swift.h"
+#import "SVProgressHUD.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
 

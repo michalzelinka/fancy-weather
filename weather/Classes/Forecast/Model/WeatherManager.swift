@@ -7,6 +7,8 @@
 //
 //  FILE TODO:
 //  - Group URL - http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743
+//  - Refresh results when given data are older than X - inject into cache getter
+//    - flow: return so it can be displayed, but continue with hooked refresh?
 //
 
 import UIKit

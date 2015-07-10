@@ -20,20 +20,26 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 	{
 		super.viewDidLoad()
 		self.refresh()
+
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "userSettingsDidUpdate:", name: kNotificationUserSettingsDidUpdate, object: nil)
 	}
 
-	override func viewWillAppear(animated: Bool)
+	override func viewDidAppear(animated: Bool)
 	{
-		super.viewWillAppear(animated)
-		self.reloadData() // TODO: Remove, refresh cells via method on notification
+		tableView.showsVerticalScrollIndicator = false
+		super.viewDidAppear(animated)
+		tableView.showsVerticalScrollIndicator = true
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
 	{
 		if (segue.identifier == "Destinations")
 		{
-			let nc = segue.destinationViewController as UINavigationController
-			let vc = nc.viewControllers.first as DestinationsViewController
+			let nc = segue.destinationViewController as! UINavigationController
+			let vc = nc.viewControllers.first as! DestinationsViewController
 			vc.delegate = self
 		}
 	}
@@ -92,13 +98,13 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 	override func tableView(tableView: UITableView,
 		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		return tableView.dequeueReusableCellWithIdentifier("ForecastViewCell") as UITableViewCell
+		return tableView.dequeueReusableCellWithIdentifier("ForecastViewCell") as! UITableViewCell
 	}
 
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 		forRowAtIndexPath indexPath: NSIndexPath)
 	{
-		let c = cell as ForecastViewCell
+		let c = cell as! ForecastViewCell
 		c.update(displayedRecords?[indexPath.row])
 	}
 
@@ -108,6 +114,21 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 	@IBAction func refreshButtonTapped(sender: UIControl)
 	{
 		self.refresh()
+	}
+
+
+	// MARK: - Notifications
+
+	func locationDidUpdate(notification: NSNotification)
+	{
+		if (WeatherManager.sharedManager.selectedDestination == nil) {
+			self.refresh()
+		}
+	}
+
+	func userSettingsDidUpdate(notification: NSNotification)
+	{
+		self.reloadData()
 	}
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD1139551B501EB800A582AE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1139541B501EB800A582AE /* ArrayExtension.swift */; };
 		CD287F881B4E5E01003A0AC7 /* DestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD287F871B4E5E01003A0AC7 /* DestinationsViewController.swift */; };
 		CD891AC11B4E60CF00907BA5 /* DestinationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD891AC01B4E60CF00907BA5 /* DestinationsViewCell.swift */; };
 		CD891AC91B4FA0CB00907BA5 /* UITableViewCell+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = CD891AC81B4FA0CB00907BA5 /* UITableViewCell+Swift.m */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD1139541B501EB800A582AE /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		CD287F871B4E5E01003A0AC7 /* DestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsViewController.swift; sourceTree = "<group>"; };
 		CD891AC01B4E60CF00907BA5 /* DestinationsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsViewCell.swift; sourceTree = "<group>"; };
 		CD891AC71B4FA0CB00907BA5 /* UITableViewCell+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Swift.h"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		EF5FA9D61B49536500A44BFF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CD1139541B501EB800A582AE /* ArrayExtension.swift */,
 				EF5FA9E31B495E6B00A44BFF /* Colors.swift */,
 				CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */,
 				EF5FA9E81B497B3200A44BFF /* UIAppearance+Swift.h */,
@@ -476,6 +479,7 @@
 				EF5FA9D51B494CAE00A44BFF /* SettingsViewController.swift in Sources */,
 				CD979A231B4C1B3F0087A3E1 /* Destination.swift in Sources */,
 				CD891AC91B4FA0CB00907BA5 /* UITableViewCell+Swift.m in Sources */,
+				CD1139551B501EB800A582AE /* ArrayExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

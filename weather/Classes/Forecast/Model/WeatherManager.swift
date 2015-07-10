@@ -13,10 +13,21 @@
 
 import UIKit
 
+let kSettingsFollowedDestinations = "FollowedDestinations"
+
+let kNotificationSelectedDestinationChanged = "SelectedDestinationChanged"
+
 class WeatherManager: NSObject {
 
 	var locatedDestination: Destination?
 	var selectedDestination: Destination?
+	{
+		didSet {
+			NSNotificationCenter.defaultCenter().postNotificationName(
+				kNotificationSelectedDestinationChanged, object: nil)
+		}
+	}
+
 	var followedDestinations = [Destination]()
 	var requestsQueue: NSOperationQueue
 
@@ -56,6 +67,46 @@ class WeatherManager: NSObject {
 				weatherRecordsCache[d.identifier!] = r
 			}
 		}
+	}
+
+
+	// MARK: - Followed destinations workers
+
+	func addFollowedDestination(destination: Destination) -> Void
+	{
+		self.followedDestinations.append(destination)
+	}
+
+	func removeFollowedDestination(destination: Destination) -> Void
+	{
+		self.followedDestinations.removeObject(destination)
+	}
+
+	func loadFollowedDestinationsFromDefaults() -> Void
+	{
+		if let dicts = NSUserDefaults.standardUserDefaults().objectForKey(kSettingsFollowedDestinations) as? [Dictionary<String, AnyObject>]
+		{
+			var dests = [Destination]()
+
+			for d in dicts
+			{
+				dests.append(Destination(dictionary: d))
+			}
+
+			followedDestinations = dests
+		}
+	}
+
+	func saveFollowedDestinationsToDefaults() -> Void
+	{
+		var dicts = [Dictionary<String, AnyObject>]()
+
+		for d in followedDestinations
+		{
+			dicts.append(d.toDictionary())
+		}
+
+		NSUserDefaults.standardUserDefaults().setObject(dicts, forKey: kSettingsFollowedDestinations)
 	}
 
 

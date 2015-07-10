@@ -43,6 +43,8 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self,
 			selector: "userSettingsDidUpdate:", name: kNotificationUserSettingsDidUpdate, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "selectedDestinationChanged:", name: kNotificationSelectedDestinationChanged, object: nil)
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -224,13 +226,24 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 	func locationDidUpdate(notification: NSNotification)
 	{
 		if (WeatherManager.sharedManager.selectedDestination == nil) {
-			self.refresh()
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				self.refresh()
+			})
 		}
+	}
+
+	func selectedDestinationChanged(notification: NSNotification)
+	{
+		NSOperationQueue.mainQueue().addOperationWithBlock({
+			self.refresh()
+		})
 	}
 
 	func userSettingsDidUpdate(notification: NSNotification)
 	{
-		self.reloadData()
+		NSOperationQueue.mainQueue().addOperationWithBlock({
+			self.reloadData()
+		})
 	}
 
 
@@ -243,7 +256,6 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	func destinationsViewControllerDidSelectDestination(destination: Destination?)
 	{
-		self.refresh()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 

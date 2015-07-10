@@ -25,6 +25,8 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self,
 			selector: "userSettingsDidUpdate:", name: kNotificationUserSettingsDidUpdate, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self,
+			selector: "selectedDestinationChanged:", name: kNotificationSelectedDestinationChanged, object: nil)
 	}
 
 	override func viewDidAppear(animated: Bool)
@@ -126,9 +128,16 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 		}
 	}
 
+	func selectedDestinationChanged(notification: NSNotification)
+	{
+		self.refresh()
+	}
+
 	func userSettingsDidUpdate(notification: NSNotification)
 	{
-		self.reloadData()
+		dispatch_async(dispatch_get_main_queue()) {() -> Void in
+			self.reloadData()
+		}
 	}
 
 
@@ -141,7 +150,6 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 	func destinationsViewControllerDidSelectDestination(destination: Destination?)
 	{
-		self.refresh()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 

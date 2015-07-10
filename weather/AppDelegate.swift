@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
 	func application(application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
 	{
@@ -37,12 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		UIView.appearanceWhenContainedWithin([ UITabBar.self ]).tintColor = UIColor.blackColor()
 //		UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blackColor()], forState: UIControlState.Normal)
 
+		// Load some data from last session
+		WeatherManager.sharedManager.loadFollowedDestinationsFromDefaults()
+
 		return true
 	}
 
 	func applicationWillResignActive(application: UIApplication) { }
 
-	func applicationDidEnterBackground(application: UIApplication) { }
+	func applicationDidEnterBackground(application: UIApplication)
+	{
+		// Save some data for the next session
+		WeatherManager.sharedManager.saveFollowedDestinationsToDefaults()
+	}
 
 	func applicationWillEnterForeground(application: UIApplication) { }
 

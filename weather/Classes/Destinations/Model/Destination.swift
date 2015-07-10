@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class Destination {
+class Destination: Equatable {
 
 	var identifier: Int?
 	var name: String?
@@ -32,4 +32,37 @@ class Destination {
 		}
 	}
 
+	convenience init(dictionary: [String: AnyObject])
+	{
+		self.init()
+
+		self.identifier = dictionary["identifier"] as! Int?
+		self.name = dictionary["name"] as! String?
+		self.country = dictionary["country"] as! String?
+
+		let latitude = dictionary["latitude"] as! CLLocationDegrees?
+		let longitude = dictionary["longitude"] as! CLLocationDegrees?
+
+		if (latitude != nil && longitude != nil)
+		{
+			self.location = CLLocation(latitude: latitude!, longitude: longitude!)
+		}
+	}
+
+	func toDictionary() -> [String: AnyObject]
+	{
+		return [
+			"identifier": self.identifier ?? 0,
+			"name": self.name ?? "",
+			"country": self.country ?? "",
+			"latitude": self.location?.coordinate.latitude ?? 0,
+			"longitude": self.location?.coordinate.longitude ?? 0
+		]
+	}
+
+}
+
+func ==(lhs: Destination, rhs: Destination) -> Bool
+{
+	return lhs.identifier == rhs.identifier
 }

@@ -91,27 +91,6 @@ class DestinationsViewController: UIViewController,
 		delegate?.destinationsViewControllerDidSelectDestination(newSelected)
 	}
 
-//	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
-//	{
-//		return (indexPath.row != 0)
-//	}
-//
-//	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?
-//	{
-//		let button = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in }
-//	}
-//
-//	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle,
-//		forRowAtIndexPath indexPath: NSIndexPath)
-//	{
-//		if (editingStyle == .Delete)
-//		{
-//			WeatherManager.sharedManager.followedDestinations.removeAtIndex(indexPath.row)
-//			tableView.deleteRowsAtIndexPaths([ indexPath ], withRowAnimation: .Automatic)
-//			tableView.reloadData()
-//		}
-//	}
-
 
 	// MARK: - Actions
 
@@ -139,7 +118,7 @@ class DestinationsViewController: UIViewController,
 		{
 			let wm = WeatherManager.sharedManager
 			let destination = WeatherManager.sharedManager.followedDestinations[path.row-1]
-			wm.followedDestinations.removeAtIndex(path.row-1)
+			wm.removeFollowedDestination(destination)
 
 			if (destination.identifier == wm.selectedDestination?.identifier)
 			{ wm.selectedDestination = nil }
@@ -155,7 +134,7 @@ class DestinationsViewController: UIViewController,
 
 	func destinationsSearchViewControllerDidSelectDestination(destination: Destination)
 	{
-		WeatherManager.sharedManager.followedDestinations.append(destination)
+		WeatherManager.sharedManager.addFollowedDestination(destination)
 		tableView.reloadData()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}

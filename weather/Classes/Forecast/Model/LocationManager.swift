@@ -11,8 +11,8 @@ import CoreLocation
 
 let kNotificationLocationDidUpdate    = "LocationDidUpdate"
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
-
+class LocationManager: NSObject, CLLocationManagerDelegate, UIAlertViewDelegate
+{
 	let locationManager: CLLocationManager
 	var lastLocation: CLLocation?
 
@@ -49,7 +49,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 		if (status == .Denied || status == .Restricted) {
 			UIAlertView(title: "Location authorization needed",
 				message: "Please open Settings to allow access.",
-					delegate: nil, cancelButtonTitle: "OK")
+					delegate: self, cancelButtonTitle: "Close", otherButtonTitles: "Settings")
+						.show()
 			return false
 		}
 
@@ -75,6 +76,21 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
 		// Send notification
 		NSNotificationCenter.defaultCenter().postNotificationName(kNotificationLocationDidUpdate, object: nil)
+	}
+
+	func locationManager(manager: CLLocationManager!,
+		didChangeAuthorizationStatus status: CLAuthorizationStatus)
+	{
+		locationManager.startUpdatingLocation()
+	}
+
+
+	// MARK: Alert view delegate
+
+	func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
+	{
+		if buttonIndex != alertView.cancelButtonIndex
+		{ UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!) }
 	}
 
 }

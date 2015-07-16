@@ -72,7 +72,8 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 	func reloadData() -> Void
 	{
-		self.navigationItem.title = displayedDestination?.name ?? "Forecast"
+		self.navigationItem.title = displayedDestination?.name ??
+			displayedDestination?.country ?? "Forecast"
 		self.tableView.reloadData()
 	}
 

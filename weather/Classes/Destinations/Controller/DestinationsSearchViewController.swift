@@ -50,6 +50,12 @@ class DestinationsSearchViewController: UITableViewController,
 		searchField?.returnKeyType = .Search
 	}
 
+	override func viewDidAppear(animated: Bool)
+	{
+		super.viewDidAppear(animated)
+		searchBar.becomeFirstResponder()
+	}
+
 	override func viewWillDisappear(animated: Bool)
 	{
 		super.viewWillDisappear(animated)
@@ -152,5 +158,12 @@ class DestinationsSearchViewController: UITableViewController,
 			}
 
 		})
+	}
+
+	func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
+	{
+		// Reset table contents when search bar text changes
+		self.foundDestinations = [ ]
+		self.reloadData()
 	}
 }

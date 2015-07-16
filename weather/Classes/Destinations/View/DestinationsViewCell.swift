@@ -34,7 +34,7 @@ class DestinationsViewCell: MGSwipeTableCell {
 			temperatureString = NumberFormatter.double(record.temperature, toTemperatureStringWithUnit: unit, unitDisplayed: false) ?? "–"
 		}
 
-		destinationLabel?.text = destination?.name
+		destinationLabel?.text = destination?.name ?? destination?.country ?? "Unknown"
 		navigationFlag?.hidden = destination !== WeatherManager.sharedManager.locatedDestination
 		conditionImage?.image = UIImage(named: conditionImageName)
 		conditionLabel?.text = record?.conditionText ?? "Unknown"

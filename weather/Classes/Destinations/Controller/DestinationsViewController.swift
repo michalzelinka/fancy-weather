@@ -28,11 +28,45 @@ class DestinationsViewController: UIViewController,
 {
 
 	@IBOutlet weak var tableView : UITableView!
+	@IBOutlet weak var addButton : UIButton!
 
 	var delegate: DestinationsViewControllerDelegate?
 
 
 	// MARK: View lifecycle
+
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+
+		// Minor UI tweaks
+		tableView.contentInset = UIEdgeInsetsMake(0, 0, 96, 0)
+		addButton.transform = CGAffineTransformMakeTranslation(0, 400)
+		UIView.animateWithDuration(0.3, delay: 0.5, usingSpringWithDamping: 0.8,
+			initialSpringVelocity: 0.1, options: .allZeros, animations: { () -> Void in
+
+			self.addButton.transform = CGAffineTransformIdentity
+
+		}, completion: nil)
+	}
+
+	override func viewDidLayoutSubviews()
+	{
+		super.viewDidLayoutSubviews()
+
+		// Update gradient below the button
+
+		let gradient = CAGradientLayer()
+		gradient.frame = self.view.bounds
+		gradient.colors = [
+			UIColor(white:0, alpha:1).CGColor,
+			UIColor(white:0, alpha:0).CGColor,
+		]
+		gradient.startPoint = CGPointMake(0, 1-(128.0/gradient.bounds.size.height))
+		gradient.endPoint = CGPointMake(0, 1)
+
+		tableView.superview?.layer.mask = gradient
+	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
 	{

@@ -93,7 +93,8 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 		// Update location name
 
-		locationLabel.text = displayedDestination?.name
+		locationLabel.text = displayedDestination?.name ??
+			displayedDestination?.country ?? "Unknown"
 		navigationFlag.hidden = displayedDestination?.identifier !=
 			WeatherManager.sharedManager.locatedDestination?.identifier
 

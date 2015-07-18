@@ -97,11 +97,11 @@ class DestinationsSearchViewController: UITableViewController,
 			NSFontAttributeName: UIFont.lightSystemFontOfSize(cell.textLabel!.font.pointSize)
 		])
 
-		if let range = title.rangeOfString(", ",
+		if let range = title.rangeOfString(",",
 			options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
 		{
-			let start = distance(title.startIndex, range.startIndex)
-			let length = distance(range.startIndex, range.endIndex)
+			let start = 0
+			let length = distance(title.startIndex, range.startIndex)
 			let nsRange = NSMakeRange(start, length)
 			ms.addAttribute(NSFontAttributeName, value: cell.textLabel!.font, range: nsRange)
 		}
@@ -116,7 +116,12 @@ class DestinationsSearchViewController: UITableViewController,
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
 		if let destination = foundDestinations?[indexPath.row] {
-			delegate?.destinationsSearchViewControllerDidSelectDestination(destination)
+
+			if (contains(WeatherManager.sharedManager.followedDestinations, destination)) {
+				SVProgressHUD.showInfoWithStatus("Destination is already followed")
+			} else {
+				delegate?.destinationsSearchViewControllerDidSelectDestination(destination)
+			}
 		}
 	}
 	

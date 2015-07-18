@@ -141,6 +141,7 @@ class WeatherManager: NSObject {
 
 			if (error != nil) {
 				NSLog("Request error")
+				NotificationCenter.defaultCenter().fireNotificationWithTitle("Cannot get current weather data")
 				completion?(records: nil)
 				return
 			}
@@ -204,6 +205,7 @@ class WeatherManager: NSObject {
 
 				if (error != nil) {
 					NSLog("Request error")
+					NotificationCenter.defaultCenter().fireNotificationWithTitle("Cannot get current weather data")
 					completion?(destination: nil, records: nil)
 					return
 				}
@@ -237,7 +239,11 @@ class WeatherManager: NSObject {
 
 		// Otherwise return empty result
 
-		else { completion?(destination: nil, records: nil) }
+		else
+		{
+			NotificationCenter.defaultCenter().fireNotificationWithTitle("Location cannot be determined")
+			completion?(destination: nil, records: nil)
+		}
 	}
 
 	func searchForWeatherLocations(query: String?, completion: ((destinations: [Destination]?) -> Void)?) -> Void
@@ -260,6 +266,7 @@ class WeatherManager: NSObject {
 
 			if (error != nil) {
 				NSLog("Request error")
+				NotificationCenter.defaultCenter().fireNotificationWithTitle("Cannot get destinations")
 				completion?(destinations: nil)
 				return
 			}

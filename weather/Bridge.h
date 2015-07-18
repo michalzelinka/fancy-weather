@@ -13,6 +13,7 @@
 #import "UIAppearance+Swift.h"
 #import "UIFont+Swift.h"
 #import "UITableViewCell+Swift.h"
+#import "NotificationCenter.h"
 #import "SVProgressHUD.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"

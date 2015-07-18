@@ -17,6 +17,7 @@
 		CDA0084C1B4D43510040F9EE /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0084B1B4D43510040F9EE /* NumberFormatter.swift */; };
 		CDA0084E1B4D52830040F9EE /* ForecastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0084D1B4D52830040F9EE /* ForecastViewCell.swift */; };
 		CDA008501B4D5ED90040F9EE /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */; };
+		EF29D4521B5A543000294F49 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF29D4511B5A543000294F49 /* AVFoundation.framework */; };
 		EF5FA99C1B491C4900A44BFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */; };
 		EF5FA9A51B491C4900A44BFF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9A41B491C4900A44BFF /* Images.xcassets */; };
 		EF5FA9A81B491C4900A44BFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5FA9A61B491C4900A44BFF /* LaunchScreen.xib */; };
@@ -37,6 +38,9 @@
 		EF8127CD1B4C5311007A48BD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8127C21B4C5311007A48BD /* SwiftyJSON.swift */; };
 		EF8127CF1B4C5554007A48BD /* WeatherRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8127CE1B4C5554007A48BD /* WeatherRecord.swift */; };
 		EFB796F41B4C5BF500B2780E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB796F31B4C5BF500B2780E /* LocationManager.swift */; };
+		EFC96B341B598E7A0074DF51 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC96B331B598E7A0074DF51 /* NotificationCenter.m */; };
+		EFC96B371B5992CA0074DF51 /* UIView+position.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC96B361B5992CA0074DF51 /* UIView+position.m */; };
+		EFC96B3A1B599B920074DF51 /* telegramwe.caf in Resources */ = {isa = PBXBuildFile; fileRef = EFC96B391B599B920074DF51 /* telegramwe.caf */; };
 		EFCBEF291B4EE0B3009E14B0 /* DestinationsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF281B4EE0B3009E14B0 /* DestinationsSearchViewController.swift */; };
 		EFCBEF2E1B4EE9C7009E14B0 /* UIView+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF2D1B4EE9C7009E14B0 /* UIView+Swift.m */; };
 		EFCBEF361B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF311B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m */; };
@@ -58,6 +62,7 @@
 		CDA0084B1B4D43510040F9EE /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		CDA0084D1B4D52830040F9EE /* ForecastViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewCell.swift; sourceTree = "<group>"; };
 		CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
+		EF29D4511B5A543000294F49 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EF5FA9961B491C4900A44BFF /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5FA99A1B491C4900A44BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF5FA99B1B491C4900A44BFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +89,11 @@
 		EF8127C21B4C5311007A48BD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		EF8127CE1B4C5554007A48BD /* WeatherRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRecord.swift; sourceTree = "<group>"; };
 		EFB796F31B4C5BF500B2780E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		EFC96B321B598E7A0074DF51 /* NotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
+		EFC96B331B598E7A0074DF51 /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
+		EFC96B351B5992CA0074DF51 /* UIView+position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+position.h"; sourceTree = "<group>"; };
+		EFC96B361B5992CA0074DF51 /* UIView+position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+position.m"; sourceTree = "<group>"; };
+		EFC96B391B599B920074DF51 /* telegramwe.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = telegramwe.caf; sourceTree = "<group>"; };
 		EFCBEF281B4EE0B3009E14B0 /* DestinationsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsSearchViewController.swift; sourceTree = "<group>"; };
 		EFCBEF2C1B4EE9C7009E14B0 /* UIView+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Swift.h"; sourceTree = "<group>"; };
 		EFCBEF2D1B4EE9C7009E14B0 /* UIView+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Swift.m"; sourceTree = "<group>"; };
@@ -101,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF29D4521B5A543000294F49 /* AVFoundation.framework in Frameworks */,
 				EF8127AC1B4C5039007A48BD /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +200,7 @@
 			children = (
 				EF5FA9BE1B493D4800A44BFF /* Fonts */,
 				EF5FA9A41B491C4900A44BFF /* Images.xcassets */,
+				EFC96B381B599B920074DF51 /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -277,6 +289,8 @@
 			children = (
 				CD1139541B501EB800A582AE /* ArrayExtension.swift */,
 				EF5FA9E31B495E6B00A44BFF /* Colors.swift */,
+				EFC96B321B598E7A0074DF51 /* NotificationCenter.h */,
+				EFC96B331B598E7A0074DF51 /* NotificationCenter.m */,
 				CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */,
 				EFD159DA1B597B51006A85DB /* StringExtension.swift */,
 				EF5FA9E81B497B3200A44BFF /* UIAppearance+Swift.h */,
@@ -285,6 +299,8 @@
 				CDA008481B4CF9890040F9EE /* UIFont+Swift.m */,
 				CD891AC71B4FA0CB00907BA5 /* UITableViewCell+Swift.h */,
 				CD891AC81B4FA0CB00907BA5 /* UITableViewCell+Swift.m */,
+				EFC96B351B5992CA0074DF51 /* UIView+position.h */,
+				EFC96B361B5992CA0074DF51 /* UIView+position.m */,
 				EFCBEF2C1B4EE9C7009E14B0 /* UIView+Swift.h */,
 				EFCBEF2D1B4EE9C7009E14B0 /* UIView+Swift.m */,
 			);
@@ -353,6 +369,7 @@
 		EF8127B01B4C5311007A48BD /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				EF29D4511B5A543000294F49 /* AVFoundation.framework */,
 				EF8127AB1B4C5039007A48BD /* CoreLocation.framework */,
 				EF66265F1B4F362600E75BF7 /* MGSwipeTableCell */,
 				EFCBEF2F1B4EFA90009E14B0 /* SVProgressHUD */,
@@ -367,6 +384,14 @@
 				EF8127C21B4C5311007A48BD /* SwiftyJSON.swift */,
 			);
 			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		EFC96B381B599B920074DF51 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				EFC96B391B599B920074DF51 /* telegramwe.caf */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		EFCBEF2F1B4EFA90009E14B0 /* SVProgressHUD */ = {
@@ -439,6 +464,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFC96B3A1B599B920074DF51 /* telegramwe.caf in Resources */,
 				EF5FA9CA1B4940CD00A44BFF /* Main.storyboard in Resources */,
 				EF5FA9C31B493D4800A44BFF /* ProximaNova-Bold.otf in Resources */,
 				EF5FA9C61B493D4800A44BFF /* ProximaNova-Semibold.otf in Resources */,
@@ -468,7 +494,9 @@
 				CD979A211B4C1B040087A3E1 /* WeatherManager.swift in Sources */,
 				EFCBEF2E1B4EE9C7009E14B0 /* UIView+Swift.m in Sources */,
 				EFCBEF361B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m in Sources */,
+				EFC96B341B598E7A0074DF51 /* NotificationCenter.m in Sources */,
 				EFCBEF381B4EFA90009E14B0 /* SVProgressHUD.m in Sources */,
+				EFC96B371B5992CA0074DF51 /* UIView+position.m in Sources */,
 				EF5FA9DD1B49592C00A44BFF /* ForecastViewController.swift in Sources */,
 				EF5FA9E21B49593200A44BFF /* TodayViewController.swift in Sources */,
 				EF6626651B4F362600E75BF7 /* MGSwipeTableCell.m in Sources */,

@@ -33,7 +33,7 @@ class DestinationsViewController: UIViewController,
 	var delegate: DestinationsViewControllerDelegate?
 
 
-	// MARK: View lifecycle
+	// MARK: - View lifecycle
 
 	override func viewDidLoad()
 	{

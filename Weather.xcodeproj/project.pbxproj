@@ -158,7 +158,7 @@
 		EF5FA98D1B491C4900A44BFF = {
 			isa = PBXGroup;
 			children = (
-				EF5FA9981B491C4900A44BFF /* weather */,
+				EF5FA9981B491C4900A44BFF /* Weather */,
 				EF5FA9971B491C4900A44BFF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EF5FA9981B491C4900A44BFF /* weather */ = {
+		EF5FA9981B491C4900A44BFF /* Weather */ = {
 			isa = PBXGroup;
 			children = (
 				EF5FA9C71B493D4F00A44BFF /* Classes */,
@@ -183,7 +183,7 @@
 				EF5FA9C81B4940CD00A44BFF /* Main.storyboard */,
 				EF5FA9A61B491C4900A44BFF /* LaunchScreen.xib */,
 			);
-			path = weather;
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		EF5FA9991B491C4900A44BFF /* Supporting Files */ = {
@@ -621,7 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = weather/Info.plist;
+				INFOPLIST_FILE = "$(PRODUCT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Weather;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -633,7 +633,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = weather/Info.plist;
+				INFOPLIST_FILE = "$(PRODUCT_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Weather;
 			};

@@ -11,53 +11,65 @@ import CoreLocation
 
 class Destination: Equatable {
 
-	var identifier: Int?
+	var identifier: Int
 	var name: String?
 	var country: String?
 	var location: CLLocation?
 
-	convenience init(json: JSON?)
+	init?(json: JSON?)
 	{
-		self.init()
+		identifier = json?["id"].int ?? 0
 
-		self.identifier = json?["id"].int
-		self.name = json?["name"].string
-		self.country = json?["sys"]["country"].string
+		name = json?["name"].string
+		if (name?.length() == 0) { name = nil }
+
+		country = json?["sys"]["country"].string
+		if (country?.length() == 0) { country = nil }
+
 		let latitude = json?["coord"]["lat"].double
 		let longitude = json?["coord"]["lon"].double
 
 		if (latitude != nil && longitude != nil)
-		{
-			self.location = CLLocation(latitude: latitude!, longitude: longitude!)
-		}
+		{ location = CLLocation(latitude: latitude!, longitude: longitude!) }
+
+		if (identifier == 0 ||
+			(name == nil && country == nil) ||
+			location == nil)
+		{ return nil }
+
 	}
 
-	convenience init(dictionary: [String: AnyObject])
+	init?(dictionary: [String: AnyObject])
 	{
-		self.init()
+		identifier = dictionary["identifier"] as? Int ?? 0
 
-		self.identifier = dictionary["identifier"] as! Int?
-		self.name = dictionary["name"] as! String?
-		self.country = dictionary["country"] as! String?
+		name = dictionary["name"] as? String
+		country = dictionary["country"] as? String
 
-		let latitude = dictionary["latitude"] as! CLLocationDegrees?
-		let longitude = dictionary["longitude"] as! CLLocationDegrees?
+		let latitude = dictionary["latitude"] as? CLLocationDegrees
+		let longitude = dictionary["longitude"] as? CLLocationDegrees
 
 		if (latitude != nil && longitude != nil)
-		{
-			self.location = CLLocation(latitude: latitude!, longitude: longitude!)
-		}
+		{ location = CLLocation(latitude: latitude!, longitude: longitude!) }
+
+		if (identifier == 0 ||
+			(name == nil && country == nil) ||
+			location == nil)
+		{ return nil }
 	}
 
 	func toDictionary() -> [String: AnyObject]
 	{
-		return [
-			"identifier": self.identifier ?? 0,
-			"name": self.name ?? "",
-			"country": self.country ?? "",
-			"latitude": self.location?.coordinate.latitude ?? 0,
-			"longitude": self.location?.coordinate.longitude ?? 0
-		]
+		var dict: [String: AnyObject] = [ "identifier": identifier ]
+
+		if (name != nil) { dict["name"] = name }
+		if (country != nil) { dict["country"] = country }
+		if (location != nil) {
+			dict["latitude"] = location!.coordinate.latitude
+			dict["longitude"] = location!.coordinate.longitude
+		}
+
+		return dict
 	}
 
 }

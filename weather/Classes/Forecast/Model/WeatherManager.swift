@@ -54,7 +54,7 @@ class WeatherManager: NSObject {
 	func cachedRecords(destination: Destination?) -> [WeatherRecord]?
 	{
 		if let destination = destination {
-			return weatherRecordsCache[destination.identifier!]
+			return weatherRecordsCache[destination.identifier]
 		}
 
 		return nil
@@ -64,7 +64,7 @@ class WeatherManager: NSObject {
 	{
 		if let d = destination {
 			if let r = records {
-				weatherRecordsCache[d.identifier!] = r
+				weatherRecordsCache[d.identifier] = r
 			}
 		}
 	}
@@ -90,7 +90,8 @@ class WeatherManager: NSObject {
 
 			for d in dicts
 			{
-				dests.append(Destination(dictionary: d))
+				if let d = Destination(dictionary: d)
+				{ dests.append(d) }
 			}
 
 			followedDestinations = dests
@@ -130,7 +131,7 @@ class WeatherManager: NSObject {
 		// Fetch online data for the given Destination
 
 		let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast/daily?id=%d&cnt=14",
-			destination!.identifier!)
+			destination!.identifier)
 
 		let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
 		request.timeoutInterval = 5.0
@@ -272,8 +273,8 @@ class WeatherManager: NSObject {
 
 			for c in cities
 			{
-				var dest = Destination(json: c)
-				destinations.append(dest)
+				if var dest = Destination(json: c)
+				{ destinations.append(dest) }
 			}
 
 			// Call back

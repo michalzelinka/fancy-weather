@@ -85,29 +85,28 @@ class DestinationsSearchViewController: UITableViewController,
 
 		let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsSearchViewCell") as! UITableViewCell
 
-		var title = destination?.name ?? "Unknown"
-		if let country = destination?.country
+		var titleComponents = [String]()
+
+		if (destination?.name?.length() > 0) { titleComponents.append(destination!.name!) }
+		if (destination?.country?.length() > 0) { titleComponents.append(destination!.country!) }
+
+		var title = ", ".join(titleComponents) ?? "Unknown"
+
+		var ms = NSMutableAttributedString(string: title, attributes: [
+			NSForegroundColorAttributeName: Colors.fromRGB(0x333333, alphaValue: 1.0),
+			NSFontAttributeName: UIFont.lightSystemFontOfSize(cell.textLabel!.font.pointSize)
+		])
+
+		if let range = title.rangeOfString(", ",
+			options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)
 		{
-			let destinationName = title
-			title = String(format: "%@, %@", title, country)
-
-			var ms = NSMutableAttributedString(string: title, attributes: [
-				NSForegroundColorAttributeName: Colors.fromRGB(0x333333, alphaValue: 1.0),
-				NSFontAttributeName: UIFont.lightSystemFontOfSize(cell.textLabel!.font.pointSize)
-			])
-
-			let range = title.rangeOfString(destinationName,
-				options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil)!
-
 			let start = distance(title.startIndex, range.startIndex)
 			let length = distance(range.startIndex, range.endIndex)
 			let nsRange = NSMakeRange(start, length)
 			ms.addAttribute(NSFontAttributeName, value: cell.textLabel!.font, range: nsRange)
-
-			cell.textLabel?.attributedText = ms
-
 		}
-		else { cell.textLabel?.text = title }
+
+		cell.textLabel?.attributedText = ms
 
 		return cell
 	}

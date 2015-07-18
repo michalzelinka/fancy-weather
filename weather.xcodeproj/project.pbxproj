@@ -42,6 +42,7 @@
 		EFCBEF361B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF311B4EFA90009E14B0 /* SVIndefiniteAnimatedView.m */; };
 		EFCBEF371B4EFA90009E14B0 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFCBEF331B4EFA90009E14B0 /* SVProgressHUD.bundle */; };
 		EFCBEF381B4EFA90009E14B0 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCBEF351B4EFA90009E14B0 /* SVProgressHUD.m */; };
+		EFD159DB1B597B51006A85DB /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD159DA1B597B51006A85DB /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		EFCBEF331B4EFA90009E14B0 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		EFCBEF341B4EFA90009E14B0 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		EFCBEF351B4EFA90009E14B0 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		EFD159DA1B597B51006A85DB /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 				CD1139541B501EB800A582AE /* ArrayExtension.swift */,
 				EF5FA9E31B495E6B00A44BFF /* Colors.swift */,
 				CDA0084F1B4D5ED90040F9EE /* NSDateFormatterExtension.swift */,
+				EFD159DA1B597B51006A85DB /* StringExtension.swift */,
 				EF5FA9E81B497B3200A44BFF /* UIAppearance+Swift.h */,
 				EF5FA9E91B497B3200A44BFF /* UIAppearance+Swift.m */,
 				CDA008471B4CF9890040F9EE /* UIFont+Swift.h */,
@@ -459,6 +462,7 @@
 				CDA0084C1B4D43510040F9EE /* NumberFormatter.swift in Sources */,
 				EF8127CD1B4C5311007A48BD /* SwiftyJSON.swift in Sources */,
 				CDA0084E1B4D52830040F9EE /* ForecastViewCell.swift in Sources */,
+				EFD159DB1B597B51006A85DB /* StringExtension.swift in Sources */,
 				EF5FA9E41B495E6B00A44BFF /* Colors.swift in Sources */,
 				CDA008491B4CF9890040F9EE /* UIFont+Swift.m in Sources */,
 				CD979A211B4C1B040087A3E1 /* WeatherManager.swift in Sources */,

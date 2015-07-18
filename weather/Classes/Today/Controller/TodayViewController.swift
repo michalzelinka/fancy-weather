@@ -39,6 +39,8 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		super.viewDidLoad()
 		self.refresh()
 
+		// Hook on notifications
+
 		NSNotificationCenter.defaultCenter().addObserver(self,
 			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self,
@@ -226,6 +228,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	func locationDidUpdate(notification: NSNotification)
 	{
+		// Refresh data & displayed content
 		if (WeatherManager.sharedManager.selectedDestination == nil) {
 			NSOperationQueue.mainQueue().addOperationWithBlock({
 				self.refresh()
@@ -235,6 +238,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	func selectedDestinationChanged(notification: NSNotification)
 	{
+		// Refresh data & displayed content
 		NSOperationQueue.mainQueue().addOperationWithBlock({
 			self.refresh()
 		})
@@ -242,6 +246,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	func userSettingsDidUpdate(notification: NSNotification)
 	{
+		// Refresh displayed content
 		NSOperationQueue.mainQueue().addOperationWithBlock({
 			self.reloadData()
 		})

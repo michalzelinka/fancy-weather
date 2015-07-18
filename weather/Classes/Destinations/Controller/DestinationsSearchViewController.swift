@@ -37,11 +37,13 @@ class DestinationsSearchViewController: UITableViewController,
 	{
 		super.viewDidLoad()
 
+		// Search bar appearance changes
+
 		searchBar.setBackgroundImage(UIImage(), forBarPosition: .Any, barMetrics: .Default)
 		searchBar.delegate = self
 
-		let searchField = searchBar.viewForClass(UITextField) as! UITextField?
-		let searchFieldBackground = searchField?.subviews.first as! UIView?
+		let searchField = searchBar.viewForClass(UITextField) as? UITextField
+		let searchFieldBackground = searchField?.subviews.first as? UIView
 		searchFieldBackground?.hidden = true
 		searchField?.layer.borderWidth = (UIScreen.mainScreen().scale > 1) ? 0.8 : 1
 		searchField?.layer.cornerRadius = 5.0
@@ -52,12 +54,14 @@ class DestinationsSearchViewController: UITableViewController,
 
 	override func viewDidAppear(animated: Bool)
 	{
+		// Set as first responder on appearing
 		super.viewDidAppear(animated)
 		searchBar.becomeFirstResponder()
 	}
 
 	override func viewWillDisappear(animated: Bool)
 	{
+		// Resign as first responder on dismissing
 		super.viewWillDisappear(animated)
 		searchBar.resignFirstResponder()
 	}
@@ -84,6 +88,8 @@ class DestinationsSearchViewController: UITableViewController,
 		let destination = foundDestinations?[indexPath.row]
 
 		let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsSearchViewCell") as! UITableViewCell
+
+		// Construct Destination title to display in cell
 
 		var titleComponents = [String]()
 
@@ -117,6 +123,8 @@ class DestinationsSearchViewController: UITableViewController,
 
 		if let destination = foundDestinations?[indexPath.row] {
 
+			// Check following state of Destination, notify or add if possible
+
 			if (contains(WeatherManager.sharedManager.followedDestinations, destination)) {
 				SVProgressHUD.showInfoWithStatus("Destination is already followed")
 			} else {
@@ -127,6 +135,7 @@ class DestinationsSearchViewController: UITableViewController,
 	
 	override func scrollViewWillBeginDragging(scrollView: UIScrollView)
 	{
+		// Resign as first responder when scrolling through the list
 		searchBar.resignFirstResponder()
 	}
 
@@ -154,10 +163,12 @@ class DestinationsSearchViewController: UITableViewController,
 			// Refresh on main thread
 			dispatch_async(dispatch_get_main_queue()) {() -> Void in
 
+				// Notify or dismiss HUD
 				if (self.foundDestinations?.count == 0)
 				{ SVProgressHUD.showErrorWithStatus("No destinations found") }
 				else { SVProgressHUD.dismiss() }
 
+				// Reload table data
 				self.reloadData()
 			}
 

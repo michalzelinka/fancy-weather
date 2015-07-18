@@ -37,6 +37,9 @@ class WeatherRecord {
 
 	func conditionImagePattern() -> String
 	{
+		// Note: many condition images are missing, thus we try to
+		//       display what we can and live on. :)
+
 		if let conditionID = conditionID
 		{
 			let category = conditionID / 100
@@ -53,8 +56,6 @@ class WeatherRecord {
 			if (category == 3) { return "lightning" } // rain
 //			if (category == 7) { return "unknown" }
 //			if (category == 6) { return "unknown" } // snow
-
-			return "unknown"
 		}
 
 		return "unknown"

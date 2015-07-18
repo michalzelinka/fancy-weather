@@ -90,6 +90,7 @@ class DestinationsViewController: UIViewController,
 		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
 		let wm = WeatherManager.sharedManager
+
         let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsViewCell",
 			forIndexPath: indexPath) as! DestinationsViewCell
 
@@ -97,15 +98,19 @@ class DestinationsViewController: UIViewController,
 			wm.locatedDestination :
 			wm.followedDestinations[indexPath.row-1]
 
+		// Initial filling
+		cell.update(destination, record: nil)
+		cell.delegate = self
+
+		// Filling from (hopefully cached) data
 		wm.weatherForDestination(destination)
 		{ (records) -> Void in
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				cell.update(destination, record: records?.first)
 			})
 		}
-		cell.update(destination, record: nil)
-		cell.delegate = self
 
+		// Right action button
 		cell.rightButtons = [ MGSwipeButton(title: "", icon: UIImage(named: "destinations-delete"),
 			backgroundColor: Colors.fromRGB(0xff7f2c, alphaValue: 1), padding: 36) ]
 		cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
@@ -138,6 +143,7 @@ class DestinationsViewController: UIViewController,
 
 	func swipeTableCell(cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool
 	{
+		// Prevent deletion of first table row
 		if let path = tableView.indexPathForCell(cell)
 		{ return path.row != 0 }
 
@@ -153,9 +159,6 @@ class DestinationsViewController: UIViewController,
 			let wm = WeatherManager.sharedManager
 			let destination = WeatherManager.sharedManager.followedDestinations[path.row-1]
 			wm.removeFollowedDestination(destination)
-
-			if (destination.identifier == wm.selectedDestination?.identifier)
-			{ wm.selectedDestination = nil }
 
 			tableView.deleteRowsAtIndexPaths([ path ], withRowAnimation: .Fade)
 			tableView.reloadData()

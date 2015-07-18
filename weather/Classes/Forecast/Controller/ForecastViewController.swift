@@ -21,6 +21,8 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 		super.viewDidLoad()
 		self.refresh()
 
+		// Hook on notifications
+
 		NSNotificationCenter.defaultCenter().addObserver(self,
 			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self,

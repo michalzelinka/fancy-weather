@@ -23,6 +23,7 @@ class WeatherManager: NSObject {
 	var selectedDestination: Destination?
 	{
 		didSet {
+			// Send notification on change
 			NSNotificationCenter.defaultCenter().postNotificationName(
 				kNotificationSelectedDestinationChanged, object: nil)
 		}
@@ -53,6 +54,7 @@ class WeatherManager: NSObject {
 
 	func cachedRecords(destination: Destination?) -> [WeatherRecord]?
 	{
+		// Return cached results if available
 		if let destination = destination {
 			return weatherRecordsCache[destination.identifier]
 		}
@@ -62,6 +64,7 @@ class WeatherManager: NSObject {
 
 	func cacheRecords(records: [WeatherRecord]?, destination: Destination?) -> Void
 	{
+		// Cache results if possible
 		if let d = destination {
 			if let r = records {
 				weatherRecordsCache[d.identifier] = r
@@ -74,17 +77,25 @@ class WeatherManager: NSObject {
 
 	func addFollowedDestination(destination: Destination) -> Void
 	{
+		// Add followed Destination
 		self.followedDestinations.append(destination)
 	}
 
 	func removeFollowedDestination(destination: Destination) -> Void
 	{
+		// Remove followed Destination and unset as selected if so
 		self.followedDestinations.removeObject(destination)
+
+		if (destination.identifier == selectedDestination?.identifier)
+		{ self.selectedDestination = nil }
 	}
 
 	func loadFollowedDestinationsFromDefaults() -> Void
 	{
-		if let dicts = NSUserDefaults.standardUserDefaults().objectForKey(kSettingsFollowedDestinations) as? [Dictionary<String, AnyObject>]
+		// Fetch followed Destinations from User Defaults
+
+		if let dicts = NSUserDefaults.standardUserDefaults()
+			.objectForKey(kSettingsFollowedDestinations) as? [Dictionary<String, AnyObject>]
 		{
 			var dests = [Destination]()
 
@@ -100,6 +111,8 @@ class WeatherManager: NSObject {
 
 	func saveFollowedDestinationsToDefaults() -> Void
 	{
+		// Save followed Destinations to User Defaults
+
 		var dicts = [Dictionary<String, AnyObject>]()
 
 		for d in followedDestinations

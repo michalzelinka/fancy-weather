@@ -80,7 +80,7 @@ class SettingsViewController: UITableViewController {
 		else if (selection == .Temperature)
 		{
 			var newValue = UserSettings.sharedSettings.temperatureUnit.rawValue+1
-			if newValue > TemperatureUnit.Romer.rawValue { newValue = TemperatureUnit.Kelvin.rawValue }
+			if newValue > TemperatureUnit.Fahrenheit.rawValue { newValue = TemperatureUnit.Kelvin.rawValue }
 			UserSettings.sharedSettings.temperatureUnit = TemperatureUnit(rawValue: newValue)!
 		}
 

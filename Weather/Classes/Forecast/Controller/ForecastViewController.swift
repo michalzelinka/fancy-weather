@@ -23,26 +23,29 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 		// Hook on notifications
 
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "userSettingsDidUpdate:", name: kNotificationUserSettingsDidUpdate, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "selectedDestinationChanged:", name: kNotificationSelectedDestinationChanged, object: nil)
+		NotificationCenter.default.addObserver(self,
+			selector: #selector(locationDidUpdate(_:)),
+			name: NSNotification.Name(kNotificationLocationDidUpdate), object: nil)
+		NotificationCenter.default.addObserver(self,
+			selector: #selector(userSettingsDidUpdate(_:)),
+			name: NSNotification.Name(kNotificationUserSettingsDidUpdate), object: nil)
+		NotificationCenter.default.addObserver(self,
+			selector: #selector(selectedDestinationChanged(_:)),
+			name: NSNotification.Name(kNotificationSelectedDestinationChanged), object: nil)
 	}
 
-	override func viewDidAppear(animated: Bool)
+	override func viewDidAppear(_ animated: Bool)
 	{
 		tableView.showsVerticalScrollIndicator = false
 		super.viewDidAppear(animated)
 		tableView.showsVerticalScrollIndicator = true
 	}
 
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
 		if (segue.identifier == "Destinations")
 		{
-			let nc = segue.destinationViewController as! UINavigationController
+			let nc = segue.destination as! UINavigationController
 			let vc = nc.viewControllers.first as! DestinationsViewController
 			vc.delegate = self
 		}
@@ -79,14 +82,14 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 		self.tableView.reloadData()
 	}
 
-	func update(#destination: Destination?, records: [WeatherRecord]?)
+	func update(destination: Destination?, records: [WeatherRecord]?)
 	{
 		// Assign new objects
 		displayedDestination = destination
 		displayedRecords = records
 
 		// Refresh on main thread
-		dispatch_async(dispatch_get_main_queue()) {() -> Void in
+		DispatchQueue.main.async {() -> Void in
 			self.reloadData()
 		}
 
@@ -95,19 +98,19 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 	// MARK: - Table view delegate
 
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return displayedRecords?.count ?? 0
 	}
 
-	override func tableView(tableView: UITableView,
-		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	override func tableView(_ tableView: UITableView,
+		cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		return tableView.dequeueReusableCellWithIdentifier("ForecastViewCell") as! UITableViewCell
+		return tableView.dequeueReusableCell(withIdentifier: "ForecastViewCell") as UITableViewCell!
 	}
 
-	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-		forRowAtIndexPath indexPath: NSIndexPath)
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+		forRowAt indexPath: IndexPath)
 	{
 		let c = cell as! ForecastViewCell
 		c.update(displayedRecords?[indexPath.row])
@@ -116,7 +119,7 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 	// MARK: - Actions
 
-	@IBAction func refreshButtonTapped(sender: UIControl)
+	@IBAction func refreshButtonTapped(_ sender: UIControl)
 	{
 		self.refresh()
 	}
@@ -124,21 +127,21 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 	// MARK: - Notifications
 
-	func locationDidUpdate(notification: NSNotification)
+	func locationDidUpdate(_ notification: Notification)
 	{
 		if (WeatherManager.sharedManager.selectedDestination == nil) {
 			self.refresh()
 		}
 	}
 
-	func selectedDestinationChanged(notification: NSNotification)
+	func selectedDestinationChanged(_ notification: Notification)
 	{
 		self.refresh()
 	}
 
-	func userSettingsDidUpdate(notification: NSNotification)
+	func userSettingsDidUpdate(_ notification: Notification)
 	{
-		dispatch_async(dispatch_get_main_queue()) {() -> Void in
+		DispatchQueue.main.async {() -> Void in
 			self.reloadData()
 		}
 	}
@@ -148,12 +151,12 @@ class ForecastViewController: UITableViewController, DestinationsViewControllerD
 
 	func destinationsViewControllerDidFinish()
 	{
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
-	func destinationsViewControllerDidSelectDestination(destination: Destination?)
+	func destinationsViewControllerDidSelectDestination(_ destination: Destination?)
 	{
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
 }

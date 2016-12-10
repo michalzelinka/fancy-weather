@@ -10,7 +10,7 @@ import Foundation
 
 class WeatherRecord {
 
-	var date: NSDate?
+	var date: Date?
 	var conditionID: Int?
 	var conditionText: String?
 	var temperature: Double?
@@ -24,7 +24,7 @@ class WeatherRecord {
 	{
 		self.init()
 
-		if let dt = json?["dt"].double { date = NSDate(timeIntervalSince1970: dt) }
+		if let dt = json?["dt"].double { date = Date(timeIntervalSince1970: dt) }
 		conditionID = json?["weather"][0]["id"].int
 		conditionText = json?["weather"][0]["main"].string
 		temperature = json?["temp"]["day"].double

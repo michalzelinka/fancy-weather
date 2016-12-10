@@ -18,16 +18,16 @@ class ForecastViewCell: UITableViewCell {
     override func awakeFromNib()
 	{
         super.awakeFromNib()
-		self.selectionStyle = .None
+		self.selectionStyle = .none
     }
 
-	func update(record: WeatherRecord?) -> Void
+	func update(_ record: WeatherRecord?) -> Void
 	{
-		if var record = record
+		if let record = record
 		{
 			let unit = UserSettings.sharedSettings.temperatureUnit
 			conditionImage?.image = UIImage(named: String("condition-"+record.conditionImagePattern()))
-			dayLabel?.text = NSDateFormatter.sharedDayNameFormatter().stringFromDate(record.date!)
+			dayLabel?.text = DateFormatter.sharedDayNameFormatter().string(from: record.date!)
 			conditionLabel?.text = record.conditionText
 			temperatureLabel?.text = NumberFormatter.double(record.temperature, toTemperatureStringWithUnit: unit, unitDisplayed: false)
 		}

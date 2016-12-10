@@ -19,15 +19,15 @@ class DestinationsViewCell: MGSwipeTableCell {
 	override func awakeFromNib()
 	{
 		super.awakeFromNib()
-		self.selectionStyle = .Default
+		self.selectionStyle = .default
 	}
 
-	func update(destination: Destination?, record: WeatherRecord?) -> Void
+	func update(_ destination: Destination?, record: WeatherRecord?) -> Void
 	{
 		var conditionImageName = "condition-unknown"
 		var temperatureString = "–"
 
-		if var record = record
+		if let record = record
 		{
 			let unit = UserSettings.sharedSettings.temperatureUnit
 			conditionImageName = String("condition-"+record.conditionImagePattern())
@@ -35,7 +35,7 @@ class DestinationsViewCell: MGSwipeTableCell {
 		}
 
 		destinationLabel?.text = destination?.name ?? destination?.country ?? "Unknown"
-		navigationFlag?.hidden = destination !== WeatherManager.sharedManager.locatedDestination
+		navigationFlag?.isHidden = destination !== WeatherManager.sharedManager.locatedDestination
 		conditionImage?.image = UIImage(named: conditionImageName)
 		conditionLabel?.text = record?.conditionText ?? "Unknown"
 		temperatureLabel?.text = temperatureString

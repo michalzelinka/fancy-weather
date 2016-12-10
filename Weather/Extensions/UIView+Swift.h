@@ -10,6 +10,6 @@
 
 @interface UIView (Swift)
 
-- (id)viewForClass:(Class)className;
+- (UIView *)viewForClass:(Class)className;
 
 @end

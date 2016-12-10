@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, NotificationType) {
 @end
 
 
-@interface NotificationCenter ()
+@interface CNotificationCenter ()
 
 @property (nonatomic, weak) NSNotificationCenter *defaultCenter;
 @property (nonatomic, weak) UIApplication *sharedApplication;
@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, NotificationType) {
 #pragma mark -
 
 
-@implementation NotificationCenter
+@implementation CNotificationCenter
 
 
 #pragma mark Instance handling
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSUInteger, NotificationType) {
 
 + (instancetype)defaultCenter
 {
-	static NotificationCenter *shared = nil;
+	static CNotificationCenter *shared = nil;
 	static dispatch_once_t once;
 	dispatch_once(&once, ^{ shared = [[self alloc] init]; });
 	return shared;
@@ -552,7 +552,7 @@ typedef NS_ENUM(NSUInteger, NotificationType) {
 - (void)checkNotificationDisplay
 {
 	InAppNotification *toDisplay = _notificationsQueue.firstObject;
-	NotificationBanner *displayed = [self viewForClass:[NotificationBanner class]];
+	NotificationBanner *displayed = (id)[self viewForClass:[NotificationBanner class]];
 
 	if (displayed && [[NSDate new] timeIntervalSinceDate:displayed.notification.fireDate] < kNotificationDisplayTimeMinimal)
 	{ dispatch_after_b(.5, ^{ [self checkNotificationDisplay]; }); return; }

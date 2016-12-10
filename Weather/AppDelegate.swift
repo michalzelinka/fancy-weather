@@ -13,22 +13,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-	func application(application: UIApplication,
-		didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+	func application(_ application: UIApplication,
+		didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
 	{
 		// Proress HUD appearance
-		SVProgressHUD.setBackgroundColor(UIColor.whiteColor())
+		SVProgressHUD.setBackgroundColor(UIColor.white)
 		SVProgressHUD.setForegroundColor(Colors.fromRGB(0x333333, alphaValue: 1.0))
-		SVProgressHUD.setFont(UIFont.systemFontOfSize(19))
-		SVProgressHUD.setDefaultMaskType(.Black)
+		SVProgressHUD.setFont(UIFont.systemFont(ofSize: 19))
+		SVProgressHUD.setDefaultMaskType(.black)
 
 		// Default Navigation bar appearance changes
-		UINavigationBar.appearance().translucent = false
+		UINavigationBar.appearance().isTranslucent = false
 		UINavigationBar.appearance().shadowImage = UIImage(named: "navbar-shadow")
-		UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+		UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 		UINavigationBar.appearance().setTitleTextAttributesSwift([
 			NSForegroundColorAttributeName: Colors.fromRGB(0x333333, alphaValue: 1),
-			NSFontAttributeName: UIFont.boldSystemFontOfSize(18)
+			NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)
 		])
 
 		// Default Tab bar appearance changes
@@ -39,21 +39,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Load some data from last session
 		WeatherManager.sharedManager.loadFollowedDestinationsFromDefaults()
 
+		// Ask for location permissions
+		let _ = CLocationManager.sharedManager.checkAuthorisation()
+
 		return true
 	}
 
-	func applicationWillResignActive(application: UIApplication) { }
+	func applicationWillResignActive(_ application: UIApplication) { }
 
-	func applicationDidEnterBackground(application: UIApplication)
+	func applicationDidEnterBackground(_ application: UIApplication)
 	{
 		// Save some data for the next session
 		WeatherManager.sharedManager.saveFollowedDestinationsToDefaults()
 	}
 
-	func applicationWillEnterForeground(application: UIApplication) { }
+	func applicationWillEnterForeground(_ application: UIApplication) { }
 
-	func applicationDidBecomeActive(application: UIApplication) { }
+	func applicationDidBecomeActive(_ application: UIApplication) { }
 
-	func applicationWillTerminate(application: UIApplication) { }
+	func applicationWillTerminate(_ application: UIApplication) { }
 
 }

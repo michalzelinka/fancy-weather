@@ -10,7 +10,7 @@
 
 @implementation UIView (Swift)
 
-- (id)viewForClass:(Class)className;
+- (UIView *)viewForClass:(Class)className;
 {
 	for (UIView *v in self.subviews)
 	{

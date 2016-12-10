@@ -13,7 +13,7 @@ import UIKit
 
 protocol DestinationsViewControllerDelegate: NSObjectProtocol
 {
-	func destinationsViewControllerDidSelectDestination(destination: Destination?)
+	func destinationsViewControllerDidSelectDestination(_ destination: Destination?)
 	func destinationsViewControllerDidFinish()
 }
 
@@ -41,11 +41,11 @@ class DestinationsViewController: UIViewController,
 
 		// Minor UI tweaks
 		tableView.contentInset = UIEdgeInsetsMake(0, 0, 96, 0)
-		addButton.transform = CGAffineTransformMakeTranslation(0, 400)
-		UIView.animateWithDuration(0.3, delay: 0.5, usingSpringWithDamping: 0.8,
-			initialSpringVelocity: 0.1, options: .allZeros, animations: { () -> Void in
+		addButton.transform = CGAffineTransform(translationX: 0, y: 400)
+		UIView.animate(withDuration: 0.3, delay: 0.5, usingSpringWithDamping: 0.8,
+		  initialSpringVelocity: 0.1, options: [], animations: { () -> Void in
 
-			self.addButton.transform = CGAffineTransformIdentity
+			self.addButton.transform = CGAffineTransform.identity
 
 		}, completion: nil)
 	}
@@ -59,20 +59,20 @@ class DestinationsViewController: UIViewController,
 		let gradient = CAGradientLayer()
 		gradient.frame = self.view.bounds
 		gradient.colors = [
-			UIColor(white:0, alpha:1).CGColor,
-			UIColor(white:0, alpha:0).CGColor,
+			UIColor(white:0, alpha:1).cgColor,
+			UIColor(white:0, alpha:0).cgColor,
 		]
-		gradient.startPoint = CGPointMake(0, 1-(128.0/gradient.bounds.size.height))
-		gradient.endPoint = CGPointMake(0, 1)
+		gradient.startPoint = CGPoint(x: 0, y: 1-(128.0/gradient.bounds.size.height))
+		gradient.endPoint = CGPoint(x: 0, y: 1)
 
 		tableView.superview?.layer.mask = gradient
 	}
 
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
 		if (segue.identifier == "Destinations Search")
 		{
-			let nc = segue.destinationViewController as! UINavigationController
+			let nc = segue.destination as! UINavigationController
 			let vc = nc.viewControllers.first as! DestinationsSearchViewController
 			vc.delegate = self
 		}
@@ -81,18 +81,18 @@ class DestinationsViewController: UIViewController,
 
     // MARK: - Table view data source
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
         return 1 + WeatherManager.sharedManager.followedDestinations.count
     }
 
-    func tableView(tableView: UITableView,
-		cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView,
+		cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let wm = WeatherManager.sharedManager
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("DestinationsViewCell",
-			forIndexPath: indexPath) as! DestinationsViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DestinationsViewCell",
+			for: indexPath) as! DestinationsViewCell
 
 		let destination = (indexPath.row == 0) ?
 			wm.locatedDestination :
@@ -105,7 +105,7 @@ class DestinationsViewController: UIViewController,
 		// Filling from (hopefully cached) data
 		wm.weatherForDestination(destination)
 		{ (records) -> Void in
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+			DispatchQueue.main.async(execute: { () -> Void in
 				cell.update(destination, record: records?.first)
 			})
 		}
@@ -113,17 +113,21 @@ class DestinationsViewController: UIViewController,
 		// Right action button
 		cell.rightButtons = [ MGSwipeButton(title: "", icon: UIImage(named: "destinations-delete"),
 			backgroundColor: Colors.fromRGB(0xff7f2c, alphaValue: 1), padding: 36) ]
-		cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+		cell.rightSwipeSettings.transition = MGSwipeTransition.drag
 
 		return cell
     }
 
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 
-		let newSelected = (indexPath.row > 0) ?
-			WeatherManager.sharedManager.followedDestinations[indexPath.row-1] ?? nil : nil
+		var newSelected : Destination? = nil
+
+		if (indexPath.row > 0)
+		{
+			newSelected = WeatherManager.sharedManager.followedDestinations[indexPath.row-1]
+		}
 
 		WeatherManager.sharedManager.selectedDestination = newSelected
 
@@ -133,7 +137,7 @@ class DestinationsViewController: UIViewController,
 
 	// MARK: - Actions
 
-	@IBAction func doneButtonTapped(sender: UIControl)
+	@IBAction func doneButtonTapped(_ sender: UIControl)
 	{
 		delegate?.destinationsViewControllerDidFinish()
 	}
@@ -141,26 +145,26 @@ class DestinationsViewController: UIViewController,
 
 	// MARK: - Swipable Table cell delegate
 
-	func swipeTableCell(cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool
+	func swipeTableCell(_ cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool
 	{
 		// Prevent deletion of first table row
-		if let path = tableView.indexPathForCell(cell)
+		if let path = tableView.indexPath(for: cell)
 		{ return path.row != 0 }
 
 		return false
 
 	}
 
-	func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int,
+	func swipeTableCell(_ cell: MGSwipeTableCell!, tappedButtonAt index: Int,
 		direction: MGSwipeDirection, fromExpansion: Bool) -> Bool
 	{
-		if let path = tableView.indexPathForCell(cell)
+		if let path = tableView.indexPath(for: cell)
 		{
 			let wm = WeatherManager.sharedManager
 			let destination = WeatherManager.sharedManager.followedDestinations[path.row-1]
 			wm.removeFollowedDestination(destination)
 
-			tableView.deleteRowsAtIndexPaths([ path ], withRowAnimation: .Fade)
+			tableView.deleteRows(at: [ path ], with: .fade)
 			tableView.reloadData()
 		}
 
@@ -169,16 +173,16 @@ class DestinationsViewController: UIViewController,
 
 	// MARK: - Desetinations Search screen delegate
 
-	func destinationsSearchViewControllerDidSelectDestination(destination: Destination)
+	func destinationsSearchViewControllerDidSelectDestination(_ destination: Destination)
 	{
 		WeatherManager.sharedManager.addFollowedDestination(destination)
 		tableView.reloadData()
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
 	func destinationsSearchViewControllerDidFinish()
 	{
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
 }

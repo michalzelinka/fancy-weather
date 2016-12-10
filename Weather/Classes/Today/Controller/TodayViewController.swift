@@ -41,19 +41,22 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 		// Hook on notifications
 
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "locationDidUpdate:", name: kNotificationLocationDidUpdate, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "userSettingsDidUpdate:", name: kNotificationUserSettingsDidUpdate, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self,
-			selector: "selectedDestinationChanged:", name: kNotificationSelectedDestinationChanged, object: nil)
+		NotificationCenter.default.addObserver(self,
+			selector: #selector(locationDidUpdate(_:)),
+			name: NSNotification.Name(kNotificationLocationDidUpdate), object: nil)
+		NotificationCenter.default.addObserver(self,
+			selector: #selector(userSettingsDidUpdate(_:)),
+			name: NSNotification.Name(kNotificationUserSettingsDidUpdate), object: nil)
+		NotificationCenter.default.addObserver(self,
+			selector: #selector(selectedDestinationChanged(_:)),
+			name: NSNotification.Name(kNotificationSelectedDestinationChanged), object: nil)
 	}
 
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
 	{
 		if (segue.identifier == "Destinations")
 		{
-			let nc = segue.destinationViewController as! UINavigationController
+			let nc = segue.destination as! UINavigationController
 			let vc = nc.viewControllers.first as! DestinationsViewController
 			vc.delegate = self
 		}
@@ -97,22 +100,22 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 		locationLabel.text = displayedDestination?.name ??
 			displayedDestination?.country ?? "Unknown"
-		navigationFlag.hidden = displayedDestination?.identifier !=
+		navigationFlag.isHidden = displayedDestination?.identifier !=
 			WeatherManager.sharedManager.locatedDestination?.identifier
 
 		// Update brief summary
 
-		var entries = NSMutableArray()
+		let entries = NSMutableArray()
 
 		if let t = displayedRecord?.temperature {
 			let unit = UserSettings.sharedSettings.temperatureUnit
-			entries.addObject(NumberFormatter.double(t, toTemperatureStringWithUnit: unit, unitDisplayed: true)!)
+			entries.add(NumberFormatter.double(t, toTemperatureStringWithUnit: unit, unitDisplayed: true)!)
 		}
 
 		if let t = displayedRecord?.conditionText
-		{ entries.addObject(t) }
+		{ entries.add(t) }
 
-		summaryLabel.text = entries.componentsJoinedByString(" | ")
+		summaryLabel.text = entries.componentsJoined(by: " | ")
 
 		// Update rain drops value
 
@@ -144,7 +147,7 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 		if (displayedRecord?.windDegree != nil)
 		{
-			var degree = Int(displayedRecord!.windDegree!)
+			let degree = Int(displayedRecord!.windDegree!)
 
 			switch (degree) {
 
@@ -163,18 +166,18 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		}
 
 		windDirectionLabel.text = windDirection
-		shareButton.enabled = (displayedDestination != nil && displayedRecord != nil)
+		shareButton.isEnabled = (displayedDestination != nil && displayedRecord != nil)
 
 	}
 
-	func update(#destination: Destination?, record: WeatherRecord?)
+	func update(destination: Destination?, record: WeatherRecord?)
 	{
 		// Assign new objects
 		displayedDestination = destination
 		displayedRecord = record
 
 		// Refresh on main thread
-		dispatch_async(dispatch_get_main_queue()) {() -> Void in
+		DispatchQueue.main.async {() -> Void in
 			self.reloadData()
 		}
 
@@ -183,12 +186,12 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	// MARK: - Actions
 
-	@IBAction func refreshButtonTapped(sender: UIControl)
+	@IBAction func refreshButtonTapped(_ sender: UIControl)
 	{
 		self.refresh()
 	}
 
-	@IBAction func shareButtonTapped(sender: UIControl)
+	@IBAction func shareButtonTapped(_ sender: UIControl)
 	{
 		let view = conditionIcon.superview
 
@@ -199,14 +202,14 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 		imageSize.height -= shareButton.bounds.height
 
 		// Create elements hiding view
-		let hider = UIView(frame: CGRectMake(0, 0, imageSize.width, 100))
-		hider.backgroundColor = UIColor.whiteColor()
+		let hider = UIView(frame: CGRect(x: 0, y: 0, width: imageSize.width, height: 100))
+		hider.backgroundColor = UIColor.white
 
 		// Begin drawing
-		UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.mainScreen().scale)
-		view!.drawViewHierarchyInRect(view!.bounds, afterScreenUpdates: false)
-		hider.drawViewHierarchyInRect(CGRectMake(0, bottomSeparator.frame.minY,
-			hider.frame.width, hider.frame.height), afterScreenUpdates: true)
+		UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
+		view!.drawHierarchy(in: view!.bounds, afterScreenUpdates: false)
+		hider.drawHierarchy(in: CGRect(x: 0, y: bottomSeparator.frame.minY,
+			width: hider.frame.width, height: hider.frame.height), afterScreenUpdates: true)
 
 		// Get image data
 		let screenshot = UIGraphicsGetImageFromCurrentImageContext()
@@ -216,38 +219,38 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 		// Group shared items
 		let message = "Look how the weather is today!"
-		let items = [ message, screenshot ]
+		let items = [ message, screenshot! ] as [Any]
 
 		// Present sharing flow
 		let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
-		self.tabBarController?.presentViewController(vc, animated: true, completion: nil)
+		self.tabBarController?.present(vc, animated: true, completion: nil)
 	}
 
 
 	// MARK: - Notifications
 
-	func locationDidUpdate(notification: NSNotification)
+	func locationDidUpdate(_ notification: Notification)
 	{
 		// Refresh data & displayed content
 		if (WeatherManager.sharedManager.selectedDestination == nil) {
-			NSOperationQueue.mainQueue().addOperationWithBlock({
+			OperationQueue.main.addOperation({
 				self.refresh()
 			})
 		}
 	}
 
-	func selectedDestinationChanged(notification: NSNotification)
+	func selectedDestinationChanged(_ notification: Notification)
 	{
 		// Refresh data & displayed content
-		NSOperationQueue.mainQueue().addOperationWithBlock({
+		OperationQueue.main.addOperation({
 			self.refresh()
 		})
 	}
 
-	func userSettingsDidUpdate(notification: NSNotification)
+	func userSettingsDidUpdate(_ notification: Notification)
 	{
 		// Refresh displayed content
-		NSOperationQueue.mainQueue().addOperationWithBlock({
+		OperationQueue.main.addOperation({
 			self.reloadData()
 		})
 	}
@@ -257,12 +260,12 @@ class TodayViewController: UIViewController, DestinationsViewControllerDelegate 
 
 	func destinationsViewControllerDidFinish()
 	{
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
-	func destinationsViewControllerDidSelectDestination(destination: Destination?)
+	func destinationsViewControllerDidSelectDestination(_ destination: Destination?)
 	{
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
 }

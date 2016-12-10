@@ -12,7 +12,7 @@ extension String {
 
 	func length() -> Int
 	{
-		return self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+		return self.lengthOfBytes(using: String.Encoding.utf8)
 	}
 
 }

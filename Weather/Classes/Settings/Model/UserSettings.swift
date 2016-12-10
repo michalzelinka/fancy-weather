@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum TemperatureUnit: Int { case Kelvin, Celsius, Fahrenheit,
-                                 Delisle, Newton, Reaumur,
-	                             Rankine, Romer }
-enum DistanceUnit: Int { case Metric, Imperial }
+enum TemperatureUnit: Int { case kelvin, celsius, fahrenheit,
+                                 delisle, newton, reaumur,
+	                             rankine, romer }
+enum DistanceUnit: Int { case metric, imperial }
 
 let kNotificationUserSettingsDidUpdate    = "UserSettingsDidUpdate"
 
@@ -20,19 +20,19 @@ let kSettingTemperatureUnit = "TemperatureUnit"
 
 class UserSettings: NSObject {
 
-	var distanceUnit: DistanceUnit = DistanceUnit.Metric {
+	var distanceUnit: DistanceUnit = DistanceUnit.metric {
 		didSet {
 			self.commit()
-			NSNotificationCenter.defaultCenter().postNotificationName(
-				kNotificationUserSettingsDidUpdate, object: nil)
+			NotificationCenter.default.post(
+				name: Notification.Name(rawValue: kNotificationUserSettingsDidUpdate), object: nil)
 		}
 	}
 
-	var temperatureUnit : TemperatureUnit = TemperatureUnit.Celsius {
+	var temperatureUnit : TemperatureUnit = TemperatureUnit.celsius {
 		didSet {
 			self.commit()
-			NSNotificationCenter.defaultCenter().postNotificationName(
-				kNotificationUserSettingsDidUpdate, object: nil)
+			NotificationCenter.default.post(
+				name: Notification.Name(rawValue: kNotificationUserSettingsDidUpdate), object: nil)
 		}
 	}
 
@@ -44,27 +44,27 @@ class UserSettings: NSObject {
 
 	override init()
 	{
-		let defaults = NSUserDefaults.standardUserDefaults()
-		let isMetric = NSLocale.currentLocale().objectForKey(NSLocaleUsesMetricSystem) as! Bool
+		let defaults = UserDefaults.standard
+		let isMetric = (Locale.current as NSLocale).object(forKey: NSLocale.Key.usesMetricSystem) as! Bool
 
-		if let o = defaults.objectForKey(kSettingDistanceUnit) as? Int {
-			distanceUnit = DistanceUnit(rawValue: defaults.integerForKey(kSettingDistanceUnit))!
+		if (defaults.object(forKey: kSettingDistanceUnit) as? Int) != nil {
+			distanceUnit = DistanceUnit(rawValue: defaults.integer(forKey: kSettingDistanceUnit))!
 		} else {
-			distanceUnit = (isMetric) ? .Metric : .Imperial
+			distanceUnit = (isMetric) ? .metric : .imperial
 		}
 
-		if let o = defaults.objectForKey(kSettingTemperatureUnit) as? Int {
-			temperatureUnit = TemperatureUnit(rawValue: defaults.integerForKey(kSettingTemperatureUnit))!
+		if (defaults.object(forKey: kSettingTemperatureUnit) as? Int) != nil {
+			temperatureUnit = TemperatureUnit(rawValue: defaults.integer(forKey: kSettingTemperatureUnit))!
 		} else {
-			temperatureUnit = (isMetric) ? .Celsius : .Fahrenheit
+			temperatureUnit = (isMetric) ? .celsius : .fahrenheit
 		}
 	}
 
 	func commit() -> Void
 	{
-		var defaults = NSUserDefaults.standardUserDefaults()
-		defaults.setInteger(distanceUnit.rawValue, forKey: kSettingDistanceUnit)
-		defaults.setInteger(temperatureUnit.rawValue, forKey: kSettingTemperatureUnit)
+		let defaults = UserDefaults.standard
+		defaults.set(distanceUnit.rawValue, forKey: kSettingDistanceUnit)
+		defaults.set(temperatureUnit.rawValue, forKey: kSettingTemperatureUnit)
 	}
 
 }

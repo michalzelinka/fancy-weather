@@ -60,13 +60,13 @@ class Destination: Equatable {
 
 	func toDictionary() -> [String: AnyObject]
 	{
-		var dict: [String: AnyObject] = [ "identifier": identifier ]
+		var dict: [String: AnyObject] = [ "identifier": identifier as AnyObject ]
 
-		if (name != nil) { dict["name"] = name }
-		if (country != nil) { dict["country"] = country }
+		if (name != nil) { dict["name"] = name as AnyObject? }
+		if (country != nil) { dict["country"] = country as AnyObject? }
 		if (location != nil) {
-			dict["latitude"] = location!.coordinate.latitude
-			dict["longitude"] = location!.coordinate.longitude
+			dict["latitude"] = location!.coordinate.latitude as AnyObject?
+			dict["longitude"] = location!.coordinate.longitude as AnyObject?
 		}
 
 		return dict

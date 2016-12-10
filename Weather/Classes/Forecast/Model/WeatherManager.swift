@@ -24,13 +24,13 @@ class WeatherManager: NSObject {
 	{
 		didSet {
 			// Send notification on change
-			NSNotificationCenter.defaultCenter().postNotificationName(
-				kNotificationSelectedDestinationChanged, object: nil)
+			NotificationCenter.default.post(
+				name: Notification.Name(rawValue: kNotificationSelectedDestinationChanged), object: nil)
 		}
 	}
 
 	var followedDestinations = [Destination]()
-	var requestsQueue: NSOperationQueue
+	var requestsQueue: OperationQueue
 
 	var weatherRecordsCache = [Int: [WeatherRecord]]()
 
@@ -42,7 +42,7 @@ class WeatherManager: NSObject {
 
 	override init()
 	{
-		requestsQueue = NSOperationQueue()
+		requestsQueue = OperationQueue()
 		requestsQueue.name = "Weather queue"
 		requestsQueue.maxConcurrentOperationCount = 4
 
@@ -52,7 +52,7 @@ class WeatherManager: NSObject {
 
 	// MARK: - Temporary cache workers
 
-	func cachedRecords(destination: Destination?) -> [WeatherRecord]?
+	func cachedRecords(_ destination: Destination?) -> [WeatherRecord]?
 	{
 		// Return cached results if available
 		if let destination = destination {
@@ -62,7 +62,7 @@ class WeatherManager: NSObject {
 		return nil
 	}
 
-	func cacheRecords(records: [WeatherRecord]?, destination: Destination?) -> Void
+	func cacheRecords(_ records: [WeatherRecord]?, destination: Destination?) -> Void
 	{
 		// Cache results if possible
 		if let d = destination {
@@ -75,13 +75,13 @@ class WeatherManager: NSObject {
 
 	// MARK: - Followed destinations workers
 
-	func addFollowedDestination(destination: Destination) -> Void
+	func addFollowedDestination(_ destination: Destination) -> Void
 	{
 		// Add followed Destination
 		self.followedDestinations.append(destination)
 	}
 
-	func removeFollowedDestination(destination: Destination) -> Void
+	func removeFollowedDestination(_ destination: Destination) -> Void
 	{
 		// Remove followed Destination and unset as selected if so
 		self.followedDestinations.removeObject(destination)
@@ -94,8 +94,8 @@ class WeatherManager: NSObject {
 	{
 		// Fetch followed Destinations from User Defaults
 
-		if let dicts = NSUserDefaults.standardUserDefaults()
-			.objectForKey(kSettingsFollowedDestinations) as? [Dictionary<String, AnyObject>]
+		if let dicts = UserDefaults.standard
+			.object(forKey: kSettingsFollowedDestinations) as? [Dictionary<String, AnyObject>]
 		{
 			var dests = [Destination]()
 
@@ -120,47 +120,47 @@ class WeatherManager: NSObject {
 			dicts.append(d.toDictionary())
 		}
 
-		NSUserDefaults.standardUserDefaults().setObject(dicts, forKey: kSettingsFollowedDestinations)
+		UserDefaults.standard.set(dicts, forKey: kSettingsFollowedDestinations)
 	}
 
 
 	// MARK: - Data fetching workers
 
-	func weatherForDestination(destination: Destination?,
-		completion: ((records: [WeatherRecord]?) -> Void)?) -> Void
+	func weatherForDestination(_ destination: Destination?,
+		completion: ((_ records: [WeatherRecord]?) -> Void)?) -> Void
 	{
 		// Return empty result when no Destination given
 
-		if (destination == nil) { completion?(records: nil); return }
+		if (destination == nil) { completion?(nil); return }
 
 		// Return cached values if available
 
 		if let cached = self.cachedRecords(destination)
 		{
-			completion?(records: cached)
+			completion?(cached)
 			return
 		}
 
 		// Fetch online data for the given Destination
 
-		let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast/daily?id=%d&cnt=14",
+		let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast/daily?id=%d&cnt=14&APPID=f64fce69c7a2d556123a11d4e6d0f673",
 			destination!.identifier)
 
-		let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+		let request = NSMutableURLRequest(url: URL(string: urlString)!)
 		request.timeoutInterval = 5.0
 
-		NSURLConnection.sendAsynchronousRequest(request, queue: requestsQueue)
+		NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: requestsQueue)
 		{ (response, data, error) -> Void in
 
 			if (error != nil) {
 				NSLog("Request error")
-				NotificationCenter.defaultCenter().fireNotificationWithTitle("Cannot get current weather data")
-				completion?(records: nil)
+				CNotificationCenter.default().fireNotification(withTitle: "Cannot get current weather data")
+				completion?(nil)
 				return
 			}
 
 			// Parse JSON
-			let json = JSON(data: data)
+			let json = JSON(data: data!)
 
 			// Parse Destination
 			let city = json["city"]
@@ -172,7 +172,7 @@ class WeatherManager: NSObject {
 
 			for e in entries
 			{
-				var record = WeatherRecord(json: e)
+				let record = WeatherRecord(json: e)
 				records.append(record)
 			}
 
@@ -180,18 +180,18 @@ class WeatherManager: NSObject {
 			self.cacheRecords(records, destination: destination)
 
 			// Call back
-			completion?(records: records)
+			completion?(records)
 				
 		}
 	}
 
-	func weatherForCurrentLocation(completion: ((destination: Destination?, records: [WeatherRecord]?) -> Void)?) -> Void
+	func weatherForCurrentLocation(_ completion: ((_ destination: Destination?, _ records: [WeatherRecord]?) -> Void)?) -> Void
 	{
 		// Return empty result when Location access not authorised
 
-		if (LocationManager.sharedManager.checkAuthorisation() != true)
+		if (CLocationManager.sharedManager.checkAuthorisation() != true)
 		{
-			completion?(destination: nil, records: nil)
+			completion?(nil, nil)
 			return
 		}
 
@@ -199,32 +199,32 @@ class WeatherManager: NSObject {
 
 		if let cached = self.cachedRecords(locatedDestination)
 		{
-			completion?(destination: locatedDestination!, records: cached)
+			completion?(locatedDestination!, cached)
 			return
 		}
 
 		// Fetch online data if user's location is available
 
-		if let location = LocationManager.sharedManager.lastLocation
+		if let location = CLocationManager.sharedManager.lastLocation
 		{
-			let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=%.5f&lon=%.5f&cnt=14",
+			let urlString = String(format: "http://api.openweathermap.org/data/2.5/forecast/daily?lat=%.5f&lon=%.5f&cnt=14&APPID=f64fce69c7a2d556123a11d4e6d0f673",
 				location.coordinate.latitude, location.coordinate.longitude)
 
-			let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+			let request = NSMutableURLRequest(url: URL(string: urlString)!)
 			request.timeoutInterval = 5.0
 
-			NSURLConnection.sendAsynchronousRequest(request, queue: requestsQueue)
+			NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: requestsQueue)
 			{ (response, data, error) -> Void in
 
 				if (error != nil) {
 					NSLog("Request error")
-					NotificationCenter.defaultCenter().fireNotificationWithTitle("Cannot get current weather data")
-					completion?(destination: nil, records: nil)
+					CNotificationCenter.default().fireNotification(withTitle: "Cannot get current weather data")
+					completion?(nil, nil)
 					return
 				}
 
 				// Parse JSON
-				let json = JSON(data: data)
+				let json = JSON(data: data!)
 
 				// Parse Destination
 				let city = json["city"]
@@ -236,7 +236,7 @@ class WeatherManager: NSObject {
 
 				for e in entries
 				{
-					var record = WeatherRecord(json: e)
+					let record = WeatherRecord(json: e)
 					records.append(record)
 				}
 
@@ -245,7 +245,7 @@ class WeatherManager: NSObject {
 				self.cacheRecords(records, destination: destination)
 
 				// Call back
-				completion?(destination: destination, records: records)
+				completion?(destination, records)
 
 			}
 		}
@@ -254,38 +254,38 @@ class WeatherManager: NSObject {
 
 		else
 		{
-			NotificationCenter.defaultCenter().fireNotificationWithTitle("Location cannot be determined")
-			completion?(destination: nil, records: nil)
+			CNotificationCenter.default().fireNotification(withTitle: "Location cannot be determined")
+			completion?(nil, nil)
 		}
 	}
 
-	func searchForWeatherLocations(query: String?, completion: ((destinations: [Destination]?) -> Void)?) -> Void
+	func searchForWeatherLocations(_ query: String?, completion: ((_ destinations: [Destination]?) -> Void)?) -> Void
 	{
 		// Return empty result when search term is too short
 
-		if (query?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 3)
-		{ completion?(destinations: nil) }
+		if (query == nil || query!.lengthOfBytes(using: String.Encoding.utf8) < 3)
+		{ completion?(nil) }
 
 		// Call API for results with the given query
 
-		let urlString = String(format: "http://api.openweathermap.org/data/2.5/find?q=%@&type=like",
-			query!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+		let urlString = String(format: "http://api.openweathermap.org/data/2.5/find?q=%@&type=like&APPID=f64fce69c7a2d556123a11d4e6d0f673",
+			query!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
 
-		let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+		let request = NSMutableURLRequest(url: URL(string: urlString)!)
 		request.timeoutInterval = 5.0
 
-		NSURLConnection.sendAsynchronousRequest(request, queue: requestsQueue)
+		NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: requestsQueue)
 		{ (response, data, error) -> Void in
 
 			if (error != nil) {
 				NSLog("Request error")
-				NotificationCenter.defaultCenter().fireNotificationWithTitle("Cannot get destinations")
-				completion?(destinations: nil)
+				CNotificationCenter.default().fireNotification(withTitle: "Cannot get destinations")
+				completion?(nil)
 				return
 			}
 
 			// Parse JSON
-			let json = JSON(data: data)
+			let json = JSON(data: data!)
 
 			// Parse Destinations
 			let cities = json["list"].array ?? [ ]
@@ -293,12 +293,12 @@ class WeatherManager: NSObject {
 
 			for c in cities
 			{
-				if var dest = Destination(json: c)
+				if let dest = Destination(json: c)
 				{ destinations.append(dest) }
 			}
 
 			// Call back
-			completion?(destinations: destinations)
+			completion?(destinations)
 
 		}
 	}

@@ -24,7 +24,7 @@
 
 
 
-@interface NotificationCenter : NSObject
+@interface CNotificationCenter : NSObject
 
 // Internal counter of displayed notifications
 @property (nonatomic, assign) NSInteger displayedNotificationsCount;
